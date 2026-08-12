@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="620" viewBox="0 0 600 620">
+<g transform="translate(190 55) scale(2.2)"><path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
+<path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linejoin="miter" stroke-linecap="square"/>
+<path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/></g>
+<text x="300" y="420" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="112" font-weight="800" letter-spacing="8" fill="#0B2035">NOLMT</text>
+<text x="300" y="490" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="5" fill="#596878">LEAD WITHOUT LIMITS.</text>
+</svg>

@@ -1,0 +1,91 @@
+<!--meta
+title: Earn and use NOLMT
+description: Every way to earn NOLMT through verified participation, and everything a NOLMT balance unlocks.
+nav: earn
+-->
+
+<section class="band hero">
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">Ways to earn</p>
+      <h1>Do something useful. Earn NOLMT.</h1>
+      <p class="lede">Small rewards for verified participation. Nothing to buy, no wallet needed to start, and every amount is set in configuration with daily, weekly and lifetime caps.</p>
+      <div class="btn-row mt-2">
+        <a class="btn" href="account.html">Create an account</a>
+        <a class="btn btn--ghost" href="my-nolmt.html">My NOLMT</a>
+      </div>
+    </div>
+    <div class="rail">
+      <div class="rail__head">
+        <h3>Your journey</h3>
+        <p class="rail__status">Stage 1 of 7 — Discover</p>
+      </div>
+      <div data-rail></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white band--rule">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">The catalogue</p>
+      <h2>Everything you can earn.</h2>
+      <p class="lede">Read straight from the reward configuration. Change it in the admin screen and this page changes with it.</p>
+    </div>
+    <div class="grid grid--3" data-earn-grid></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Ways to use</p>
+      <h2>Everything it unlocks.</h2>
+      <p class="lede">A balance nobody can spend is not utility. These are real sinks, available now, expandable later.</p>
+    </div>
+    <div class="grid grid--3" data-use-grid></div>
+  </div>
+</section>
+
+<section class="band band--dark">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">The rules</p>
+      <h2>How this stays honest.</h2>
+      <p class="lede">Anything with value attracts people who want it for free. These are the controls that make farming NOLMT more expensive than it is worth.</p>
+    </div>
+    <div class="grid grid--3">
+      <article class="card"><h4>Verified accounts only</h4><p>Rewards are tied to a real, verified account. Nothing meaningful becomes claimable anonymously.</p></article>
+      <article class="card"><h4>Validated on the server</h4><p>A click in a browser is never proof that anything happened. The server decides, every time.</p></article>
+      <article class="card"><h4>Caps and cooldowns</h4><p>Per action, per day, per week, per lifetime — and per device and wallet where it matters.</p></article>
+      <article class="card"><h4>Duplicate detection</h4><p>Repeat emails, devices, wallets, IP patterns and referral clusters are flagged and reviewed.</p></article>
+      <article class="card"><h4>Risk scoring, not bans</h4><p>Weighted signals decide between normal, extra verification and a review hold. One weak signal never blocks you outright.</p></article>
+      <article class="card"><h4>Reversible before claim</h4><p>Fraudulent pending rewards can be invalidated before they are claimed, with an audit trail.</p></article>
+    </div>
+
+    <div class="notice notice--gold mt-3">
+      <p><b>What we will never reward.</b></p>
+      <p class="mb-0">Handing over sensitive personal information. No social security numbers, financial credentials, medical data, passwords or government IDs. Rewards recognise participation, learning and contribution — nothing else.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">Claiming</p>
+      <h2>Off-chain until you say otherwise.</h2>
+      <p>Rewards accumulate as ledger entries, not blockchain transactions. That keeps it free, fast and reversible if something is wrong. When you want the tokens in your own wallet, you connect one and claim.</p>
+      <p>A claim needs a verified account, a connected wallet, a minimum balance and a clean risk check. Claims are authorised server-side — the treasury never takes instructions from a browser.</p>
+      <p><a class="textlink" href="my-nolmt.html">Go to My NOLMT</a></p>
+    </div>
+    <dl class="kv">
+      <div><dt>Minimum claim</dt><dd><span data-config="claim.minimumBalance">25</span> NOLMT</dd></div>
+      <div><dt>Claim cooldown</dt><dd>Every <span data-config="claim.cooldownHours">24</span> hours</dd></div>
+      <div><dt>Daily cap per person</dt><dd><span data-config="caps.dailyPerUser">40</span> NOLMT</dd></div>
+      <div><dt>Weekly cap per person</dt><dd><span data-config="caps.weeklyPerUser">120</span> NOLMT</dd></div>
+      <div><dt>Network</dt><dd><span data-config="chain.network">Not configured</span></dd></div>
+      <div><dt>Who pays gas</dt><dd><span data-config="chain.gasMode">undecided</span></dd></div>
+    </dl>
+  </div>
+</section>

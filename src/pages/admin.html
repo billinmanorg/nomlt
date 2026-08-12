@@ -1,0 +1,102 @@
+<!--meta
+title: Token utility admin
+description: Preview of the NOLMT token utility admin surface — reward actions, utility catalogue, campaign limits and treasury configuration.
+nav: about
+-->
+
+<section class="band hero">
+  <div class="wrap">
+    <p class="eyebrow">Admin · token utility</p>
+    <h1>Everything here is configuration.</h1>
+    <p class="lede">Reward amounts, caps, cooldowns, verification requirements and utility prices are data, not code. Changing them does not require a redeploy.</p>
+    <div class="notice notice--signal mt-2">
+      <p class="mb-0"><b>Preview only.</b> This page renders the live configuration read-only so you can see the shape of the admin surface. The real one sits behind authentication on the server, with role-based access, an audit log and no route by which a browser can write to it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white band--rule">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Reward actions</p>
+      <h2>What earns, and how much.</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="data" id="reward-table">
+        <thead>
+          <tr>
+            <th>Action</th><th>Amount</th><th>Daily</th><th>Weekly</th><th>Lifetime</th>
+            <th>Cooldown</th><th>Verification</th><th>Risk</th><th>Enabled</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Utility catalogue</p>
+      <h2>What NOLMT buys.</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="data" id="utility-table">
+        <thead>
+          <tr><th>Utility</th><th>Cost</th><th>Category</th><th>Eligibility</th><th>Window</th><th>Enabled</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white band--rule">
+  <div class="wrap grid--split">
+    <div>
+      <p class="eyebrow">Limits</p>
+      <h2>Campaign and claim controls.</h2>
+      <dl class="kv">
+        <div><dt>Daily cap per user</dt><dd><span data-config="caps.dailyPerUser">40</span> NOLMT</dd></div>
+        <div><dt>Weekly cap per user</dt><dd><span data-config="caps.weeklyPerUser">120</span> NOLMT</dd></div>
+        <div><dt>Lifetime cap per user</dt><dd><span data-config="caps.lifetimePerUser">2000</span> NOLMT</dd></div>
+        <div><dt>Claim minimum</dt><dd><span data-config="claim.minimumBalance">25</span> NOLMT</dd></div>
+        <div><dt>Claim maximum</dt><dd><span data-config="claim.maximumPerClaim">5000</span> NOLMT</dd></div>
+        <div><dt>Claim cooldown</dt><dd><span data-config="claim.cooldownHours">24</span> hours</dd></div>
+        <div><dt>Authorisation lifetime</dt><dd><span data-config="claim.authorizationTtlMinutes">30</span> minutes</dd></div>
+      </dl>
+    </div>
+    <div>
+      <p class="eyebrow">Treasury</p>
+      <h2>Not configured.</h2>
+      <dl class="kv">
+        <div><dt>Network</dt><dd><span data-config="chain.network">Not configured</span></dd></div>
+        <div><dt>Chain id</dt><dd><span data-config="chain.chainId">Not configured</span></dd></div>
+        <div><dt>Token contract</dt><dd><span data-config="chain.tokenContract">Not configured</span></dd></div>
+        <div><dt>Claim contract</dt><dd><span data-config="chain.claimContract">Not configured</span></dd></div>
+        <div><dt>Gas policy</dt><dd><span data-config="chain.gasMode">undecided</span></dd></div>
+      </dl>
+      <div class="notice mt-2">
+        <p class="mb-0">No treasury address, signer or private key appears anywhere in this website — not in a config file, not in an environment variable read by the browser, not in a build artefact. Claim authorisation belongs entirely to the server.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Still to build</p>
+      <h2>What the real admin needs.</h2>
+    </div>
+    <div class="grid grid--3">
+      <article class="card"><h4>Claims</h4><p>Claim id, user, wallet, amount, status, transaction, risk score and timestamp, with filters and export.</p></article>
+      <article class="card"><h4>Fraud</h4><p>Flagged accounts, reason, risk score, related accounts, wallets and devices, plus the action taken and by whom.</p></article>
+      <article class="card"><h4>Campaigns</h4><p>Allocation, reward budget, dates and rules, with spend against budget visible before it runs out.</p></article>
+      <article class="card"><h4>Reversal</h4><p>Invalidating fraudulent pending rewards before they are claimed, always with an audit trail entry.</p></article>
+      <article class="card"><h4>Emergency pause</h4><p>Independent switches for reward actions and for claims, usable by a named person in under a minute.</p></article>
+      <article class="card"><h4>Treasury health</h4><p>Balance, distribution against limits and system status — admin only, never exposed publicly.</p></article>
+    </div>
+  </div>
+</section>

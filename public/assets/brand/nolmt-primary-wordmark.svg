@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="220" viewBox="0 0 920 220">
+<g transform="translate(30 48) scale(1.15)"><path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
+<path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linejoin="miter" stroke-linecap="square"/>
+<path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/></g>
+<text x="205" y="150" font-family="Inter,Arial,sans-serif" font-size="116" font-weight="800" letter-spacing="8" fill="#0B2035">NOLMT</text>
+</svg>

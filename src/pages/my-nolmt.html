@@ -1,0 +1,148 @@
+<!--meta
+title: My NOLMT
+description: Your NOLMT rewards balance, activity history, wallet status and claim.
+nav: earn
+-->
+
+<section class="band hero">
+  <div class="wrap">
+    <p class="eyebrow">My NOLMT</p>
+    <h1 class="mb-0">Your rewards.</h1>
+  </div>
+</section>
+
+<!-- Signed out -->
+<section class="band band--tight" data-when="signed-out" hidden>
+  <div class="wrap">
+    <div class="notice notice--gold">
+      <p><b>You are not signed in.</b></p>
+      <p>Create an account and your balance, history and claim status appear here. Reading the site earns nothing on its own — participation does.</p>
+      <p class="mb-0"><a class="btn btn--sm" href="account.html">Create an account</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Signed in -->
+<div data-when="signed-in" hidden>
+  <section class="band band--tight">
+    <div class="wrap grid--aside">
+      <div class="balance">
+        <p class="eyebrow">NOLMT rewards</p>
+        <p class="balance__total" data-total>0<span>NOLMT</span></p>
+        <div class="balance__split">
+          <div><b data-pending>0</b><span>Pending</span></div>
+          <div><b data-claimable>0</b><span>Claimable</span></div>
+          <div><b data-claimed>0</b><span>Claimed</span></div>
+        </div>
+        <p class="balance__note">Pending rewards are not blockchain tokens. They are recorded entries that become claimable once verification and risk checks pass.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <p class="eyebrow eyebrow--slate">Level</p>
+          <h3 data-level>Participant</h3>
+          <div class="progress"><i data-level-bar></i></div>
+          <p class="mono muted" data-level-note>Earned 0 NOLMT so far.</p>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow eyebrow--slate">Wallet</p>
+          <div data-when="wallet-off">
+            <p>You do not need a wallet to earn or to hold a balance. Connect one when you want to claim.</p>
+            <form id="wallet-form">
+              <label class="field">
+                <span>Wallet address</span>
+                <input type="text" name="address" placeholder="0x…" autocomplete="off" spellcheck="false">
+              </label>
+              <button class="btn btn--full" type="submit">Connect wallet</button>
+            </form>
+            <p class="mono muted mt-1" data-demo-only hidden>Demonstration build: paste any valid-looking address. No wallet provider is connected and nothing is signed.</p>
+          </div>
+          <div data-when="wallet-on" hidden>
+            <span class="wallet-chip" data-connected="true"><span class="dot"></span><span data-wallet-address>0x…</span></span>
+            <p class="muted mt-1">Connected. This is where a claim would be sent.</p>
+            <button class="btn btn--ghost btn--sm" type="button" id="wallet-disconnect">Disconnect</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight">
+    <div class="wrap rail">
+      <div class="rail__head">
+        <h3>Your journey</h3>
+        <p class="rail__status">Stage 1 of 7 — Discover</p>
+      </div>
+      <div data-rail></div>
+    </div>
+  </section>
+
+  <section class="band band--white band--rule">
+    <div class="wrap grid--aside">
+      <div>
+        <p class="eyebrow">Claim</p>
+        <h2>Move it to your wallet.</h2>
+        <p>Claiming turns claimable rewards into real NOLMT in your own wallet. It needs a verified account, a connected wallet, a minimum balance and a clean risk check — and it is authorised on the server, never by your browser.</p>
+        <div class="btn-row mt-2">
+          <button class="btn btn--gold" type="button" id="claim-btn">Claim NOLMT</button>
+        </div>
+        <div class="notice mt-2" id="claim-result" hidden></div>
+      </div>
+      <dl class="kv">
+        <div><dt>Minimum claim</dt><dd><span data-config="claim.minimumBalance">25</span> NOLMT</dd></div>
+        <div><dt>Maximum per claim</dt><dd><span data-config="claim.maximumPerClaim">5000</span> NOLMT</dd></div>
+        <div><dt>Cooldown</dt><dd>Every <span data-config="claim.cooldownHours">24</span> hours</dd></div>
+        <div><dt>Network</dt><dd><span data-config="chain.network">Not configured</span></dd></div>
+        <div><dt>Token contract</dt><dd><span data-config="chain.tokenContract">Not configured</span></dd></div>
+        <div><dt>Claim contract</dt><dd><span data-config="chain.claimContract">Not configured</span></dd></div>
+        <div><dt>Transaction fees</dt><dd><span data-config="chain.gasMode">undecided</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid--aside">
+      <div>
+        <p class="eyebrow">Activity</p>
+        <h2>Why your balance looks like this.</h2>
+        <p class="lede">Every entry has a reason attached. Nothing appears without an action behind it.</p>
+      </div>
+      <div>
+        <ul class="ledger" data-ledger>
+          <li><span class="ledger__amt">—</span><span class="ledger__body"><b>No activity yet</b><span>Complete a lesson or the App Builder and it will show up here.</span></span></li>
+        </ul>
+        <div class="btn-row mt-2">
+          <a class="btn btn--ghost btn--sm" href="education.html">Earn from a lesson</a>
+          <a class="btn btn--ghost btn--sm" href="build-my-app.html">Earn from the App Builder</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="band band--white band--rule">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Ways to earn</p>
+      <h2>What else counts.</h2>
+    </div>
+    <div class="grid grid--3" data-earn-grid></div>
+
+    <div class="band-head mt-3">
+      <p class="eyebrow">Ways to use</p>
+      <h2>What it unlocks.</h2>
+    </div>
+    <div class="grid grid--3" data-use-grid></div>
+  </div>
+</section>
+
+<section class="band band--tight" data-demo-only hidden>
+  <div class="wrap">
+    <div class="notice notice--signal">
+      <p><b>Demonstration build.</b></p>
+      <p>This balance lives in your browser so the whole journey can be walked through before the backend exists. In production, rewards are validated and stored server-side against a verified account — a browser can never be trusted to price its own rewards.</p>
+      <p class="mb-0"><button class="btn btn--ghost btn--sm" type="button" id="reset-demo">Reset demo data</button></p>
+    </div>
+  </div>
+</section>

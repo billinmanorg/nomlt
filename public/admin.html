@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token utility admin — NOLMT</title>
+<meta name="description" content="Preview of the NOLMT token utility admin surface — reward actions, utility catalogue, campaign limits and treasury configuration.">
+<link rel="canonical" href="https://nolmt.ai/admin.html">
+<meta property="og:title" content="Token utility admin — NOLMT">
+<meta property="og:description" content="Preview of the NOLMT token utility admin surface — reward actions, utility catalogue, campaign limits and treasury configuration.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NOLMT">
+<meta property="og:image" content="assets/brand/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B2035">
+<link rel="icon" href="assets/brand/nolmt-favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="assets/brand/nolmt-favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.png">
+<link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/nolmt.css">
+<script>document.documentElement.className += " has-js";</script>
+</head>
+<body data-page="admin">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="demo-strip" data-demo-only hidden>
+  Demonstration build — rewards are simulated in your browser. <a href="about.html#status">What's live</a>
+</div>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brandmark" href="index.html" aria-label="NOLMT home">
+      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
+        <path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
+        <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
+      </svg>
+      <span>NOLMT</span>
+    </a>
+
+    <nav class="mainnav" aria-label="Main">
+      <ul><li><a href="ai-app-development.html">AI App Development</a></li>
+        <li><a href="tokenization.html">Tokenization</a></li>
+        <li><a href="subtokens.html">Subtokens</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li class="mainnav__cta"><a class="btn btn--full" href="build-my-app.html">Build my app</a></li>
+      </ul>
+    </nav>
+
+    <div class="masthead__actions">
+      <a class="rewards-pill" href="earn.html" data-nolmt-pill aria-label="Earn NOLMT">
+        <span class="dot"></span>Earn NOLMT
+      </a>
+      <a class="btn btn--nav" href="build-my-app.html">Build my app</a>
+      <button class="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="band hero">
+  <div class="wrap">
+    <p class="eyebrow">Admin · token utility</p>
+    <h1>Everything here is configuration.</h1>
+    <p class="lede">Reward amounts, caps, cooldowns, verification requirements and utility prices are data, not code. Changing them does not require a redeploy.</p>
+    <div class="notice notice--signal mt-2">
+      <p class="mb-0"><b>Preview only.</b> This page renders the live configuration read-only so you can see the shape of the admin surface. The real one sits behind authentication on the server, with role-based access, an audit log and no route by which a browser can write to it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white band--rule">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Reward actions</p>
+      <h2>What earns, and how much.</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="data" id="reward-table">
+        <thead>
+          <tr>
+            <th>Action</th><th>Amount</th><th>Daily</th><th>Weekly</th><th>Lifetime</th>
+            <th>Cooldown</th><th>Verification</th><th>Risk</th><th>Enabled</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Utility catalogue</p>
+      <h2>What NOLMT buys.</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="data" id="utility-table">
+        <thead>
+          <tr><th>Utility</th><th>Cost</th><th>Category</th><th>Eligibility</th><th>Window</th><th>Enabled</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white band--rule">
+  <div class="wrap grid--split">
+    <div>
+      <p class="eyebrow">Limits</p>
+      <h2>Campaign and claim controls.</h2>
+      <dl class="kv">
+        <div><dt>Daily cap per user</dt><dd><span data-config="caps.dailyPerUser">40</span> NOLMT</dd></div>
+        <div><dt>Weekly cap per user</dt><dd><span data-config="caps.weeklyPerUser">120</span> NOLMT</dd></div>
+        <div><dt>Lifetime cap per user</dt><dd><span data-config="caps.lifetimePerUser">2000</span> NOLMT</dd></div>
+        <div><dt>Claim minimum</dt><dd><span data-config="claim.minimumBalance">25</span> NOLMT</dd></div>
+        <div><dt>Claim maximum</dt><dd><span data-config="claim.maximumPerClaim">5000</span> NOLMT</dd></div>
+        <div><dt>Claim cooldown</dt><dd><span data-config="claim.cooldownHours">24</span> hours</dd></div>
+        <div><dt>Authorisation lifetime</dt><dd><span data-config="claim.authorizationTtlMinutes">30</span> minutes</dd></div>
+      </dl>
+    </div>
+    <div>
+      <p class="eyebrow">Treasury</p>
+      <h2>Not configured.</h2>
+      <dl class="kv">
+        <div><dt>Network</dt><dd><span data-config="chain.network">Not configured</span></dd></div>
+        <div><dt>Chain id</dt><dd><span data-config="chain.chainId">Not configured</span></dd></div>
+        <div><dt>Token contract</dt><dd><span data-config="chain.tokenContract">Not configured</span></dd></div>
+        <div><dt>Claim contract</dt><dd><span data-config="chain.claimContract">Not configured</span></dd></div>
+        <div><dt>Gas policy</dt><dd><span data-config="chain.gasMode">undecided</span></dd></div>
+      </dl>
+      <div class="notice mt-2">
+        <p class="mb-0">No treasury address, signer or private key appears anywhere in this website — not in a config file, not in an environment variable read by the browser, not in a build artefact. Claim authorisation belongs entirely to the server.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Still to build</p>
+      <h2>What the real admin needs.</h2>
+    </div>
+    <div class="grid grid--3">
+      <article class="card"><h4>Claims</h4><p>Claim id, user, wallet, amount, status, transaction, risk score and timestamp, with filters and export.</p></article>
+      <article class="card"><h4>Fraud</h4><p>Flagged accounts, reason, risk score, related accounts, wallets and devices, plus the action taken and by whom.</p></article>
+      <article class="card"><h4>Campaigns</h4><p>Allocation, reward budget, dates and rules, with spend against budget visible before it runs out.</p></article>
+      <article class="card"><h4>Reversal</h4><p>Invalidating fraudulent pending rewards before they are claimed, always with an audit trail entry.</p></article>
+      <article class="card"><h4>Emergency pause</h4><p>Independent switches for reward actions and for claims, usable by a named person in under a minute.</p></article>
+      <article class="card"><h4>Treasury health</h4><p>Balance, distribution against limits and system status — admin only, never exposed publicly.</p></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__mark">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+            <path d="M18 18 H62" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
+            <path d="M82 38 V82 H18 V18" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
+            <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
+          </svg>
+          <span>NOLMT</span>
+        </div>
+        <p class="footer__lede">AI applications, education, tokenization, data and communities — built so the ecosystem keeps moving when the technology changes.</p>
+      </div>
+
+      <div>
+        <h4>Build</h4>
+        <ul>
+          <li><a href="ai-app-development.html">AI app development</a></li>
+          <li><a href="apps.html">Example apps</a></li>
+          <li><a href="build-my-app.html">Build my app</a></li>
+          <li><a href="education.html">AI education</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Tokenization</h4>
+        <ul>
+          <li><a href="tokenization.html">Why tokenize</a></li>
+          <li><a href="tokenization.html#live">Live example</a></li>
+          <li><a href="subtokens.html">Subtokens</a></li>
+          <li><a href="earn.html">Earn and use NOLMT</a></li>
+          <li><a href="my-nolmt.html">My NOLMT</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="about.html#status">Build status</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <p>&copy; <span data-year>2026</span> NOLMT</p>
+      <p>Lead Without Limits.</p>
+      <p>NOLMT rewards are utility, not an investment. No financial return is offered or implied.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/nolmt.js"></script>
+<script src="js/pages/admin.js"></script>
+</body>
+</html>

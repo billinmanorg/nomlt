@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build my app — NOLMT</title>
+<meta name="description" content="Nine questions about your business and the job to be done. Get a written plan and a recommended build level back.">
+<link rel="canonical" href="https://nolmt.ai/build-my-app.html">
+<meta property="og:title" content="Build my app — NOLMT">
+<meta property="og:description" content="Nine questions about your business and the job to be done. Get a written plan and a recommended build level back.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NOLMT">
+<meta property="og:image" content="assets/brand/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B2035">
+<link rel="icon" href="assets/brand/nolmt-favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="assets/brand/nolmt-favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.png">
+<link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/nolmt.css">
+<script>document.documentElement.className += " has-js";</script>
+</head>
+<body data-page="build-my-app">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="demo-strip" data-demo-only hidden>
+  Demonstration build — rewards are simulated in your browser. <a href="about.html#status">What's live</a>
+</div>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brandmark" href="index.html" aria-label="NOLMT home">
+      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
+        <path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
+        <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
+      </svg>
+      <span>NOLMT</span>
+    </a>
+
+    <nav class="mainnav" aria-label="Main">
+      <ul><li><a href="ai-app-development.html" aria-current="page">AI App Development</a></li>
+        <li><a href="tokenization.html">Tokenization</a></li>
+        <li><a href="subtokens.html">Subtokens</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="mainnav__cta"><a class="btn btn--full" href="build-my-app.html">Build my app</a></li>
+      </ul>
+    </nav>
+
+    <div class="masthead__actions">
+      <a class="rewards-pill" href="earn.html" data-nolmt-pill aria-label="Earn NOLMT">
+        <span class="dot"></span>Earn NOLMT
+      </a>
+      <a class="btn btn--nav" href="build-my-app.html">Build my app</a>
+      <button class="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="band hero">
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">Build my app</p>
+      <h1>Tell us what it needs to do.</h1>
+      <p class="lede">Nine questions, three minutes, no technical vocabulary. You get a written plan with a recommended level and an honest note about what we would need to know next.</p>
+      <p class="mono muted">Earn <span data-amount="app_builder_completed">10</span> NOLMT for completing it.</p>
+    </div>
+    <div class="card">
+      <h4>What you get back</h4>
+      <p>A recommended build level and price, the parts of your answer that drove it, what would change the recommendation, and whether tokenization is worth discussing at all.</p>
+      <h4 class="mt-1">What we do with it</h4>
+      <p>Nothing without your say-so. The plan appears on this page first.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--white band--rule">
+  <div class="wrap">
+    <form class="formcard" id="builder" novalidate>
+      <ol class="stepper" id="stepper">
+        <li data-state="active">Your business</li>
+        <li>The job</li>
+        <li>The shape</li>
+      </ol>
+
+      <!-- Step 1 -->
+      <fieldset class="stack" data-step="1" style="border:0;padding:0;margin:0">
+        <legend class="visually-hidden">About your business</legend>
+        <label class="field">
+          <span>1 · What does your business or community do?</span>
+          <input type="text" name="what" placeholder="Plumbing company, leadership network, training academy…">
+        </label>
+        <label class="field">
+          <span>2 · Who would use the app?</span>
+          <select name="audience">
+            <option value="">Choose one</option>
+            <option value="customers">Customers or clients</option>
+            <option value="members">Members of a community</option>
+            <option value="staff">Staff or operators</option>
+            <option value="mixed">Several different groups</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>3 · How many people, roughly?</span>
+          <select name="size">
+            <option value="">Choose one</option>
+            <option value="small">Under 100</option>
+            <option value="mid">100 to 1,000</option>
+            <option value="large">1,000 to 10,000</option>
+            <option value="xl">More than 10,000</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <!-- Step 2 -->
+      <fieldset class="stack" data-step="2" hidden style="border:0;padding:0;margin:0">
+        <legend class="visually-hidden">The job to be done</legend>
+        <label class="field">
+          <span>4 · What should it do on day one?</span>
+          <textarea name="job" placeholder="Take bookings without a phone call. Put our training behind a login. Stop the spreadsheet."></textarea>
+        </label>
+        <label class="field">
+          <span>5 · How does that happen today?</span>
+          <select name="today">
+            <option value="">Choose one</option>
+            <option value="manual">By hand — phone, email, paper</option>
+            <option value="spreadsheet">A spreadsheet everyone shares</option>
+            <option value="tools">Several tools that do not talk</option>
+            <option value="nothing">It does not happen at all</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>6 · What would make this obviously worth it?</span>
+          <select name="win">
+            <option value="">Choose one</option>
+            <option value="time">Hours back every week</option>
+            <option value="revenue">More enquiries turning into work</option>
+            <option value="retention">People staying and coming back</option>
+            <option value="control">Knowing what is actually going on</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <!-- Step 3 -->
+      <fieldset class="stack" data-step="3" hidden style="border:0;padding:0;margin:0">
+        <legend class="visually-hidden">The shape of the build</legend>
+        <div class="field">
+          <span>7 · What does it need? Pick everything that applies.</span>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="needs" value="login"><span><b>Member login</b><small>Accounts and profiles</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="content"><span><b>Training or content</b><small>Courses, resources, gating</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="scheduling"><span><b>Booking or scheduling</b><small>Calendars and registrations</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="assistant"><span><b>AI assistant</b><small>Answers from your own material</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="workflow"><span><b>Workflows and approvals</b><small>Multi-step, multi-person</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="payments"><span><b>Payments</b><small>Subscriptions or one-off</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="integrations"><span><b>Integrations</b><small>Systems you already run</small></span></label>
+            <label class="choice"><input type="checkbox" name="needs" value="agents"><span><b>AI agents</b><small>Drafting work automatically</small></span></label>
+          </div>
+        </div>
+        <label class="field">
+          <span>8 · Would rewarding participation help?</span>
+          <select name="token">
+            <option value="">Choose one</option>
+            <option value="yes">Yes — people come back regularly and there is plenty to unlock</option>
+            <option value="maybe">Maybe — worth a conversation</option>
+            <option value="no">No — one-off transactions, nothing to unlock</option>
+            <option value="unsure">I do not know yet</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>9 · When do you want it live?</span>
+          <select name="when">
+            <option value="">Choose one</option>
+            <option value="asap">As soon as possible</option>
+            <option value="quarter">Within three months</option>
+            <option value="year">This year</option>
+            <option value="exploring">Just exploring</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <div class="btn-row mt-2">
+        <button class="btn btn--ghost" type="button" id="back" hidden>Back</button>
+        <button class="btn" type="button" id="next">Next</button>
+        <button class="btn" type="submit" id="finish" hidden>Get my plan</button>
+      </div>
+    </form>
+
+    <div id="plan" hidden></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap grid--3">
+    <article class="card"><h4>Fixed price</h4><p>Agreed before work starts. If the scope changes, we price the change and you decide.</p></article>
+    <article class="card"><h4>You own it</h4><p>Code, content and data. No hostage accounts, no licence you have to keep paying to read your own records.</p></article>
+    <article class="card"><h4>An honest no</h4><p>If the job does not need an app — or does not need AI — we will say so and tell you what would actually move the numbers.</p></article>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__mark">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+            <path d="M18 18 H62" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
+            <path d="M82 38 V82 H18 V18" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
+            <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
+          </svg>
+          <span>NOLMT</span>
+        </div>
+        <p class="footer__lede">AI applications, education, tokenization, data and communities — built so the ecosystem keeps moving when the technology changes.</p>
+      </div>
+
+      <div>
+        <h4>Build</h4>
+        <ul>
+          <li><a href="ai-app-development.html">AI app development</a></li>
+          <li><a href="apps.html">Example apps</a></li>
+          <li><a href="build-my-app.html">Build my app</a></li>
+          <li><a href="education.html">AI education</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Tokenization</h4>
+        <ul>
+          <li><a href="tokenization.html">Why tokenize</a></li>
+          <li><a href="tokenization.html#live">Live example</a></li>
+          <li><a href="subtokens.html">Subtokens</a></li>
+          <li><a href="earn.html">Earn and use NOLMT</a></li>
+          <li><a href="my-nolmt.html">My NOLMT</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="about.html#status">Build status</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <p>&copy; <span data-year>2026</span> NOLMT</p>
+      <p>Lead Without Limits.</p>
+      <p>NOLMT rewards are utility, not an investment. No financial return is offered or implied.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/nolmt.js"></script>
+<script src="js/pages/build-my-app.js"></script>
+</body>
+</html>
