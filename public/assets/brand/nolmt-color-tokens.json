@@ -1,10 +1,9 @@
 {
-  "midnight": "#0B2035",
-  "gold": "#C79A3B",
-  "signal_blue": "#2878F0",
-  "warm_white": "#F7F5F0",
-  "white": "#FFFFFF",
-  "slate": "#596878",
-  "charcoal": "#1C2229",
-  "near_black": "#090D12"
+  "midnight_navy": "#081426",
+  "deep_navy": "#0B2035",
+  "electric_blue": "#1E90FF",
+  "cyan_blue": "#11C5FF",
+  "aqua_teal": "#21E6D8",
+  "soft_white": "#F5F7FA",
+  "cool_gray": "#97A6B8"
 }

@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{TITLE}}</title>
-<meta name="description" content="{{DESCRIPTION}}">
-<link rel="canonical" href="https://nolmt.ai/{{CANONICAL}}">
-<meta property="og:title" content="{{TITLE}}">
-<meta property="og:description" content="{{DESCRIPTION}}">
+<title>Book a discovery call — NOLMT</title>
+<meta name="description" content="Book a short call to talk through an AI Agent, an AI App or adding digital utility.">
+<link rel="canonical" href="https://nolmt.ai/book.html">
+<meta property="og:title" content="Book a discovery call — NOLMT">
+<meta property="og:description" content="Book a short call to talk through an AI Agent, an AI App or adding digital utility.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/nolmt.css">
 <script>document.documentElement.className += " has-js";</script>
 </head>
-<body data-page="{{SLUG}}">
+<body data-page="book">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="masthead">
@@ -31,7 +31,11 @@
     </a>
 
     <nav class="mainnav" id="mainnav" aria-label="Main">
-      <ul>{{NAV}}
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
+        <li><a href="tokenization.html">Tokenization</a></li>
+        <li><a href="apps.html">Examples</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
         <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
@@ -47,7 +51,39 @@
 </header>
 
 <main id="main">
-{{BODY}}
+<section class="band hero">
+  <div class="halo halo--hero" aria-hidden="true"></div>
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">Discovery call</p>
+      <h1>Twenty minutes. <span class="grad">A straight answer.</span></h1>
+      <p class="lede">Tell us what you are trying to do. We will tell you what it takes to build it — or that you do not need us.</p>
+      <ul class="flow mt-2">
+        <li>What you do<small>The business</small></li>
+        <li>The job<small>What it must handle</small></li>
+        <li>The shape<small>Level and price</small></li>
+      </ul>
+    </div>
+
+    <form class="formcard" id="form" novalidate>
+      <h3>Request a call</h3>
+      <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name"></label>
+      <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email"></label>
+      <label class="field"><span>What would you like to build?</span>
+        <select name="topic">
+          <option value="">Choose one</option>
+          <option>An AI Agent</option>
+          <option>An AI App</option>
+          <option>Tokenization or digital utility</option>
+          <option>Not sure yet</option>
+        </select></label>
+      <label class="field"><span>Anything we should know?</span><textarea name="notes"></textarea></label>
+      <p class="notice" id="book-msg" hidden></p>
+      <button class="btn btn--full" type="submit">Request a call</button>
+      <p class="mono muted mt-1" data-demo-only hidden>Demonstration build — this form is not connected to an inbox yet.</p>
+    </form>
+  </div>
+</section>
 </main>
 
 <footer class="footer">
@@ -97,12 +133,12 @@
 </footer>
 
 <div class="sticky-cta">
-  <a class="btn btn--full" href="{{STICKY_HREF}}">{{STICKY_LABEL}}</a>
+  <a class="btn btn--full" href=""#form"">Request a call</a>
 </div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/nolmt.js"></script>
-{{PAGE_SCRIPT}}
+<script src="js/pages/book.js"></script>
 </body>
 </html>

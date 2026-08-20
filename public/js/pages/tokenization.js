@@ -1,11 +1,11 @@
 /* Tokenization fit questionnaire — scores the answers, then unlocks the reward. */
 (function () {
   "use strict";
-  var form = document.getElementById("fit-form");
+  var form = document.getElementById("explore-form");
   if (!form) return;
 
-  var result = document.getElementById("fit-result");
-  var earn = document.getElementById("fit-earn");
+  var result = document.getElementById("explore-result");
+  var earn = document.getElementById("explore-earn");
 
   var SCORES = {
     frequency: { weekly: 3, monthly: 2, occasional: 1, once: 0 },

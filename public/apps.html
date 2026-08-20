@@ -3,19 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Example apps — NOLMT</title>
-<meta name="description" content="Example NOLMT builds — member training platforms, service business front doors and operations workspaces.">
+<title>Examples — NOLMT</title>
+<meta name="description" content="Example NOLMT apps across AI education, leadership, real estate, business and community.">
 <link rel="canonical" href="https://nolmt.ai/apps.html">
-<meta property="og:title" content="Example apps — NOLMT">
-<meta property="og:description" content="Example NOLMT builds — member training platforms, service business front doors and operations workspaces.">
+<meta property="og:title" content="Examples — NOLMT">
+<meta property="og:description" content="Example NOLMT apps across AI education, leadership, real estate, business and community.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B2035">
+<meta name="theme-color" content="#081426">
 <link rel="icon" href="assets/brand/nolmt-favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="assets/brand/nolmt-favicon.png">
-<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.png">
+<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.svg">
 <link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/nolmt.css">
@@ -24,38 +23,28 @@
 <body data-page="apps">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="demo-strip" data-demo-only hidden>
-  Demonstration build — rewards are simulated in your browser. <a href="about.html#status">What's live</a>
-</div>
-
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brandmark" href="index.html" aria-label="NOLMT home">
-      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-      </svg>
-      <span>NOLMT</span>
+      <img src="assets/brand/nolmt-symbol.svg" alt="" width="38" height="38">
+      <b>NOLMT</b>
     </a>
 
-    <nav class="mainnav" aria-label="Main">
-      <ul><li><a href="ai-app-development.html">AI App Development</a></li>
+    <nav class="mainnav" id="mainnav" aria-label="Main">
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
         <li><a href="tokenization.html">Tokenization</a></li>
-        <li><a href="subtokens.html">Subtokens</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="apps.html" aria-current="page">Apps</a></li>
-        <li><a href="partners.html">Partners</a></li>
+        <li><a href="apps.html" aria-current="page">Examples</a></li>
         <li><a href="about.html">About</a></li>
-        <li class="mainnav__cta"><a class="btn btn--full" href="build-my-app.html">Build my app</a></li>
+        <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
 
     <div class="masthead__actions">
-      <a class="rewards-pill" href="earn.html" data-nolmt-pill aria-label="Earn NOLMT">
-        <span class="dot"></span>Earn NOLMT
+      <a class="rewards-pill" href="my-nolmt.html" data-nolmt-pill aria-label="Your NOLMT">
+        <span class="dot"></span>Your NOLMT
       </a>
-      <a class="btn btn--nav" href="build-my-app.html">Build my app</a>
+      <a class="btn btn--nav" href="ai-agents.html">Try an AI Agent</a>
       <button class="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
     </div>
   </div>
@@ -64,100 +53,75 @@
 <main id="main">
 <section class="band hero">
   <div class="wrap measure">
-    <p class="eyebrow">Example apps</p>
-    <h1>Built for the job, not the demo.</h1>
-    <p class="lede">Representative examples of what each level produces. Names and numbers are illustrative — the shapes are real.</p>
+    <p class="eyebrow">Examples</p>
+    <h1>What we can build.</h1>
+    <p class="lede">A quick browse of the shapes we build most often. Yours will be built around your business — these are starting points.</p>
   </div>
 </section>
 
-<section class="band band--white band--rule" id="member">
-  <div class="wrap grid--aside">
-    <div>
-      <span class="tag tag--gold">Community App · $6,000</span>
-      <h2 class="mt-1">Member training platform</h2>
-      <p>A professional association with 1,200 members, three certification tracks and a monthly event calendar that used to live in email.</p>
-      <p>Members sign in once. Course progress, certificates, event bookings and the member directory sit behind that single login. An assistant answers questions from the association's own handbook rather than the open internet, and says so when it does not know.</p>
-      <p>Completion carries utility: finishing a track credits the member's balance, which unlocks the next tier of material and priority event seats.</p>
-    </div>
-    <div class="mockup" aria-hidden="true">
-      <div class="mockup__bar"><i></i><i></i><i></i><em>members.association</em></div>
-      <div class="mockup__body">
-        <p class="mini-metric">3 <small>tracks in progress</small></p>
-        <div class="mini-split">
-          <div class="mini-cell"><b>78%</b><span>Track 2 complete</span></div>
-          <div class="mini-cell"><b>2</b><span>Certificates</span></div>
-        </div>
-        <div class="mini-list">
-          <div><span>Regional meetup · 14 Mar</span><b>Booked</b></div>
-          <div><span>Handbook assistant</span><b>Ask</b></div>
-          <div><span>Participation balance</span><b>142</b></div>
-        </div>
-      </div>
+<section class="band band--light" id="education">
+  <div class="wrap">
+    <div class="band-head"><p class="eyebrow">AI Education</p><h2>Learn AI by using it.</h2></div>
+    <div class="grid grid--3">
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>AI Training App</h4><p>Teach your people to use AI on real work.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>AI Leadership Academy</h4><p>A structured programme for leaders adopting AI.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Employee AI Learning</h4><p>Onboarding and certification for staff.</p></article>
+      <article class="card"><span class="card__index">Custom AI App · $12,000</span><h4>AI Skills Challenge</h4><p>Challenges, scoring and recognition.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>AI Learning Community</h4><p>Learning plus the people doing it.</p></article>
     </div>
   </div>
 </section>
 
-<section class="band" id="service">
-  <div class="wrap grid--aside">
-    <div>
-      <span class="tag">AI Website App · $3,000</span>
-      <h2 class="mt-1">Service business front door</h2>
-      <p>A trades business losing weekend enquiries because nobody was answering the phone.</p>
-      <p>The site qualifies the job, offers real appointment slots from the working calendar, and sends a written summary to both sides. Out of hours, an assistant answers the forty questions that come up every week and hands over anything it should not guess at.</p>
-      <p>No member accounts, no dashboards. One flow, done properly.</p>
-    </div>
-    <div class="mockup" aria-hidden="true">
-      <div class="mockup__bar"><i></i><i></i><i></i><em>request a quote</em></div>
-      <div class="mockup__body">
-        <p class="mini-metric">14 <small>enquiries this week</small></p>
-        <div class="mini-split">
-          <div class="mini-cell"><b>9</b><span>Auto-scheduled</span></div>
-          <div class="mini-cell"><b>4 min</b><span>Median reply</span></div>
-        </div>
-        <div class="mini-list">
-          <div><span>Sat 09:00 · Survey</span><b>Confirmed</b></div>
-          <div><span>Sat 13:30 · Callback</span><b>Confirmed</b></div>
-          <div><span>Out-of-hours answers</span><b>On</b></div>
-        </div>
-      </div>
+<section class="band" id="leadership">
+  <div class="wrap">
+    <div class="band-head"><p class="eyebrow">Leadership</p><h2>Keep people moving.</h2></div>
+    <div class="grid grid--4">
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Accountability App</h4><p>Goals, check-ins and follow-through.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Leadership Community</h4><p>A private home for your network.</p></article>
+      <article class="card"><span class="card__index">Custom AI App · $12,000</span><h4>Sales Coaching App</h4><p>Practice, feedback and progress.</p></article>
+      <article class="card"><span class="card__index">AI Website App · $3,000</span><h4>Goal Tracking App</h4><p>Simple, visible progress.</p></article>
     </div>
   </div>
 </section>
 
-<section class="band band--white band--rule" id="ops">
-  <div class="wrap grid--aside">
-    <div>
-      <span class="tag">Custom AI App · $12,000</span>
-      <h2 class="mt-1">Operations workspace</h2>
-      <p>A brokerage running approvals across email, a shared drive and one very load-bearing spreadsheet.</p>
-      <p>Four user types with real permissions. Files land in a case, an agent drafts the standard paperwork, a human approves or rejects with a reason, and the audit trail writes itself. The dashboard shows the two numbers the directors actually run the business on.</p>
-      <p>The agent drafts. It never approves.</p>
-    </div>
-    <div class="mockup" aria-hidden="true">
-      <div class="mockup__bar"><i></i><i></i><i></i><em>operations</em></div>
-      <div class="mockup__body">
-        <p class="mini-metric">31 <small>cases open</small></p>
-        <div class="mini-split">
-          <div class="mini-cell"><b>6</b><span>Awaiting approval</span></div>
-          <div class="mini-cell"><b>2.1d</b><span>Median cycle</span></div>
-        </div>
-        <div class="mini-list">
-          <div><span>Draft pack · #4471</span><b>Ready</b></div>
-          <div><span>Compliance check</span><b>Passed</b></div>
-          <div><span>Audit trail</span><b>Complete</b></div>
-        </div>
-      </div>
+<section class="band band--light" id="property">
+  <div class="wrap">
+    <div class="band-head"><p class="eyebrow">Real estate + mortgage</p><h2>Guide people through the process.</h2></div>
+    <div class="grid grid--3">
+      <article class="card"><span class="card__index">Custom AI App · $12,000</span><h4>Homebuyer App</h4><p>Every step, explained as it happens.</p></article>
+      <article class="card"><span class="card__index">AI Website App · $3,000</span><h4>Real Estate Lease App</h4><p>Applications and questions handled online.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Agent Training App</h4><p>Onboard and certify agents.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Mortgage Education App</h4><p>Turn a confusing process into a clear one.</p></article>
+      <article class="card"><span class="card__index">Custom AI App · $12,000</span><h4>Loan Officer App</h4><p>Pipeline, documents and follow-up.</p></article>
     </div>
   </div>
 </section>
 
-<section class="band band--dark">
-  <div class="wrap center">
-    <h2>Yours will not look like these.</h2>
-    <p class="lede">That is the point. Tell us the job and we will scope the build around it.</p>
-    <div class="btn-row mt-2" style="justify-content:center">
-      <a class="btn btn--gold" href="build-my-app.html">Build my app</a>
-      <a class="btn btn--onDark" href="ai-app-development.html">Compare the levels</a>
+<section class="band" id="business">
+  <div class="wrap">
+    <div class="band-head"><p class="eyebrow">Business</p><h2>Take the repetitive part off your team.</h2></div>
+    <div class="grid grid--3">
+      <article class="card"><span class="card__index">AI Website App · $3,000</span><h4>AI Sales Agent</h4><p>Answer, qualify and hand over warm.</p></article>
+      <article class="card"><span class="card__index">Custom AI App · $12,000</span><h4>Customer Portal</h4><p>One place for clients to see everything.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Employee Training</h4><p>Courses, tracking and certificates.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Customer Onboarding</h4><p>Get new customers working faster.</p></article>
+      <article class="card"><span class="card__index">Custom AI App · $12,000</span><h4>Business Dashboard</h4><p>The numbers you actually run on.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="band band--light" id="community">
+  <div class="wrap">
+    <div class="band-head"><p class="eyebrow">Community</p><h2>A digital home.</h2></div>
+    <div class="grid grid--4">
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Membership App</h4><p>Profiles, content and belonging.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Event Community</h4><p>Before, during and after the event.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Training Community</h4><p>Learning with people around it.</p></article>
+      <article class="card"><span class="card__index">Community App · $6,000</span><h4>Creator Community</h4><p>Your audience, on your terms.</p></article>
+    </div>
+    <div class="btn-row mt-3">
+      <a class="btn" href="ai-app-development.html">Build something like this</a>
+      <a class="btn btn--ghost" href="book.html">Book a discovery call</a>
     </div>
   </div>
 </section>
@@ -168,55 +132,50 @@
     <div class="footer__top">
       <div>
         <div class="footer__mark">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <path d="M18 18 H62" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M82 38 V82 H18 V18" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-          </svg>
-          <span>NOLMT</span>
+          <img src="assets/brand/nolmt-symbol.svg" alt="" width="34" height="34">
+          <b>NOLMT</b>
         </div>
-        <p class="footer__lede">AI applications, education, tokenization, data and communities — built so the ecosystem keeps moving when the technology changes.</p>
+        <p class="footer__lede">Lead Without Limits. Build an AI Agent. Build an AI App. Add digital utility.</p>
       </div>
-
       <div>
         <h4>Build</h4>
         <ul>
-          <li><a href="ai-app-development.html">AI app development</a></li>
-          <li><a href="apps.html">Example apps</a></li>
-          <li><a href="build-my-app.html">Build my app</a></li>
-          <li><a href="education.html">AI education</a></li>
+          <li><a href="ai-agents.html">AI Agents</a></li>
+          <li><a href="ai-app-development.html">AI Apps</a></li>
+          <li><a href="apps.html">Examples</a></li>
+          <li><a href="ai-education.html">AI Education</a></li>
         </ul>
       </div>
-
       <div>
-        <h4>Tokenization</h4>
+        <h4>Utility</h4>
         <ul>
-          <li><a href="tokenization.html">Why tokenize</a></li>
-          <li><a href="tokenization.html#live">Live example</a></li>
+          <li><a href="tokenization.html">Tokenization</a></li>
           <li><a href="subtokens.html">Subtokens</a></li>
-          <li><a href="earn.html">Earn and use NOLMT</a></li>
           <li><a href="my-nolmt.html">My NOLMT</a></li>
+          <li><a href="utility-disclosure.html">Utility disclosure</a></li>
         </ul>
       </div>
-
       <div>
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="partners.html">Partners</a></li>
-          <li><a href="account.html">Account</a></li>
-          <li><a href="about.html#status">Build status</a></li>
+          <li><a href="book.html">Book a call</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer__base">
       <p>&copy; <span data-year>2026</span> NOLMT</p>
       <p>Lead Without Limits.</p>
-      <p>NOLMT rewards are utility, not an investment. No financial return is offered or implied.</p>
+      <p>NOLMT is digital utility, not an investment. Rewards are subject to verification and program rules.</p>
     </div>
   </div>
 </footer>
+
+<div class="sticky-cta">
+  <a class="btn btn--full" href="ai-app-development.html">Build my app</a>
+</div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>

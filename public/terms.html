@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{TITLE}}</title>
-<meta name="description" content="{{DESCRIPTION}}">
-<link rel="canonical" href="https://nolmt.ai/{{CANONICAL}}">
-<meta property="og:title" content="{{TITLE}}">
-<meta property="og:description" content="{{DESCRIPTION}}">
+<title>Terms — NOLMT</title>
+<meta name="description" content="The terms that apply to using NOLMT.ai.">
+<link rel="canonical" href="https://nolmt.ai/terms.html">
+<meta property="og:title" content="Terms — NOLMT">
+<meta property="og:description" content="The terms that apply to using NOLMT.ai.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/nolmt.css">
 <script>document.documentElement.className += " has-js";</script>
 </head>
-<body data-page="{{SLUG}}">
+<body data-page="terms">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="masthead">
@@ -31,7 +31,11 @@
     </a>
 
     <nav class="mainnav" id="mainnav" aria-label="Main">
-      <ul>{{NAV}}
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
+        <li><a href="tokenization.html">Tokenization</a></li>
+        <li><a href="apps.html">Examples</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
         <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
@@ -47,7 +51,36 @@
 </header>
 
 <main id="main">
-{{BODY}}
+<section class="band hero">
+  <div class="wrap prose">
+    <p class="eyebrow">Terms</p>
+    <h1>Terms of use.</h1>
+    <p class="lede">The short version of the rules for using this website and taking part in NOLMT rewards.</p>
+
+    <h2>Using the site</h2>
+    <p>You may use NOLMT.ai for lawful purposes. Do not attempt to interfere with the site, access accounts that are not yours, or use automated means to create accounts or earn rewards.</p>
+
+    <h2>Accounts</h2>
+    <p>You are responsible for keeping your account details secure and for activity that happens under your account. One person, one account.</p>
+
+    <h2>Rewards</h2>
+    <p>NOLMT rewards recognise approved participation. They are subject to verification and program rules, and may be adjusted, withheld or reversed where activity does not qualify. Rewards may be changed or paused at any time.</p>
+
+    <h2>Not an investment</h2>
+    <p>NOLMT is digital utility intended for use within the NOLMT ecosystem. Nothing on this site is an offer of investment, a promise of future value, or financial advice. No return is offered or implied.</p>
+
+    <h2>Services</h2>
+    <p>Prices shown for AI Agents and AI Apps indicate a starting scope. The work carried out for you is governed by the written agreement you sign, which takes precedence over this website.</p>
+
+    <h2>Availability</h2>
+    <p>We aim to keep the site available and accurate, but we do not guarantee that it is uninterrupted or error-free. Features described here may change.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about these terms can be sent through the <a href="book.html">contact form</a>.</p>
+
+    <p class="mono muted mt-3">This page is a plain-language summary and not legal advice. Have it reviewed by a qualified adviser before launch.</p>
+  </div>
+</section>
 </main>
 
 <footer class="footer">
@@ -97,12 +130,12 @@
 </footer>
 
 <div class="sticky-cta">
-  <a class="btn btn--full" href="{{STICKY_HREF}}">{{STICKY_LABEL}}</a>
+  <a class="btn btn--full" href="book.html">Book a discovery call</a>
 </div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/nolmt.js"></script>
-{{PAGE_SCRIPT}}
+
 </body>
 </html>

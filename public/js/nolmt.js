@@ -66,11 +66,10 @@
     veil.innerHTML =
       '<div class="modal" role="dialog" aria-modal="true" aria-labelledby="jx-t">' +
         '<button class="modal__close" type="button" aria-label="Close">&times;</button>' +
-        '<p class="eyebrow">Live demonstration</p>' +
+        '<p class="eyebrow">Digital utility</p>' +
         '<h3 id="jx-t">You just experienced tokenization.</h3>' +
-        "<p>You completed an approved activity, earned digital utility and added it to your NOLMT rewards balance. " +
-        "Nothing was bought, and no wallet was needed. That is the whole mechanic — and it is the same one NOLMT builds " +
-        "for businesses and communities.</p>" +
+        "<p>You completed something useful and earned digital utility. No wallet, no purchase.</p>" +
+        "<p>Your business or community could create an experience like this too.</p>" +
         '<div class="btn-row mt-1">' +
           '<a class="btn" href="tokenization.html">Tokenize my business</a>' +
           '<button class="btn btn--ghost" type="button" data-dismiss>Keep exploring</button>' +
@@ -105,9 +104,9 @@
           pill.setAttribute("href", "my-nolmt.html");
           pill.setAttribute("aria-label", "Your NOLMT rewards: " + bal.total + " total. Open My NOLMT.");
         } else {
-          pill.innerHTML = '<span class="dot"></span>Earn NOLMT';
-          pill.setAttribute("href", "earn.html");
-          pill.setAttribute("aria-label", "See how to earn NOLMT");
+          pill.innerHTML = '<span class="dot"></span><span class="pill-label">Your</span> NOLMT';
+          pill.setAttribute("href", "my-nolmt.html");
+          pill.setAttribute("aria-label", "Your NOLMT");
         }
       });
     });
@@ -118,13 +117,14 @@
      --------------------------------------------------------------------- */
   function renderRail(root) {
     var stages = CONFIG.journey;
-    var x0 = 90, x1 = 1130, y0 = 235, y1 = 70, baseline = 288;
+    var x0 = 70, x1 = 1130, y0 = 96, y1 = 96, baseline = 150;
     var svg = [
-      '<svg class="rail__svg" viewBox="0 0 1200 300" role="img" aria-label="The NOLMT participation journey">',
-      '<path class="frame" d="M30 250 H30 V30 H700"/>',
-      '<path class="frame" d="M30 250 H1170"/>',
-      '<path class="path-base" d="M' + x0 + " " + y0 + " L" + x1 + " " + y1 + '"/>',
-      '<path class="path-live" pathLength="100" d="M' + x0 + " " + y0 + " L" + x1 + " " + y1 + '"/>'
+      '<svg class="rail__svg" viewBox="0 0 1200 240" role="img" aria-label="The NOLMT participation journey">',
+      '<defs><linearGradient id="railgrad" x1="0" y1="0" x2="1" y2="0">',
+      '<stop offset="0%" stop-color="#1E90FF"/><stop offset="55%" stop-color="#11C5FF"/>',
+      '<stop offset="100%" stop-color="#21E6D8"/></linearGradient></defs>',
+      '<path class="track" d="M' + x0 + " " + y0 + " L" + x1 + " " + y1 + '"/>',
+      '<path class="live" pathLength="100" d="M' + x0 + " " + y0 + " L" + x1 + " " + y1 + '"/>'
     ];
     var list = ['<ul class="rail__list">'];
 
@@ -132,8 +132,7 @@
       var t = stages.length === 1 ? 0 : i / (stages.length - 1);
       var x = x0 + t * (x1 - x0);
       var y = y0 + t * (y1 - y0);
-      svg.push('<line class="tick" x1="' + x + '" y1="' + (y + 12) + '" x2="' + x + '" y2="' + (baseline - 16) + '"/>');
-      svg.push('<circle class="node" data-stage="' + s.id + '" cx="' + x + '" cy="' + y + '" r="7"/>');
+      svg.push('<circle class="node" data-stage="' + s.id + '" cx="' + x + '" cy="' + y + '" r="8"/>');
       svg.push('<text class="label" data-stage="' + s.id + '" x="' + x + '" y="' + baseline + '" text-anchor="middle">' + s.label.toUpperCase() + "</text>");
       list.push('<li data-stage="' + s.id + '">' + s.label + "</li>");
     });
@@ -160,7 +159,7 @@
           if (state[id]) node.setAttribute("data-state", "done");
           else node.removeAttribute("data-state");
         });
-        var live = $(".path-live", rail);
+        var live = $(".live", rail);
         if (live) live.style.strokeDashoffset = String(100 - progress * 100);
         var status = rail.parentNode ? $(".rail__status", rail.parentNode) : null;
         if (status) {
@@ -202,7 +201,7 @@
       if (res.status === "CLAIMABLE") {
         toast({
           title: "+" + res.amount + " NOLMT",
-          body: res.label + " — added to your claimable balance.",
+          body: res.label + " — added to your available balance.",
           linkHref: "my-nolmt.html",
           linkText: "See why"
         });
@@ -211,8 +210,8 @@
           kind: "info",
           title: "+" + res.amount + " NOLMT pending",
           body: res.blocked_on === "email_verification"
-            ? "Verify your email and this becomes claimable."
-            : "Held for review before it becomes claimable.",
+            ? "Verify your email and this becomes available."
+            : "Subject to verification before it becomes available.",
           linkHref: "my-nolmt.html",
           linkText: "See why"
         });
@@ -237,8 +236,8 @@
           kind: "warn",
           title: "Not unlocked",
           body: res.message,
-          linkHref: res.requiresAccount ? "account.html" : "earn.html",
-          linkText: res.requiresAccount ? "Create an account" : "Ways to earn"
+          linkHref: res.requiresAccount ? "account.html" : "my-nolmt.html",
+          linkText: res.requiresAccount ? "Create an account" : "My NOLMT"
         });
         return;
       }
@@ -262,25 +261,24 @@
       return a.enabled && (!ids || ids.indexOf(a.action_id) > -1);
     });
     root.innerHTML = actions.map(function (a) {
-      var gate = a.requires_email_verification ? "Verified account" : "Account";
-      var cap = a.lifetime_limit === 1 ? "Once" : "Limit " + a.lifetime_limit;
-      return '<article class="card reward-card">' +
-        '<p class="reward-card__amount">' + a.reward_amount + ' <small>NOLMT</small></p>' +
+      return '<article class="card">' +
+        '<p class="amount grad">' + a.reward_amount + ' <small>NOLMT</small></p>' +
         "<h3>" + a.action_name + "</h3>" +
         "<p>" + a.description + "</p>" +
-        '<div class="reward-card__meta"><span>' + gate + "</span><span>" + cap + "</span></div>" +
         "</article>";
     }).join("");
   }
 
   function renderUseGrid(root) {
-    root.innerHTML = CONFIG.utilityActions.filter(function (u) { return u.enabled; }).map(function (u) {
-      return '<article class="card reward-card">' +
-        '<p class="reward-card__amount">' + u.cost + ' <small>NOLMT</small></p>' +
+    var limit = parseInt(root.getAttribute("data-use-grid-limit") || "0", 10);
+    var list = CONFIG.utilityActions.filter(function (u) { return u.enabled; });
+    if (limit) list = list.slice(0, limit);
+    root.innerHTML = list.map(function (u) {
+      return '<article class="card">' +
+        '<p class="amount grad">' + u.cost + ' <small>NOLMT</small></p>' +
         "<h3>" + u.name + "</h3>" +
         "<p>" + u.description + "</p>" +
-        '<div class="reward-card__meta"><span>' + u.category + "</span>" +
-        '<button class="textlink" type="button" data-use="' + u.utility_id + '">Unlock</button></div>' +
+        '<button class="textlink" type="button" data-use="' + u.utility_id + '">Use NOLMT</button>' +
         "</article>";
     }).join("");
   }
@@ -359,7 +357,7 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
-  function initDemoStrip() {
+  function initDemoState() {
     if (!API.isDemo) return;
     $$("[data-demo-only]").forEach(function (el) { el.hidden = false; });
   }
@@ -367,12 +365,12 @@
   function init() {
     initNav();
     initReveal();
-    initDemoStrip();
+    initDemoState();
     injectAmounts();
 
     $$("[data-rail]").forEach(renderRail);
     $$("[data-earn-grid]").forEach(renderEarnGrid);
-    $$("[data-use-grid]").forEach(renderUseGrid);
+    $$("[data-use-grid], [data-use-grid-limit]").forEach(renderUseGrid);
 
     document.addEventListener("click", function (e) {
       var earn = e.target.closest("[data-earn]");

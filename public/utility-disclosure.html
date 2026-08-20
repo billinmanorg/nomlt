@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{TITLE}}</title>
-<meta name="description" content="{{DESCRIPTION}}">
-<link rel="canonical" href="https://nolmt.ai/{{CANONICAL}}">
-<meta property="og:title" content="{{TITLE}}">
-<meta property="og:description" content="{{DESCRIPTION}}">
+<title>Utility disclosure — NOLMT</title>
+<meta name="description" content="What NOLMT is, what it is not, and how rewards and claims work.">
+<link rel="canonical" href="https://nolmt.ai/utility-disclosure.html">
+<meta property="og:title" content="Utility disclosure — NOLMT">
+<meta property="og:description" content="What NOLMT is, what it is not, and how rewards and claims work.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/nolmt.css">
 <script>document.documentElement.className += " has-js";</script>
 </head>
-<body data-page="{{SLUG}}">
+<body data-page="utility-disclosure">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="masthead">
@@ -31,7 +31,11 @@
     </a>
 
     <nav class="mainnav" id="mainnav" aria-label="Main">
-      <ul>{{NAV}}
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
+        <li><a href="tokenization.html">Tokenization</a></li>
+        <li><a href="apps.html">Examples</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
         <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
@@ -47,7 +51,41 @@
 </header>
 
 <main id="main">
-{{BODY}}
+<section class="band hero">
+  <div class="wrap prose">
+    <p class="eyebrow">Utility disclosure</p>
+    <h1>What NOLMT is.</h1>
+    <p class="lede">NOLMT is digital utility. It recognises useful participation and can be used for things inside the NOLMT ecosystem.</p>
+
+    <h2>What NOLMT is not</h2>
+    <ul>
+      <li>Not an investment, security or financial product.</li>
+      <li>Not a promise of future value, price or return.</li>
+      <li>Not a currency, and not a claim on the company.</li>
+      <li>Not something you need to buy to use this website.</li>
+    </ul>
+
+    <h2>How rewards work</h2>
+    <p>You may earn small amounts of NOLMT for approved participation, such as creating a verified account, completing a learning module, completing your AI App plan, exploring tokenization, or taking part in approved community activity.</p>
+    <p>Rewards are subject to verification and program rules. Participation is confirmed before a reward becomes available. Reward amounts, limits and availability can change, and rewards can be paused.</p>
+
+    <h2>Pending, available, claimed</h2>
+    <ul>
+      <li><strong>Pending</strong> — recorded, waiting on verification. Not yet a blockchain token.</li>
+      <li><strong>Available</strong> — verified and ready to use or claim.</li>
+      <li><strong>Claimed</strong> — transferred to a wallet you control.</li>
+    </ul>
+
+    <h2>Wallets and claiming</h2>
+    <p>You do not need a wallet to take part or to hold a balance. A wallet is only needed to claim. Claiming requires a verified account, a connected wallet and a minimum balance.</p>
+    <p>Claiming is not open yet. A network has not been confirmed, so no transfers can occur. Your balance is unaffected and you will be told when claiming opens.</p>
+
+    <h2>Using NOLMT</h2>
+    <p>NOLMT can be used for approved things such as AI Agent usage, AI learning, premium resources, community access, selected AI tools, app services, premium support and selected events. The catalogue changes over time.</p>
+
+    <p class="mono muted mt-3">This page is a plain-language summary and not legal or financial advice. Have it reviewed by a qualified adviser before launch.</p>
+  </div>
+</section>
 </main>
 
 <footer class="footer">
@@ -97,12 +135,12 @@
 </footer>
 
 <div class="sticky-cta">
-  <a class="btn btn--full" href="{{STICKY_HREF}}">{{STICKY_LABEL}}</a>
+  <a class="btn btn--full" href="my-nolmt.html">My NOLMT</a>
 </div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/nolmt.js"></script>
-{{PAGE_SCRIPT}}
+
 </body>
 </html>

@@ -4,18 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Account — NOLMT</title>
-<meta name="description" content="Create a NOLMT account to earn and keep rewards for verified participation.">
+<meta name="description" content="Create a verified NOLMT account to earn and keep digital utility.">
 <link rel="canonical" href="https://nolmt.ai/account.html">
 <meta property="og:title" content="Account — NOLMT">
-<meta property="og:description" content="Create a NOLMT account to earn and keep rewards for verified participation.">
+<meta property="og:description" content="Create a verified NOLMT account to earn and keep digital utility.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B2035">
+<meta name="theme-color" content="#081426">
 <link rel="icon" href="assets/brand/nolmt-favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="assets/brand/nolmt-favicon.png">
-<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.png">
+<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.svg">
 <link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/nolmt.css">
@@ -24,38 +23,28 @@
 <body data-page="account">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="demo-strip" data-demo-only hidden>
-  Demonstration build — rewards are simulated in your browser. <a href="about.html#status">What's live</a>
-</div>
-
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brandmark" href="index.html" aria-label="NOLMT home">
-      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-      </svg>
-      <span>NOLMT</span>
+      <img src="assets/brand/nolmt-symbol.svg" alt="" width="38" height="38">
+      <b>NOLMT</b>
     </a>
 
-    <nav class="mainnav" aria-label="Main">
-      <ul><li><a href="ai-app-development.html">AI App Development</a></li>
+    <nav class="mainnav" id="mainnav" aria-label="Main">
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
         <li><a href="tokenization.html">Tokenization</a></li>
-        <li><a href="subtokens.html">Subtokens</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="partners.html">Partners</a></li>
+        <li><a href="apps.html">Examples</a></li>
         <li><a href="about.html">About</a></li>
-        <li class="mainnav__cta"><a class="btn btn--full" href="build-my-app.html">Build my app</a></li>
+        <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
 
     <div class="masthead__actions">
-      <a class="rewards-pill" href="earn.html" data-nolmt-pill aria-label="Earn NOLMT">
-        <span class="dot"></span>Earn NOLMT
+      <a class="rewards-pill" href="my-nolmt.html" data-nolmt-pill aria-label="Your NOLMT">
+        <span class="dot"></span>Your NOLMT
       </a>
-      <a class="btn btn--nav" href="build-my-app.html">Build my app</a>
+      <a class="btn btn--nav" href="ai-agents.html">Try an AI Agent</a>
       <button class="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
     </div>
   </div>
@@ -63,63 +52,46 @@
 
 <main id="main">
 <section class="band hero">
+  <div class="halo halo--hero" aria-hidden="true"></div>
   <div class="wrap grid--aside">
     <div>
       <p class="eyebrow">Account</p>
-      <h1>Rewards need someone to belong to.</h1>
-      <p class="lede">You can read everything here without an account. To earn and keep NOLMT, you need one — that is what stops a script from taking the lot.</p>
+      <h1>Rewards need <span class="grad">someone to belong to.</span></h1>
+      <p class="lede">You can read everything here without an account. To earn and keep NOLMT, you need one.</p>
       <dl class="kv mt-2">
         <div><dt>Create account</dt><dd>+<span data-amount="account_created">5</span> NOLMT</dd></div>
         <div><dt>Verify email</dt><dd>+<span data-amount="email_verified">5</span> NOLMT</dd></div>
         <div><dt>Complete profile</dt><dd>+<span data-amount="profile_completed">5</span> NOLMT</dd></div>
       </dl>
+      <p class="mono muted mt-2">We never ask for government ID, financial credentials or medical information.</p>
     </div>
 
     <div>
-      <!-- Signed out -->
       <form class="formcard" id="signup" data-when="signed-out" hidden novalidate>
         <h3>Create your account</h3>
-        <label class="field">
-          <span>Name</span>
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label class="field">
-          <span>Email</span>
-          <input type="email" name="email" autocomplete="email" required>
-          <small>Used to verify you are a person and to tell you when a reward clears.</small>
-        </label>
-        <label class="field">
-          <span>Password</span>
-          <input type="password" name="password" autocomplete="new-password" minlength="10" required>
-          <small>Ten characters or more.</small>
-        </label>
+        <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+        <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required>
+          <small>Used to verify you are a person and to tell you when a reward clears.</small></label>
+        <label class="field"><span>Password</span><input type="password" name="password" autocomplete="new-password" minlength="10" required>
+          <small>Ten characters or more.</small></label>
         <p class="notice" id="signup-error" hidden></p>
-        <div class="btn-row">
-          <button class="btn btn--full" type="submit">Create account</button>
-        </div>
-        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build: this account lives in this browser only. Nothing is sent anywhere and the password is not stored.</p>
+        <button class="btn btn--full" type="submit">Create account</button>
+        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build — this account is stored in your browser only.</p>
       </form>
 
-      <!-- Signed in, unverified -->
       <div class="formcard" data-when="unverified" hidden>
-        <span class="tag tag--gold">Step 2 of 3</span>
+        <span class="tag tag--accent">Step 2 of 3</span>
         <h3 class="mt-1">Verify your email</h3>
-        <p>We sent a link to <strong data-user-email></strong>. Rewards that need a verified account are sitting as <strong>pending</strong> until you use it.</p>
-        <div class="btn-row">
-          <button class="btn" type="button" id="verify-btn">I clicked the link</button>
-        </div>
-        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build: no email is sent. This button stands in for clicking the link, so you can see pending rewards become claimable.</p>
+        <p>We sent a link to <strong data-user-email></strong>. Rewards that need a verified account are pending until you use it.</p>
+        <button class="btn" type="button" id="verify-btn">I clicked the link</button>
+        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build — this button stands in for the email link.</p>
       </div>
 
-      <!-- Signed in, verified -->
       <div data-when="verified" hidden>
         <form class="formcard" id="profile">
-          <span class="tag tag--gold">Step 3 of 3</span>
-          <h3 class="mt-1">Build your profile</h3>
-          <p class="muted">Three questions, nothing sensitive. It helps us point you at the right material.</p>
-
-          <label class="field">
-            <span>What do you do?</span>
+          <span class="tag tag--accent">Step 3 of 3</span>
+          <h3 class="mt-1">Complete your profile</h3>
+          <label class="field"><span>What do you do?</span>
             <select name="role" required>
               <option value="">Choose one</option>
               <option>Business owner</option>
@@ -127,64 +99,30 @@
               <option>Marketing or operations</option>
               <option>Developer or technical</option>
               <option>Exploring for now</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>How many people does it involve?</span>
+            </select></label>
+          <label class="field"><span>How many people does it involve?</span>
             <select name="size" required>
               <option value="">Choose one</option>
-              <option>Just me</option>
-              <option>2 to 20</option>
-              <option>21 to 200</option>
-              <option>200+</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>What brought you here?</span>
+              <option>Just me</option><option>2 to 20</option><option>21 to 200</option><option>200+</option>
+            </select></label>
+          <label class="field"><span>What brought you here?</span>
             <select name="interest" required>
               <option value="">Choose one</option>
-              <option>An AI app</option>
-              <option>Tokenizing a community</option>
-              <option>AI education</option>
-              <option>A subtoken</option>
-              <option>Curiosity</option>
-            </select>
-          </label>
-
-          <div class="btn-row">
-            <button class="btn btn--gold btn--full" type="submit">Save profile · earn <span data-amount="profile_completed">5</span> NOLMT</button>
-          </div>
+              <option>An AI Agent</option><option>An AI App</option><option>Tokenization</option>
+              <option>AI education</option><option>Curiosity</option>
+            </select></label>
+          <button class="btn btn--aqua btn--full" type="submit">Save profile · earn <span data-amount="profile_completed">5</span> NOLMT</button>
         </form>
 
         <div class="formcard mt-2" id="account-done" hidden>
           <h3>You are set up.</h3>
-          <p>Your rewards are recorded against this account and your balance is on <a href="my-nolmt.html">My NOLMT</a>.</p>
+          <p>Your balance is on <a href="my-nolmt.html">My NOLMT</a>.</p>
           <div class="btn-row">
             <a class="btn" href="my-nolmt.html">Open My NOLMT</a>
-            <a class="btn btn--ghost" href="education.html">Earn more</a>
+            <a class="btn btn--ghost" href="ai-education.html">Earn more</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--white band--rule">
-  <div class="wrap">
-    <div class="band-head">
-      <p class="eyebrow">Why an account</p>
-      <h2>The boring answer is the honest one.</h2>
-    </div>
-    <div class="grid grid--4">
-      <article class="card"><h4>One person, one balance</h4><p>Without accounts, one script becomes ten thousand participants overnight and the rewards mean nothing.</p></article>
-      <article class="card"><h4>A reason for every entry</h4><p>Rewards are tied to actions you took, so your history explains itself rather than being a mystery number.</p></article>
-      <article class="card"><h4>Reversible before claim</h4><p>If something is wrong, a pending reward can be corrected. After a blockchain transfer, it cannot.</p></article>
-      <article class="card"><h4>Your wallet stays optional</h4><p>Connect one when you are ready to claim — not to sign up, and not to participate.</p></article>
-    </div>
-    <div class="notice mt-3">
-      <p class="mb-0"><b>What we do not ask for.</b> No government ID, no financial credentials, no medical data, no social security number. Rewards recognise participation, not personal information.</p>
     </div>
   </div>
 </section>
@@ -195,55 +133,50 @@
     <div class="footer__top">
       <div>
         <div class="footer__mark">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <path d="M18 18 H62" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M82 38 V82 H18 V18" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-          </svg>
-          <span>NOLMT</span>
+          <img src="assets/brand/nolmt-symbol.svg" alt="" width="34" height="34">
+          <b>NOLMT</b>
         </div>
-        <p class="footer__lede">AI applications, education, tokenization, data and communities — built so the ecosystem keeps moving when the technology changes.</p>
+        <p class="footer__lede">Lead Without Limits. Build an AI Agent. Build an AI App. Add digital utility.</p>
       </div>
-
       <div>
         <h4>Build</h4>
         <ul>
-          <li><a href="ai-app-development.html">AI app development</a></li>
-          <li><a href="apps.html">Example apps</a></li>
-          <li><a href="build-my-app.html">Build my app</a></li>
-          <li><a href="education.html">AI education</a></li>
+          <li><a href="ai-agents.html">AI Agents</a></li>
+          <li><a href="ai-app-development.html">AI Apps</a></li>
+          <li><a href="apps.html">Examples</a></li>
+          <li><a href="ai-education.html">AI Education</a></li>
         </ul>
       </div>
-
       <div>
-        <h4>Tokenization</h4>
+        <h4>Utility</h4>
         <ul>
-          <li><a href="tokenization.html">Why tokenize</a></li>
-          <li><a href="tokenization.html#live">Live example</a></li>
+          <li><a href="tokenization.html">Tokenization</a></li>
           <li><a href="subtokens.html">Subtokens</a></li>
-          <li><a href="earn.html">Earn and use NOLMT</a></li>
           <li><a href="my-nolmt.html">My NOLMT</a></li>
+          <li><a href="utility-disclosure.html">Utility disclosure</a></li>
         </ul>
       </div>
-
       <div>
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="partners.html">Partners</a></li>
-          <li><a href="account.html">Account</a></li>
-          <li><a href="about.html#status">Build status</a></li>
+          <li><a href="book.html">Book a call</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer__base">
       <p>&copy; <span data-year>2026</span> NOLMT</p>
       <p>Lead Without Limits.</p>
-      <p>NOLMT rewards are utility, not an investment. No financial return is offered or implied.</p>
+      <p>NOLMT is digital utility, not an investment. Rewards are subject to verification and program rules.</p>
     </div>
   </div>
 </footer>
+
+<div class="sticky-cta">
+  <a class="btn btn--full" href=""#signup"">Create an account</a>
+</div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>

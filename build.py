@@ -18,12 +18,10 @@ OUT = os.path.join(ROOT, "public")
 
 # slug -> label. Order is the order in the header.
 NAV = [
-    ("ai-app-development", "AI App Development"),
+    ("ai-agents", "AI Agents"),
+    ("ai-app-development", "AI Apps"),
     ("tokenization", "Tokenization"),
-    ("subtokens", "Subtokens"),
-    ("education", "Education"),
-    ("apps", "Apps"),
-    ("partners", "Partners"),
+    ("apps", "Examples"),
     ("about", "About"),
 ]
 
@@ -70,9 +68,13 @@ def build():
         if slug != "index":
             title = "%s — NOLMT" % title
 
-        script = ""
+        scripts = []
         if os.path.exists(os.path.join(OUT, "js", "pages", slug + ".js")):
-            script = '<script src="js/pages/%s.js"></script>' % slug
+            scripts.append(slug)
+        for extra in [x.strip() for x in meta.get("scripts", "").split(",") if x.strip()]:
+            if extra not in scripts:
+                scripts.append(extra)
+        script = "\n".join('<script src="js/pages/%s.js"></script>' % n for n in scripts)
 
         html = (layout
                 .replace("{{TITLE}}", title)
@@ -81,6 +83,8 @@ def build():
                 .replace("{{SLUG}}", slug)
                 .replace("{{NAV}}", nav_html(meta.get("nav", slug)))
                 .replace("{{PAGE_SCRIPT}}", script)
+                .replace("{{STICKY_HREF}}", meta.get("cta_href", "ai-agents.html"))
+                .replace("{{STICKY_LABEL}}", meta.get("cta_label", "Try an AI Agent"))
                 .replace("{{BODY}}", body))
 
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as fh:

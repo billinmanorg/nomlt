@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — NOLMT</title>
-<meta name="description" content="NOLMT helps leaders, businesses and communities use AI, applications, education, data and tokenization to participate in what comes next.">
-<link rel="canonical" href="https://nolmt.ai/about.html">
-<meta property="og:title" content="About — NOLMT">
-<meta property="og:description" content="NOLMT helps leaders, businesses and communities use AI, applications, education, data and tokenization to participate in what comes next.">
+<title>AI Agents — NOLMT</title>
+<meta name="description" content="AI that can answer questions, help customers, qualify opportunities and support your business. Try one now.">
+<link rel="canonical" href="https://nolmt.ai/ai-agents.html">
+<meta property="og:title" content="AI Agents — NOLMT">
+<meta property="og:description" content="AI that can answer questions, help customers, qualify opportunities and support your business. Try one now.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/nolmt.css">
 <script>document.documentElement.className += " has-js";</script>
 </head>
-<body data-page="about">
+<body data-page="ai-agents">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="masthead">
@@ -31,11 +31,11 @@
     </a>
 
     <nav class="mainnav" id="mainnav" aria-label="Main">
-      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+      <ul><li><a href="ai-agents.html" aria-current="page">AI Agents</a></li>
         <li><a href="ai-app-development.html">AI Apps</a></li>
         <li><a href="tokenization.html">Tokenization</a></li>
         <li><a href="apps.html">Examples</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
@@ -53,41 +53,72 @@
 <main id="main">
 <section class="band hero">
   <div class="halo halo--hero" aria-hidden="true"></div>
-  <div class="wrap measure">
-    <p class="eyebrow">About</p>
-    <h1>Lead Without <span class="grad">Limits.</span></h1>
-    <p class="lede">NOLMT helps leaders, businesses and communities use AI, applications, education, data and tokenization to participate in what comes next.</p>
-    <p class="lede">Technology will keep changing. NOLMT helps you keep moving.</p>
-    <div class="btn-row mt-2">
-      <a class="btn" href="ai-agents.html">Try an AI Agent</a>
-      <a class="btn btn--ghost" href="book.html">Book a discovery call</a>
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">AI Agents</p>
+      <h1>An agent that actually <span class="grad">does the job.</span></h1>
+      <p class="lede">AI that can communicate, answer questions, help customers, qualify opportunities, educate users and support business activity — trained on your material, working the way you work.</p>
+      <div class="btn-row mt-2">
+        <a class="btn" href="#build">Build my agent</a>
+        <a class="btn btn--ghost" href="book.html">Book a discovery call</a>
+      </div>
+    </div>
+
+    <div class="agent" data-agent>
+      <div class="agent__bar">
+        <img src="assets/brand/nolmt-symbol.svg" alt="" width="26" height="26">
+        <b>NOLMT AI Guide</b>
+        <span>Online</span>
+      </div>
+      <div class="agent__log" data-agent-log role="log" aria-live="polite" aria-label="Conversation with the NOLMT AI Guide"></div>
+      <div class="agent__replies" data-agent-replies hidden></div>
+      <form class="agent__form" data-agent-form>
+        <label class="visually-hidden" for="agent-input">Your message</label>
+        <input id="agent-input" type="text" autocomplete="off" placeholder="Or type your answer…">
+        <button class="btn btn--sm" type="submit">Send</button>
+      </form>
     </div>
   </div>
 </section>
 
 <section class="band band--light">
   <div class="wrap">
-    <div class="band-head"><p class="eyebrow">What we do</p><h2>Three things.</h2></div>
+    <div class="band-head">
+      <p class="eyebrow">What an agent can do</p>
+      <h2>Useful work, not novelty.</h2>
+    </div>
     <div class="grid grid--3">
-      <article class="card"><h3>AI Agents</h3><p>AI that communicates, answers, qualifies and supports real business activity.</p></article>
-      <article class="card"><h3>AI Apps</h3><p>Useful applications built around a business, idea, team or community.</p></article>
-      <article class="card"><h3>Tokenization</h3><p>Digital utility, rewards, participation and access added to what you already run.</p></article>
+      <article class="card"><h4>Answer questions</h4><p>From your own documents, policies and pricing — and say when it does not know.</p></article>
+      <article class="card"><h4>Qualify opportunities</h4><p>Ask the right questions, capture the answers, hand over a warm enquiry.</p></article>
+      <article class="card"><h4>Help customers</h4><p>Orders, bookings, next steps and follow-up, at any hour.</p></article>
+      <article class="card"><h4>Educate users</h4><p>Walk people through a process they have never done before.</p></article>
+      <article class="card"><h4>Support your team</h4><p>Draft the repetitive work so a person can review and approve it.</p></article>
+      <article class="card"><h4>Stay in its lane</h4><p>Clear limits on what it decides. People approve anything that matters.</p></article>
     </div>
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap grid--2">
-    <a class="card card--link" href="https://angeltwin.com" rel="noopener">
-      <span class="card__index">AI + technology ecosystem</span>
-      <h3>AngelTwin.com</h3>
-      <p>AI and technology partner environment.</p>
-    </a>
-    <a class="card card--link" href="https://angltoken.io" rel="noopener">
-      <span class="card__index">Token ecosystem</span>
-      <h3>ANGLToken.io</h3>
-      <p>NOLMT and future approved subtokens may connect with the larger ANGL ecosystem.</p>
-    </a>
+<section class="band" id="build">
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">Build my agent</p>
+      <h2>Where agents live.</h2>
+      <p class="lede">An agent can sit on your website, inside your app, or in your community — usually all three, sharing the same knowledge.</p>
+      <ul class="flow mt-2">
+        <li>Website<small>Front door</small></li>
+        <li>App<small>Signed-in users</small></li>
+        <li>Community<small>Members</small></li>
+      </ul>
+      <div class="btn-row mt-3">
+        <a class="btn" href="book.html">Book a discovery call</a>
+        <a class="btn btn--ghost" href="ai-app-development.html">See app options</a>
+      </div>
+    </div>
+    <div class="card card--feature">
+      <h3>Included with every app</h3>
+      <p>Every NOLMT app can include an agent. The bigger the app, the more the agent can reach — from answering questions to drafting work inside a real workflow.</p>
+      <a class="btn btn--full mt-1" href="ai-app-development.html">Compare the three levels</a>
+    </div>
   </div>
 </section>
 </main>
@@ -145,6 +176,6 @@
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/nolmt.js"></script>
-
+<script src="js/pages/agent.js"></script>
 </body>
 </html>

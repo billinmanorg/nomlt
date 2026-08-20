@@ -33,6 +33,14 @@
     return prefix + "_" + rand;
   }
 
+  /* Demonstration-only rules. Real qualification, limits, cooldowns and risk
+     scoring are enforced server-side and are deliberately not published. */
+  var DEMO_RULES = {
+    repeatable: { challenge_completed: 6, referral_qualified: 8 },
+    needsVerification: function (a) { return a.surface !== "account"; },
+    heldForReview: { referral_qualified: true }
+  };
+
   function actionById(id) {
     return CONFIG.rewardActions.filter(function (a) { return a.action_id === id; })[0] || null;
   }
@@ -176,7 +184,7 @@
       });
     },
 
-    /* Mirrors what the server rule engine would decide. */
+    /* Stands in for the server. In production none of this runs in a browser. */
     submitEvent: function (actionId, metadata) {
       var s = read();
       var action = actionById(actionId);
@@ -184,56 +192,39 @@
       if (!action || !action.enabled) {
         return Promise.resolve({ ok: false, status: "REJECTED", message: "That reward is not available right now." });
       }
-      if (action.requires_login && !s.user) {
-        return Promise.resolve({ ok: false, status: "REJECTED", requiresAccount: true, message: "Create an account to earn NOLMT for this." });
+      if (!s.user) {
+        return Promise.resolve({ ok: false, status: "REJECTED", requiresAccount: true,
+          message: "Create an account to earn NOLMT for this." });
       }
 
       var same = s.events.filter(function (e) { return e.action_id === actionId; });
+      var allowed = DEMO_RULES.repeatable[actionId] || 1;
 
-      if (action.lifetime_limit && same.length >= action.lifetime_limit) {
-        return Promise.resolve({ ok: false, status: "REJECTED", reason: "lifetime_limit", message: "You have already earned everything available for this action." });
-      }
-
-      var dayAgo = Date.now() - 86400000;
-      var todayCount = same.filter(function (e) { return new Date(e.created_at).getTime() > dayAgo; }).length;
-      if (action.daily_limit && todayCount >= action.daily_limit) {
-        return Promise.resolve({ ok: false, status: "REJECTED", reason: "daily_limit", message: "Daily limit reached for this action. Try again tomorrow." });
-      }
-
-      if (action.cooldown_seconds && same.length) {
-        var last = new Date(same[same.length - 1].created_at).getTime();
-        if (Date.now() - last < action.cooldown_seconds * 1000) {
-          return Promise.resolve({ ok: false, status: "REJECTED", reason: "cooldown", message: "This action is on cooldown." });
-        }
-      }
-
-      var summary = summarise(s);
-      if (summary.lifetime + action.reward_amount > CONFIG.caps.lifetimePerUser) {
-        return Promise.resolve({ ok: false, status: "REJECTED", reason: "lifetime_cap", message: "Lifetime reward cap reached." });
+      if (same.length >= allowed) {
+        return Promise.resolve({ ok: false, status: "REJECTED",
+          message: "You have already earned everything available for this one." });
       }
 
       var status = "CLAIMABLE";
       var blocked = null;
-      if (action.requires_email_verification && !(s.user && s.user.emailVerified)) {
+      if (DEMO_RULES.needsVerification(action) && !s.user.emailVerified) {
         status = "PENDING";
         blocked = "email_verification";
       }
-      if (action.risk_level === "high") {
+      if (DEMO_RULES.heldForReview[actionId]) {
         status = "PENDING";
-        blocked = blocked || "manual_review";
+        blocked = blocked || "verification";
       }
 
       var event = {
         event_id: uid("evt"),
-        user_id: s.user ? s.user.id : null,
+        user_id: s.user.id,
         action_id: action.action_id,
-        event_type: "reward",
         label: action.action_name,
         source: action.surface,
         metadata: metadata || {},
         created_at: now(),
         validated_at: status === "CLAIMABLE" ? now() : null,
-        risk_score: action.risk_level === "high" ? 45 : 10,
         reward_amount: action.reward_amount,
         reward_status: status,
         blocked_on: blocked
@@ -243,13 +234,8 @@
       write(s);
 
       return Promise.resolve({
-        ok: true,
-        status: status,
-        amount: action.reward_amount,
-        label: action.action_name,
-        event_id: event.event_id,
-        blocked_on: blocked,
-        firstEarn: s.events.length === 1
+        ok: true, status: status, amount: action.reward_amount, label: action.action_name,
+        event_id: event.event_id, blocked_on: blocked, firstEarn: s.events.length === 1
       });
     },
 
@@ -314,14 +300,6 @@
         });
       }
 
-      var lastClaim = s.claims[s.claims.length - 1];
-      if (lastClaim) {
-        var since = Date.now() - new Date(lastClaim.created_at).getTime();
-        if (since < CONFIG.claim.cooldownHours * 3600000) {
-          return Promise.resolve({ ok: false, message: "One claim per " + CONFIG.claim.cooldownHours + " hours. Try again later." });
-        }
-      }
-
       /* No network configured means no claim can be authorised — say so. */
       if (!CONFIG.chain.network || !CONFIG.chain.claimContract) {
         var pendingClaim = {
@@ -330,19 +308,17 @@
           wallet_address: s.wallet.address,
           amount: summary.claimable,
           reward_ids: s.events.filter(function (e) { return e.reward_status === "CLAIMABLE"; }).map(function (e) { return e.event_id; }),
-          nonce: uid("nonce"),
           created_at: now(),
-          expires_at: null,
           status: "CREATED",
           transaction_hash: null,
           network: null,
-          risk_score: 10
+          status_detail: "awaiting_network"
         };
         return Promise.resolve({
           ok: false,
           claim: pendingClaim,
           notConfigured: true,
-          message: "Your balance qualifies. The claim stops here because no network, token contract or claim contract has been confirmed yet — nothing is transferred until those are set."
+          message: "Your balance qualifies. Claiming is not open yet — a network has not been confirmed, so nothing is transferred. You will be told when it opens and your balance is unaffected."
         });
       }
 
@@ -379,7 +355,6 @@
       var s = read();
       var summary = summarise(s);
       return Promise.resolve({
-        discover: true,
         participate: s.events.length > 0,
         earn: summary.lifetime > 0,
         accumulate: summary.lifetime >= 10,

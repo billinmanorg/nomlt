@@ -12,10 +12,9 @@
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B2035">
+<meta name="theme-color" content="#081426">
 <link rel="icon" href="assets/brand/nolmt-favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="assets/brand/nolmt-favicon.png">
-<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.png">
+<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.svg">
 <link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/nolmt.css">
@@ -24,38 +23,28 @@
 <body data-page="404">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="demo-strip" data-demo-only hidden>
-  Demonstration build — rewards are simulated in your browser. <a href="about.html#status">What's live</a>
-</div>
-
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brandmark" href="index.html" aria-label="NOLMT home">
-      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-      </svg>
-      <span>NOLMT</span>
+      <img src="assets/brand/nolmt-symbol.svg" alt="" width="38" height="38">
+      <b>NOLMT</b>
     </a>
 
-    <nav class="mainnav" aria-label="Main">
-      <ul><li><a href="ai-app-development.html">AI App Development</a></li>
+    <nav class="mainnav" id="mainnav" aria-label="Main">
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
         <li><a href="tokenization.html">Tokenization</a></li>
-        <li><a href="subtokens.html">Subtokens</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="partners.html">Partners</a></li>
+        <li><a href="apps.html">Examples</a></li>
         <li><a href="about.html">About</a></li>
-        <li class="mainnav__cta"><a class="btn btn--full" href="build-my-app.html">Build my app</a></li>
+        <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
 
     <div class="masthead__actions">
-      <a class="rewards-pill" href="earn.html" data-nolmt-pill aria-label="Earn NOLMT">
-        <span class="dot"></span>Earn NOLMT
+      <a class="rewards-pill" href="my-nolmt.html" data-nolmt-pill aria-label="Your NOLMT">
+        <span class="dot"></span>Your NOLMT
       </a>
-      <a class="btn btn--nav" href="build-my-app.html">Build my app</a>
+      <a class="btn btn--nav" href="ai-agents.html">Try an AI Agent</a>
       <button class="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
     </div>
   </div>
@@ -66,12 +55,12 @@
   <div class="wrap measure">
     <p class="eyebrow">404</p>
     <h1>That page does not exist.</h1>
-    <p class="lede">The link may be old, or something was mistyped. These are the useful places to go instead.</p>
+    <p class="lede">The link may be old, or something was mistyped.</p>
     <div class="btn-row mt-2">
       <a class="btn" href="index.html">Home</a>
-      <a class="btn btn--ghost" href="ai-app-development.html">AI app development</a>
+      <a class="btn btn--ghost" href="ai-agents.html">AI Agents</a>
+      <a class="btn btn--ghost" href="ai-app-development.html">AI Apps</a>
       <a class="btn btn--ghost" href="tokenization.html">Tokenization</a>
-      <a class="btn btn--ghost" href="my-nolmt.html">My NOLMT</a>
     </div>
   </div>
 </section>
@@ -82,55 +71,50 @@
     <div class="footer__top">
       <div>
         <div class="footer__mark">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <path d="M18 18 H62" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M82 38 V82 H18 V18" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-          </svg>
-          <span>NOLMT</span>
+          <img src="assets/brand/nolmt-symbol.svg" alt="" width="34" height="34">
+          <b>NOLMT</b>
         </div>
-        <p class="footer__lede">AI applications, education, tokenization, data and communities — built so the ecosystem keeps moving when the technology changes.</p>
+        <p class="footer__lede">Lead Without Limits. Build an AI Agent. Build an AI App. Add digital utility.</p>
       </div>
-
       <div>
         <h4>Build</h4>
         <ul>
-          <li><a href="ai-app-development.html">AI app development</a></li>
-          <li><a href="apps.html">Example apps</a></li>
-          <li><a href="build-my-app.html">Build my app</a></li>
-          <li><a href="education.html">AI education</a></li>
+          <li><a href="ai-agents.html">AI Agents</a></li>
+          <li><a href="ai-app-development.html">AI Apps</a></li>
+          <li><a href="apps.html">Examples</a></li>
+          <li><a href="ai-education.html">AI Education</a></li>
         </ul>
       </div>
-
       <div>
-        <h4>Tokenization</h4>
+        <h4>Utility</h4>
         <ul>
-          <li><a href="tokenization.html">Why tokenize</a></li>
-          <li><a href="tokenization.html#live">Live example</a></li>
+          <li><a href="tokenization.html">Tokenization</a></li>
           <li><a href="subtokens.html">Subtokens</a></li>
-          <li><a href="earn.html">Earn and use NOLMT</a></li>
           <li><a href="my-nolmt.html">My NOLMT</a></li>
+          <li><a href="utility-disclosure.html">Utility disclosure</a></li>
         </ul>
       </div>
-
       <div>
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="partners.html">Partners</a></li>
-          <li><a href="account.html">Account</a></li>
-          <li><a href="about.html#status">Build status</a></li>
+          <li><a href="book.html">Book a call</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer__base">
       <p>&copy; <span data-year>2026</span> NOLMT</p>
       <p>Lead Without Limits.</p>
-      <p>NOLMT rewards are utility, not an investment. No financial return is offered or implied.</p>
+      <p>NOLMT is digital utility, not an investment. Rewards are subject to verification and program rules.</p>
     </div>
   </div>
 </footer>
+
+<div class="sticky-cta">
+  <a class="btn btn--full" href="index.html">Go home</a>
+</div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>

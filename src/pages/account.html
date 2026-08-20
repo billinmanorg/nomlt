@@ -1,67 +1,52 @@
 <!--meta
 title: Account
-description: Create a NOLMT account to earn and keep rewards for verified participation.
-nav: earn
+description: Create a verified NOLMT account to earn and keep digital utility.
+nav: index
+cta_href: "#signup"
+cta_label: Create an account
 -->
 
 <section class="band hero">
+  <div class="halo halo--hero" aria-hidden="true"></div>
   <div class="wrap grid--aside">
     <div>
       <p class="eyebrow">Account</p>
-      <h1>Rewards need someone to belong to.</h1>
-      <p class="lede">You can read everything here without an account. To earn and keep NOLMT, you need one — that is what stops a script from taking the lot.</p>
+      <h1>Rewards need <span class="grad">someone to belong to.</span></h1>
+      <p class="lede">You can read everything here without an account. To earn and keep NOLMT, you need one.</p>
       <dl class="kv mt-2">
         <div><dt>Create account</dt><dd>+<span data-amount="account_created">5</span> NOLMT</dd></div>
         <div><dt>Verify email</dt><dd>+<span data-amount="email_verified">5</span> NOLMT</dd></div>
         <div><dt>Complete profile</dt><dd>+<span data-amount="profile_completed">5</span> NOLMT</dd></div>
       </dl>
+      <p class="mono muted mt-2">We never ask for government ID, financial credentials or medical information.</p>
     </div>
 
     <div>
-      <!-- Signed out -->
       <form class="formcard" id="signup" data-when="signed-out" hidden novalidate>
         <h3>Create your account</h3>
-        <label class="field">
-          <span>Name</span>
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label class="field">
-          <span>Email</span>
-          <input type="email" name="email" autocomplete="email" required>
-          <small>Used to verify you are a person and to tell you when a reward clears.</small>
-        </label>
-        <label class="field">
-          <span>Password</span>
-          <input type="password" name="password" autocomplete="new-password" minlength="10" required>
-          <small>Ten characters or more.</small>
-        </label>
+        <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+        <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required>
+          <small>Used to verify you are a person and to tell you when a reward clears.</small></label>
+        <label class="field"><span>Password</span><input type="password" name="password" autocomplete="new-password" minlength="10" required>
+          <small>Ten characters or more.</small></label>
         <p class="notice" id="signup-error" hidden></p>
-        <div class="btn-row">
-          <button class="btn btn--full" type="submit">Create account</button>
-        </div>
-        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build: this account lives in this browser only. Nothing is sent anywhere and the password is not stored.</p>
+        <button class="btn btn--full" type="submit">Create account</button>
+        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build — this account is stored in your browser only.</p>
       </form>
 
-      <!-- Signed in, unverified -->
       <div class="formcard" data-when="unverified" hidden>
-        <span class="tag tag--gold">Step 2 of 3</span>
+        <span class="tag tag--accent">Step 2 of 3</span>
         <h3 class="mt-1">Verify your email</h3>
-        <p>We sent a link to <strong data-user-email></strong>. Rewards that need a verified account are sitting as <strong>pending</strong> until you use it.</p>
-        <div class="btn-row">
-          <button class="btn" type="button" id="verify-btn">I clicked the link</button>
-        </div>
-        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build: no email is sent. This button stands in for clicking the link, so you can see pending rewards become claimable.</p>
+        <p>We sent a link to <strong data-user-email></strong>. Rewards that need a verified account are pending until you use it.</p>
+        <button class="btn" type="button" id="verify-btn">I clicked the link</button>
+        <p class="mono muted mt-1" data-demo-only hidden>Demonstration build — this button stands in for the email link.</p>
       </div>
 
-      <!-- Signed in, verified -->
       <div data-when="verified" hidden>
         <form class="formcard" id="profile">
-          <span class="tag tag--gold">Step 3 of 3</span>
-          <h3 class="mt-1">Build your profile</h3>
-          <p class="muted">Three questions, nothing sensitive. It helps us point you at the right material.</p>
-
-          <label class="field">
-            <span>What do you do?</span>
+          <span class="tag tag--accent">Step 3 of 3</span>
+          <h3 class="mt-1">Complete your profile</h3>
+          <label class="field"><span>What do you do?</span>
             <select name="role" required>
               <option value="">Choose one</option>
               <option>Business owner</option>
@@ -69,64 +54,30 @@ nav: earn
               <option>Marketing or operations</option>
               <option>Developer or technical</option>
               <option>Exploring for now</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>How many people does it involve?</span>
+            </select></label>
+          <label class="field"><span>How many people does it involve?</span>
             <select name="size" required>
               <option value="">Choose one</option>
-              <option>Just me</option>
-              <option>2 to 20</option>
-              <option>21 to 200</option>
-              <option>200+</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>What brought you here?</span>
+              <option>Just me</option><option>2 to 20</option><option>21 to 200</option><option>200+</option>
+            </select></label>
+          <label class="field"><span>What brought you here?</span>
             <select name="interest" required>
               <option value="">Choose one</option>
-              <option>An AI app</option>
-              <option>Tokenizing a community</option>
-              <option>AI education</option>
-              <option>A subtoken</option>
-              <option>Curiosity</option>
-            </select>
-          </label>
-
-          <div class="btn-row">
-            <button class="btn btn--gold btn--full" type="submit">Save profile · earn <span data-amount="profile_completed">5</span> NOLMT</button>
-          </div>
+              <option>An AI Agent</option><option>An AI App</option><option>Tokenization</option>
+              <option>AI education</option><option>Curiosity</option>
+            </select></label>
+          <button class="btn btn--aqua btn--full" type="submit">Save profile · earn <span data-amount="profile_completed">5</span> NOLMT</button>
         </form>
 
         <div class="formcard mt-2" id="account-done" hidden>
           <h3>You are set up.</h3>
-          <p>Your rewards are recorded against this account and your balance is on <a href="my-nolmt.html">My NOLMT</a>.</p>
+          <p>Your balance is on <a href="my-nolmt.html">My NOLMT</a>.</p>
           <div class="btn-row">
             <a class="btn" href="my-nolmt.html">Open My NOLMT</a>
-            <a class="btn btn--ghost" href="education.html">Earn more</a>
+            <a class="btn btn--ghost" href="ai-education.html">Earn more</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="band band--white band--rule">
-  <div class="wrap">
-    <div class="band-head">
-      <p class="eyebrow">Why an account</p>
-      <h2>The boring answer is the honest one.</h2>
-    </div>
-    <div class="grid grid--4">
-      <article class="card"><h4>One person, one balance</h4><p>Without accounts, one script becomes ten thousand participants overnight and the rewards mean nothing.</p></article>
-      <article class="card"><h4>A reason for every entry</h4><p>Rewards are tied to actions you took, so your history explains itself rather than being a mystery number.</p></article>
-      <article class="card"><h4>Reversible before claim</h4><p>If something is wrong, a pending reward can be corrected. After a blockchain transfer, it cannot.</p></article>
-      <article class="card"><h4>Your wallet stays optional</h4><p>Connect one when you are ready to claim — not to sign up, and not to participate.</p></article>
-    </div>
-    <div class="notice mt-3">
-      <p class="mb-0"><b>What we do not ask for.</b> No government ID, no financial credentials, no medical data, no social security number. Rewards recognise participation, not personal information.</p>
     </div>
   </div>
 </section>

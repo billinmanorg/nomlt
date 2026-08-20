@@ -4,18 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My NOLMT — NOLMT</title>
-<meta name="description" content="Your NOLMT rewards balance, activity history, wallet status and claim.">
+<meta name="description" content="Your NOLMT balance, activity, wallet and claim.">
 <link rel="canonical" href="https://nolmt.ai/my-nolmt.html">
 <meta property="og:title" content="My NOLMT — NOLMT">
-<meta property="og:description" content="Your NOLMT rewards balance, activity history, wallet status and claim.">
+<meta property="og:description" content="Your NOLMT balance, activity, wallet and claim.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B2035">
+<meta name="theme-color" content="#081426">
 <link rel="icon" href="assets/brand/nolmt-favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="assets/brand/nolmt-favicon.png">
-<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.png">
+<link rel="apple-touch-icon" href="assets/brand/nolmt-app-icon.svg">
 <link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/nolmt.css">
@@ -24,38 +23,28 @@
 <body data-page="my-nolmt">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="demo-strip" data-demo-only hidden>
-  Demonstration build — rewards are simulated in your browser. <a href="about.html#status">What's live</a>
-</div>
-
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brandmark" href="index.html" aria-label="NOLMT home">
-      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <path d="M18 18 H62" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M82 38 V82 H18 V18" fill="none" stroke="#0B2035" stroke-width="12" stroke-linecap="square"/>
-        <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-      </svg>
-      <span>NOLMT</span>
+      <img src="assets/brand/nolmt-symbol.svg" alt="" width="38" height="38">
+      <b>NOLMT</b>
     </a>
 
-    <nav class="mainnav" aria-label="Main">
-      <ul><li><a href="ai-app-development.html">AI App Development</a></li>
+    <nav class="mainnav" id="mainnav" aria-label="Main">
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
         <li><a href="tokenization.html">Tokenization</a></li>
-        <li><a href="subtokens.html">Subtokens</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="partners.html">Partners</a></li>
+        <li><a href="apps.html">Examples</a></li>
         <li><a href="about.html">About</a></li>
-        <li class="mainnav__cta"><a class="btn btn--full" href="build-my-app.html">Build my app</a></li>
+        <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
 
     <div class="masthead__actions">
-      <a class="rewards-pill" href="earn.html" data-nolmt-pill aria-label="Earn NOLMT">
-        <span class="dot"></span>Earn NOLMT
+      <a class="rewards-pill" href="my-nolmt.html" data-nolmt-pill aria-label="Your NOLMT">
+        <span class="dot"></span>Your NOLMT
       </a>
-      <a class="btn btn--nav" href="build-my-app.html">Build my app</a>
+      <a class="btn btn--nav" href="ai-agents.html">Try an AI Agent</a>
       <button class="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
     </div>
   </div>
@@ -65,60 +54,55 @@
 <section class="band hero">
   <div class="wrap">
     <p class="eyebrow">My NOLMT</p>
-    <h1 class="mb-0">Your rewards.</h1>
+    <h1 class="mb-0">Your NOLMT.</h1>
   </div>
 </section>
 
-<!-- Signed out -->
 <section class="band band--tight" data-when="signed-out" hidden>
   <div class="wrap">
-    <div class="notice notice--gold">
+    <div class="notice notice--aqua">
       <p><b>You are not signed in.</b></p>
-      <p>Create an account and your balance, history and claim status appear here. Reading the site earns nothing on its own — participation does.</p>
+      <p>Create an account and your balance, activity and claim status appear here.</p>
       <p class="mb-0"><a class="btn btn--sm" href="account.html">Create an account</a></p>
     </div>
   </div>
 </section>
 
-<!-- Signed in -->
 <div data-when="signed-in" hidden>
   <section class="band band--tight">
     <div class="wrap grid--aside">
       <div class="balance">
-        <p class="eyebrow">NOLMT rewards</p>
+        <p class="eyebrow">Your NOLMT</p>
         <p class="balance__total" data-total>0<span>NOLMT</span></p>
         <div class="balance__split">
           <div><b data-pending>0</b><span>Pending</span></div>
-          <div><b data-claimable>0</b><span>Claimable</span></div>
+          <div><b data-claimable>0</b><span>Available</span></div>
           <div><b data-claimed>0</b><span>Claimed</span></div>
         </div>
-        <p class="balance__note">Pending rewards are not blockchain tokens. They are recorded entries that become claimable once verification and risk checks pass.</p>
+        <p class="balance__note">Pending rewards are not yet blockchain tokens. They become available once verification and program rules are satisfied.</p>
       </div>
 
       <div class="stack">
         <div class="card">
-          <p class="eyebrow eyebrow--slate">Level</p>
+          <p class="eyebrow">Level</p>
           <h3 data-level>Participant</h3>
           <div class="progress"><i data-level-bar></i></div>
           <p class="mono muted" data-level-note>Earned 0 NOLMT so far.</p>
         </div>
 
         <div class="card">
-          <p class="eyebrow eyebrow--slate">Wallet</p>
+          <p class="eyebrow">Wallet</p>
           <div data-when="wallet-off">
-            <p>You do not need a wallet to earn or to hold a balance. Connect one when you want to claim.</p>
+            <p class="muted">You do not need a wallet to earn or to hold a balance. Connect one when you are ready.</p>
             <form id="wallet-form">
-              <label class="field">
-                <span>Wallet address</span>
-                <input type="text" name="address" placeholder="0x…" autocomplete="off" spellcheck="false">
-              </label>
+              <label class="field"><span>Wallet address</span>
+                <input type="text" name="address" placeholder="0x…" autocomplete="off" spellcheck="false"></label>
               <button class="btn btn--full" type="submit">Connect wallet</button>
             </form>
-            <p class="mono muted mt-1" data-demo-only hidden>Demonstration build: paste any valid-looking address. No wallet provider is connected and nothing is signed.</p>
           </div>
           <div data-when="wallet-on" hidden>
-            <span class="wallet-chip" data-connected="true"><span class="dot"></span><span data-wallet-address>0x…</span></span>
-            <p class="muted mt-1">Connected. This is where a claim would be sent.</p>
+            <span class="wallet-chip"><span class="dot"></span><span data-wallet-address>0x…</span></span>
+            <p class="muted mt-1">Connected.</p>
             <button class="btn btn--ghost btn--sm" type="button" id="wallet-disconnect">Disconnect</button>
           </div>
         </div>
@@ -129,32 +113,28 @@
   <section class="band band--tight">
     <div class="wrap rail">
       <div class="rail__head">
-        <h3>Your journey</h3>
-        <p class="rail__status">Stage 1 of 7 — Discover</p>
+        <h3>Your position</h3>
+        <p class="rail__status">Stage 1 of 6</p>
       </div>
       <div data-rail></div>
     </div>
   </section>
 
-  <section class="band band--white band--rule">
+  <section class="band band--navy">
     <div class="wrap grid--aside">
       <div>
         <p class="eyebrow">Claim</p>
         <h2>Move it to your wallet.</h2>
-        <p>Claiming turns claimable rewards into real NOLMT in your own wallet. It needs a verified account, a connected wallet, a minimum balance and a clean risk check — and it is authorised on the server, never by your browser.</p>
+        <p>Claiming moves available NOLMT into a wallet you control. It needs a verified account, a connected wallet and a minimum balance, and is subject to verification and program rules.</p>
         <div class="btn-row mt-2">
-          <button class="btn btn--gold" type="button" id="claim-btn">Claim NOLMT</button>
+          <button class="btn" type="button" id="claim-btn">Claim NOLMT</button>
         </div>
         <div class="notice mt-2" id="claim-result" hidden></div>
       </div>
       <dl class="kv">
         <div><dt>Minimum claim</dt><dd><span data-config="claim.minimumBalance">25</span> NOLMT</dd></div>
-        <div><dt>Maximum per claim</dt><dd><span data-config="claim.maximumPerClaim">5000</span> NOLMT</dd></div>
-        <div><dt>Cooldown</dt><dd>Every <span data-config="claim.cooldownHours">24</span> hours</dd></div>
-        <div><dt>Network</dt><dd><span data-config="chain.network">Not configured</span></dd></div>
-        <div><dt>Token contract</dt><dd><span data-config="chain.tokenContract">Not configured</span></dd></div>
-        <div><dt>Claim contract</dt><dd><span data-config="chain.claimContract">Not configured</span></dd></div>
-        <div><dt>Transaction fees</dt><dd><span data-config="chain.gasMode">undecided</span></dd></div>
+        <div><dt>Wallet needed</dt><dd>Only to claim</dd></div>
+        <div><dt>Claiming</dt><dd>Not open yet</dd></div>
       </dl>
     </div>
   </section>
@@ -164,42 +144,35 @@
       <div>
         <p class="eyebrow">Activity</p>
         <h2>Why your balance looks like this.</h2>
-        <p class="lede">Every entry has a reason attached. Nothing appears without an action behind it.</p>
+        <p class="lede">Every entry has a reason attached.</p>
       </div>
       <div>
         <ul class="ledger" data-ledger>
-          <li><span class="ledger__amt">—</span><span class="ledger__body"><b>No activity yet</b><span>Complete a lesson or the App Builder and it will show up here.</span></span></li>
+          <li><span class="ledger__amt">—</span><span class="ledger__body"><b>No activity yet</b><span>Complete a module or plan your app and it will show up here.</span></span></li>
         </ul>
         <div class="btn-row mt-2">
-          <a class="btn btn--ghost btn--sm" href="education.html">Earn from a lesson</a>
-          <a class="btn btn--ghost btn--sm" href="build-my-app.html">Earn from the App Builder</a>
+          <a class="btn btn--ghost btn--sm" href="ai-education.html">Earn from a module</a>
+          <a class="btn btn--ghost btn--sm" href="ai-app-development.html#plan">Plan my app</a>
         </div>
       </div>
     </div>
   </section>
 </div>
 
-<section class="band band--white band--rule">
+<section class="band band--light">
   <div class="wrap">
-    <div class="band-head">
-      <p class="eyebrow">Ways to earn</p>
-      <h2>What else counts.</h2>
-    </div>
+    <div class="band-head"><p class="eyebrow">Ways to earn</p><h2>What counts.</h2></div>
     <div class="grid grid--3" data-earn-grid></div>
-
-    <div class="band-head mt-3">
-      <p class="eyebrow">Ways to use</p>
-      <h2>What it unlocks.</h2>
-    </div>
-    <div class="grid grid--3" data-use-grid></div>
+    <div class="band-head mt-3"><p class="eyebrow">Ways to use</p><h2>What it unlocks.</h2></div>
+    <div class="grid grid--4" data-use-grid></div>
+    <p class="mono muted mt-2">Rewards are subject to verification and program rules.</p>
   </div>
 </section>
 
 <section class="band band--tight" data-demo-only hidden>
   <div class="wrap">
-    <div class="notice notice--signal">
-      <p><b>Demonstration build.</b></p>
-      <p>This balance lives in your browser so the whole journey can be walked through before the backend exists. In production, rewards are validated and stored server-side against a verified account — a browser can never be trusted to price its own rewards.</p>
+    <div class="notice notice--quiet">
+      <p><b>Demonstration build.</b> This balance is stored in your browser so the experience can be tried before the backend is connected.</p>
       <p class="mb-0"><button class="btn btn--ghost btn--sm" type="button" id="reset-demo">Reset demo data</button></p>
     </div>
   </div>
@@ -211,55 +184,50 @@
     <div class="footer__top">
       <div>
         <div class="footer__mark">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <path d="M18 18 H62" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M82 38 V82 H18 V18" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square"/>
-            <path d="M34 66 L72 28" fill="none" stroke="#C79A3B" stroke-width="12" stroke-linecap="square"/>
-          </svg>
-          <span>NOLMT</span>
+          <img src="assets/brand/nolmt-symbol.svg" alt="" width="34" height="34">
+          <b>NOLMT</b>
         </div>
-        <p class="footer__lede">AI applications, education, tokenization, data and communities — built so the ecosystem keeps moving when the technology changes.</p>
+        <p class="footer__lede">Lead Without Limits. Build an AI Agent. Build an AI App. Add digital utility.</p>
       </div>
-
       <div>
         <h4>Build</h4>
         <ul>
-          <li><a href="ai-app-development.html">AI app development</a></li>
-          <li><a href="apps.html">Example apps</a></li>
-          <li><a href="build-my-app.html">Build my app</a></li>
-          <li><a href="education.html">AI education</a></li>
+          <li><a href="ai-agents.html">AI Agents</a></li>
+          <li><a href="ai-app-development.html">AI Apps</a></li>
+          <li><a href="apps.html">Examples</a></li>
+          <li><a href="ai-education.html">AI Education</a></li>
         </ul>
       </div>
-
       <div>
-        <h4>Tokenization</h4>
+        <h4>Utility</h4>
         <ul>
-          <li><a href="tokenization.html">Why tokenize</a></li>
-          <li><a href="tokenization.html#live">Live example</a></li>
+          <li><a href="tokenization.html">Tokenization</a></li>
           <li><a href="subtokens.html">Subtokens</a></li>
-          <li><a href="earn.html">Earn and use NOLMT</a></li>
           <li><a href="my-nolmt.html">My NOLMT</a></li>
+          <li><a href="utility-disclosure.html">Utility disclosure</a></li>
         </ul>
       </div>
-
       <div>
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="partners.html">Partners</a></li>
-          <li><a href="account.html">Account</a></li>
-          <li><a href="about.html#status">Build status</a></li>
+          <li><a href="book.html">Book a call</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer__base">
       <p>&copy; <span data-year>2026</span> NOLMT</p>
       <p>Lead Without Limits.</p>
-      <p>NOLMT rewards are utility, not an investment. No financial return is offered or implied.</p>
+      <p>NOLMT is digital utility, not an investment. Rewards are subject to verification and program rules.</p>
     </div>
   </div>
 </footer>
+
+<div class="sticky-cta">
+  <a class="btn btn--full" href="ai-education.html">Earn NOLMT</a>
+</div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>

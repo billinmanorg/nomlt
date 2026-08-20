@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{TITLE}}</title>
-<meta name="description" content="{{DESCRIPTION}}">
-<link rel="canonical" href="https://nolmt.ai/{{CANONICAL}}">
-<meta property="og:title" content="{{TITLE}}">
-<meta property="og:description" content="{{DESCRIPTION}}">
+<title>Privacy — NOLMT</title>
+<meta name="description" content="How NOLMT handles the information you give us.">
+<link rel="canonical" href="https://nolmt.ai/privacy.html">
+<meta property="og:title" content="Privacy — NOLMT">
+<meta property="og:description" content="How NOLMT handles the information you give us.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOLMT">
 <meta property="og:image" content="assets/brand/og-image.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/nolmt.css">
 <script>document.documentElement.className += " has-js";</script>
 </head>
-<body data-page="{{SLUG}}">
+<body data-page="privacy">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="masthead">
@@ -31,7 +31,11 @@
     </a>
 
     <nav class="mainnav" id="mainnav" aria-label="Main">
-      <ul>{{NAV}}
+      <ul><li><a href="ai-agents.html">AI Agents</a></li>
+        <li><a href="ai-app-development.html">AI Apps</a></li>
+        <li><a href="tokenization.html">Tokenization</a></li>
+        <li><a href="apps.html">Examples</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
         <li class="mainnav__cta"><a class="btn btn--full" href="ai-agents.html">Try an AI Agent</a></li>
       </ul>
     </nav>
@@ -47,7 +51,36 @@
 </header>
 
 <main id="main">
-{{BODY}}
+<section class="band hero">
+  <div class="wrap prose">
+    <p class="eyebrow">Privacy</p>
+    <h1>Privacy.</h1>
+    <p class="lede">Plain language, and short. This page describes how NOLMT.ai handles information you give us through this website.</p>
+
+    <h2>What we collect</h2>
+    <p>If you create an account, we collect your name, email address and the answers you give in your profile. If you use the App Planner or the AI Guide, we may keep what you entered so we can respond usefully. If you connect a wallet, we store the public address.</p>
+
+    <h2>What we do not ask for</h2>
+    <p>We do not ask for government identification, financial credentials, medical information, passwords to other services, or national identification numbers. Rewards recognise participation, not personal information.</p>
+
+    <h2>Why we hold it</h2>
+    <p>To operate your account, to record why NOLMT rewards were earned, to verify that rewards are genuine, and to reply to you. Reward records are kept because a balance without a reason attached is not something anyone should trust.</p>
+
+    <h2>Verification</h2>
+    <p>Because NOLMT rewards have value, participation is checked before rewards become available. This includes verifying your email address and confirming that activity is genuine. The specific checks are not published, because publishing them would help people circumvent them.</p>
+
+    <h2>Sharing</h2>
+    <p>We do not sell your information. We share it with service providers who help us run the website and the platform, and where the law requires it.</p>
+
+    <h2>Your choices</h2>
+    <p>You can ask us for a copy of what we hold, ask us to correct it, or ask us to delete your account. Some reward and claim records are kept where we are required to retain them.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about privacy can be sent through the <a href="book.html">contact form</a>.</p>
+
+    <p class="mono muted mt-3">This page is a plain-language summary and not legal advice. Have it reviewed by a qualified adviser before launch.</p>
+  </div>
+</section>
 </main>
 
 <footer class="footer">
@@ -97,12 +130,12 @@
 </footer>
 
 <div class="sticky-cta">
-  <a class="btn btn--full" href="{{STICKY_HREF}}">{{STICKY_LABEL}}</a>
+  <a class="btn btn--full" href="book.html">Book a discovery call</a>
 </div>
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/nolmt.js"></script>
-{{PAGE_SCRIPT}}
+
 </body>
 </html>

@@ -26,28 +26,30 @@ redeploying the website.
 ```json
 {
   "chain": { "network": null, "chainId": null, "tokenContract": null,
-             "claimContract": null, "explorerBase": null, "gasMode": "undecided" },
-  "claim": { "minimumBalance": 25, "maximumPerClaim": 5000,
-             "cooldownHours": 24, "authorizationTtlMinutes": 30 },
-  "caps": { "dailyPerUser": 40, "weeklyPerUser": 120, "lifetimePerUser": 2000 },
+             "claimContract": null, "explorerBase": null },
+  "claim": { "minimumBalance": 25 },
   "levels": [ { "id": "participant", "name": "Participant", "threshold": 0 } ],
   "rewardActions": [ /* see below */ ],
   "utilityActions": [ /* see below */ ],
-  "journey": [ { "id": "discover", "label": "Discover" } ]
+  "journey": [ { "id": "participate", "label": "Participate" } ]
 }
 ```
+
+This response is public. It carries reward **names, descriptions and amounts**
+only. Limits, cooldowns, verification requirements, risk levels, caps and
+treasury settings must **not** appear here — the browser does not need them and
+publishing them helps people circumvent them.
 
 Never include treasury addresses, signer keys, private configuration or
 internal risk thresholds in this response. It is public.
 
-**Reward action fields** — `action_id`, `action_name`, `description`, `surface`,
-`reward_amount`, `daily_limit`, `weekly_limit`, `lifetime_limit`,
-`requires_login`, `requires_email_verification`, `requires_phone_verification`,
-`requires_wallet`, `cooldown_seconds`, `enabled`, `start_at`, `end_at`,
-`risk_level`.
+**Reward action fields (public)** — `action_id`, `action_name`, `description`,
+`surface`, `reward_amount`, `enabled`.
 
-**Utility action fields** — `utility_id`, `name`, `description`, `cost`,
-`category`, `enabled`, `eligibility`, `start_at`, `end_at`.
+**Utility action fields (public)** — `utility_id`, `name`, `description`,
+`cost`, `category`, `enabled`.
+
+Everything else about an action stays server-side.
 
 ---
 
@@ -237,3 +239,29 @@ Insufficient balance returns `ok: false` with a message naming the shortfall.
 7. Risk is weighted, not binary. One weak signal never permanently blocks a user;
    it raises verification requirements or moves a reward to `REVIEW`.
 8. Do not send wallet addresses or account identifiers to third-party analytics.
+
+
+---
+
+## Contact
+
+### `POST /contact`
+
+Body `{ "name", "email", "topic", "notes" }` from the discovery-call form on
+`/book`. Requires a human challenge and rate limiting by IP. Returns 2xx on
+success; the form shows a plain confirmation and does not claim to have sent
+anything when `apiBase` is unset.
+
+---
+
+## AI Guide
+
+The website ships a scripted guide with no model behind it. If you add one:
+
+### `POST /agent/message`
+
+Body `{ "session_id", "message", "history": [...] }` → `{ "reply", "suggestions": [...], "cta": {...} }`.
+
+Keep the model, provider, routing strategy, system prompt and cost controls
+server-side. None of it may be visible in the browser, and the public site must
+not describe the underlying architecture.
