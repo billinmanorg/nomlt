@@ -7,6 +7,7 @@ Run `python3 build.py` after editing anything in src/. The generated files in
 public/ are committed, so Render needs no build command.
 """
 
+import hashlib
 import os
 import re
 import sys
@@ -26,6 +27,29 @@ NAV = [
 ]
 
 META_RE = re.compile(r"^<!--meta(.*?)-->", re.S)
+
+# Local css/ and js/ references get a content hash appended, so a browser can
+# never serve a stale stylesheet or script alongside fresh HTML.
+ASSET_RE = re.compile(r'(href|src)="((?:css|js)/[^"?]+)"')
+_hashes = {}
+
+
+def asset_version(rel):
+    if rel not in _hashes:
+        path = os.path.join(OUT, rel)
+        try:
+            with open(path, "rb") as fh:
+                _hashes[rel] = hashlib.sha1(fh.read()).hexdigest()[:8]
+        except OSError:
+            _hashes[rel] = "0"
+    return _hashes[rel]
+
+
+def version_assets(html):
+    def sub(match):
+        attr, rel = match.group(1), match.group(2)
+        return '%s="%s?v=%s"' % (attr, rel, asset_version(rel))
+    return ASSET_RE.sub(sub, html)
 
 
 def parse(raw):
@@ -86,6 +110,8 @@ def build():
                 .replace("{{STICKY_HREF}}", meta.get("cta_href", "ai-agents.html"))
                 .replace("{{STICKY_LABEL}}", meta.get("cta_label", "Try an AI Agent"))
                 .replace("{{BODY}}", body))
+
+        html = version_assets(html)
 
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as fh:
             fh.write(html)

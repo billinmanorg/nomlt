@@ -328,6 +328,8 @@ strong { font-weight: 650; color: var(--fg-strong); }
 
 .pick {
   position: relative;
+  appearance: none; -webkit-appearance: none;
+  text-decoration: none;
   display: flex; flex-direction: column; align-items: flex-start; gap: .85rem;
   padding: clamp(1.75rem, 3.2vw, 2.5rem);
   min-height: clamp(250px, 26vw, 320px);
@@ -357,6 +359,7 @@ strong { font-weight: 650; color: var(--fg-strong); }
 }
 .pick:hover .pick__mark { opacity: .2; transform: rotate(12deg); }
 
+.pick:hover { text-decoration: none; }
 .pick:hover {
   transform: translateY(-3px);
   border-color: rgba(17, 197, 255, .5);

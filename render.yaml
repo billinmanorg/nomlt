@@ -20,6 +20,14 @@ services:
       - path: /assets/fonts/*
         name: Cache-Control
         value: public, max-age=31536000, immutable
+      # css/ and js/ are requested with a ?v= content hash, so a stale copy can
+      # never be paired with fresh HTML. Kept short anyway as a safety net.
+      - path: /css/*
+        name: Cache-Control
+        value: public, max-age=300, must-revalidate
+      - path: /js/*
+        name: Cache-Control
+        value: public, max-age=300, must-revalidate
       - path: /*.html
         name: Cache-Control
         value: public, max-age=0, must-revalidate

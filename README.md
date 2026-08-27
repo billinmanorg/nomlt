@@ -35,6 +35,17 @@ python3 -m http.server 8000 --directory public
 If you edit anything in `src/`, run `python3 build.py` and commit the output —
 or set the Render build command to `python3 build.py`.
 
+### Cache busting
+
+`build.py` appends a content hash to every local CSS and JS reference, e.g.
+`css/nolmt.css?v=f8ca08ff`. The hash changes whenever the file changes, so a
+browser can never pair fresh HTML with a stale stylesheet or script — which is
+what makes an updated page render as unstyled boxes with dead buttons.
+
+**Always run `python3 build.py` after editing anything in `public/css` or
+`public/js`**, otherwise the HTML still points at the old hash. `render.yaml`
+also keeps css/ and js/ on a short cache as a safety net.
+
 ---
 
 ## Routes
