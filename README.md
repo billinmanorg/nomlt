@@ -82,12 +82,21 @@ From the NOLMT Style Guide:
 
 ---
 
-## The NOLMT AI Guide
+## Alice — the AI Agent
 
-`public/js/pages/agent.js` runs a guided conversation: it asks about the
-visitor's business, what takes up their time and how many people are involved,
-then says **"We can build something like this"** with a recommended shape and
-three next steps.
+The homepage leads with **two large choice boxes**: *Build an AI Agent* and
+*Build a Web App*. Either one drops the visitor straight into a conversation
+with **Alice** in `public/js/pages/agent.js`.
+
+Alice introduces herself, asks what business they are in, asks whether the goal
+is saving time or generating revenue, explains what NOLMT would build for that
+combination, and then asks for a short **discovery call with Taylor**. The two
+boxes set the track (`data-start-agent="agent"` or `"app"`), which changes her
+framing and her recommendation — the destination is the same.
+
+The whole script lives in the `SECTORS` object and the `advance()` / `pitch()`
+functions at the top of that file, so the wording can be edited without
+touching anything else.
 
 It runs entirely in the browser from the script in that file. **It does not
 call a language model, and it never claims to.** To connect a real one, replace
@@ -120,7 +129,7 @@ response replaces the defaults, so amounts change without a redeploy.
 | Capability | Status |
 | --- | --- |
 | Website, content, brand system | Live |
-| NOLMT AI Guide (scripted) | Live |
+| Alice, the AI Agent (scripted) | Live |
 | Reward names, amounts, utility catalogue | Live, config-driven |
 | Balance, activity, journey | Demonstration — runs in the browser |
 | Accounts and verification | Demonstration |

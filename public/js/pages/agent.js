@@ -1,60 +1,90 @@
 /* ==========================================================================
-   NOLMT AI GUIDE
+   ALICE — NOLMT AI Agent
    --------------------------------------------------------------------------
-   A guided conversation that asks about the visitor's business and shows what
-   NOLMT could build for them. It runs entirely in the browser from the script
-   below — it does not call a language model, and it never claims to.
+   Two entry tracks, one destination.
 
-   To connect a real model, replace `respond()` with a call to your own
-   endpoint. Keep the model, provider and prompt server-side.
+     "Build an AI Agent"  →  agent track
+     "Build a Web App"    →  app track
+                          →  a discovery call with Taylor
+
+   Alice introduces herself, asks what the business is, asks whether the goal
+   is saving time or generating revenue, explains what NOLMT can do for that
+   combination, and then asks for the call.
+
+   This runs entirely from the script below. It does not call a language model.
+   To connect a real one, replace `reply()` with a request to your own endpoint
+   and keep the model, provider and prompts server-side.
    ========================================================================== */
 (function () {
   "use strict";
 
-  var panels = Array.prototype.slice.call(document.querySelectorAll("[data-agent]"));
-  if (!panels.length) return;
-
   var SECTORS = {
-    trades: { label: "Trades or services", agent: "a booking and quoting agent", app: "AI Website App",
-      job: "answer the same questions, qualify the job and offer real appointment times" },
-    community: { label: "A community or association", agent: "a member support agent", app: "Community App",
-      job: "answer member questions from your own material, and keep training and events in one place" },
-    coaching: { label: "Coaching or training", agent: "a learner support agent", app: "Community App",
-      job: "guide people through your programme and answer the questions that repeat every cohort" },
-    property: { label: "Real estate or mortgage", agent: "a client education agent", app: "Custom AI App",
-      job: "explain the process, capture what you need up front and keep clients moving" },
-    retail: { label: "Retail or ecommerce", agent: "a customer service agent", app: "AI Website App",
-      job: "handle order questions and product help without a queue" },
-    other: { label: "Something else", agent: "a customer-facing agent", app: "AI App",
-      job: "take the repetitive part of the day off your team" }
+    trades: {
+      label: "Trades or services",
+      agent: "answer the same questions all day, qualify the job and offer real appointment times",
+      app: "AI Website App",
+      time: "Most of the day disappears into the phone. An agent answers first, every time, and only passes you the real jobs.",
+      revenue: "Most enquiries go to whoever replies first. Answering at 9pm on a Sunday is worth more than a better logo."
+    },
+    community: {
+      label: "A community or association",
+      agent: "answer member questions from your own handbook and keep training and events in one place",
+      app: "Community App",
+      time: "The same twenty questions come round every month. An agent answers them from your own material instead of your inbox.",
+      revenue: "Members who feel looked after renew. An agent that always answers is retention work that runs itself."
+    },
+    coaching: {
+      label: "Coaching or training",
+      agent: "guide people through your programme and answer the questions that repeat every cohort",
+      app: "Community App",
+      time: "You are answering the same onboarding questions for every intake. That is the first thing to hand over.",
+      revenue: "People who finish the programme buy the next one. An agent keeps them moving through it."
+    },
+    property: {
+      label: "Real estate or mortgage",
+      agent: "explain the process, gather what you need up front and keep clients moving",
+      app: "Custom AI App",
+      time: "Chasing documents is the job nobody wants. An agent can chase politely and never forget.",
+      revenue: "Clients go quiet when they are confused. An agent that explains the next step keeps deals alive."
+    },
+    retail: {
+      label: "Retail or ecommerce",
+      agent: "handle order questions and product help without a queue",
+      app: "AI Website App",
+      time: "Where-is-my-order is most of your support volume, and an agent can settle it instantly.",
+      revenue: "Answering a product question in the moment is often the difference between a sale and a closed tab."
+    },
+    other: {
+      label: "Something else",
+      agent: "take the repetitive, customer-facing part of the day off your team",
+      app: "AI App",
+      time: "Almost every business has a handful of tasks done twenty times a week. Those are the ones to hand over first.",
+      revenue: "Faster answers and better follow-up move the numbers before anything clever does."
+    }
   };
 
-  var PAINS = {
-    questions: { label: "Answering the same questions", line: "Repetition is the easiest thing to hand over — and the fastest to see working." },
-    leads: { label: "Following up with leads", line: "Speed matters more than polish here. Most enquiries go to whoever answers first." },
-    admin: { label: "Admin and paperwork", line: "Drafting is a good fit. Approving stays with a person." },
-    training: { label: "Training people", line: "Learning works well when it lives where people already are." },
-    scattered: { label: "Everything is scattered", line: "One place to sign in usually beats three tools that nearly talk to each other." }
-  };
-
-  function esc(t) { return String(t).replace(/[<>&]/g, function (c) { return { "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]; }); }
+  function esc(t) {
+    return String(t).replace(/[<>&]/g, function (c) {
+      return { "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c];
+    });
+  }
 
   function init(panel) {
     var log = panel.querySelector("[data-agent-log]");
     var replies = panel.querySelector("[data-agent-replies]");
     var form = panel.querySelector("[data-agent-form]");
     var input = form ? form.querySelector("input") : null;
-    var state = { step: 0, sector: null, pain: null, name: null };
+
+    var state = { track: panel.getAttribute("data-track") || "agent", step: "intro", sector: null, goal: null };
 
     function scroll() { log.scrollTop = log.scrollHeight; }
 
-    function say(text, cls) {
+    function say(html, who) {
       var el = document.createElement("div");
-      el.className = "msg msg--" + (cls || "agent");
-      el.innerHTML = text;
+      el.className = "msg msg--" + (who || "agent");
+      el.innerHTML = html;
       log.appendChild(el);
       scroll();
-      return el;
     }
 
     function typing(then, delay) {
@@ -64,7 +94,7 @@
       el.setAttribute("aria-hidden", "true");
       log.appendChild(el);
       scroll();
-      window.setTimeout(function () { el.remove(); then(); }, delay || 620);
+      window.setTimeout(function () { el.remove(); then(); }, delay || 700);
     }
 
     function offer(options) {
@@ -72,101 +102,139 @@
       options.forEach(function (o) {
         var b = document.createElement("button");
         b.type = "button";
-        b.className = "reply";
+        b.className = "reply" + (o.go ? " reply--go" : "");
         b.textContent = o.label;
-        b.addEventListener("click", function () { choose(o); });
+        b.addEventListener("click", function () {
+          if (o.href) { window.location.href = o.href; return; }
+          say(esc(o.label), "user");
+          replies.hidden = true;
+          replies.innerHTML = "";
+          advance(o.value);
+        });
         replies.appendChild(b);
       });
       replies.hidden = false;
+      scroll();
     }
 
-    function choose(option) {
-      say(esc(option.label), "user");
-      replies.hidden = true;
-      replies.innerHTML = "";
-      if (option.href) { window.location.href = option.href; return; }
-      advance(option.value);
-    }
-
-    /* The whole conversation, in one place. */
     function advance(value) {
-      if (state.step === 0) {
+      if (state.step === "intro") {
+        state.step = "sector";
+        typing(function () {
+          say("Great. Tell me about your business — what business are you in?");
+          offer(Object.keys(SECTORS).map(function (k) {
+            return { label: SECTORS[k].label, value: k };
+          }));
+        });
+        return;
+      }
+
+      if (state.step === "sector") {
         state.sector = value;
-        state.step = 1;
+        state.step = "goal";
         typing(function () {
-          say("Good. What takes up the most time right now?");
-          offer(Object.keys(PAINS).map(function (k) { return { label: PAINS[k].label, value: k }; }));
+          say("Got it. Are you looking to save time, or generate revenue?");
+          offer([
+            { label: "Save time", value: "time" },
+            { label: "Generate revenue", value: "revenue" },
+            { label: "Honestly, both", value: "both" }
+          ]);
         });
         return;
       }
 
-      if (state.step === 1) {
-        state.pain = value;
-        state.step = 2;
-        typing(function () {
-          say(PAINS[value].line);
-          typing(function () {
-            say("Last one — how many people would use it?");
-            offer([
-              { label: "Just me", value: "solo" },
-              { label: "A small team", value: "team" },
-              { label: "Hundreds", value: "hundreds" },
-              { label: "Thousands", value: "thousands" }
-            ]);
-          }, 700);
-        });
+      if (state.step === "goal") {
+        state.goal = value;
+        state.step = "pitch";
+        pitch();
         return;
       }
 
-      if (state.step === 2) {
-        state.size = value;
-        state.step = 3;
-        summarise();
+      if (state.step === "pitch") {
+        if (value === "more") { more(); return; }
+        if (value === "restart") { window.location.reload(); }
       }
     }
 
-    function summarise() {
+    function pitch() {
       var sector = SECTORS[state.sector] || SECTORS.other;
-      var tier = sector.app;
-      if (state.size === "thousands" || state.pain === "admin") tier = "Custom AI App";
-      if (state.size === "solo" && tier === "Custom AI App") tier = "Community App";
+      var line = state.goal === "revenue" ? sector.revenue
+               : state.goal === "time" ? sector.time
+               : sector.time + " " + sector.revenue;
 
       typing(function () {
-        say("<strong>We can build something like this.</strong>");
+        say(line);
         typing(function () {
-          say("For " + esc(sector.label.toLowerCase()) + ", that usually starts as <strong>" + esc(sector.agent) +
-              "</strong> that can " + esc(sector.job) + ".");
+          if (state.track === "app") {
+            say("For a business like yours, that usually starts as a <strong>" + esc(sector.app) +
+                "</strong> — with an agent built into it, so the app does the work and the agent handles the conversation.");
+          } else {
+            say("An agent for you would " + esc(sector.agent) +
+                ". It answers from your own material, and hands over to a person the moment something needs judgement.");
+          }
           typing(function () {
-            say("Given the size, the sensible shape is a <strong>" + esc(tier) +
-                "</strong>. Where people come back regularly, we can add digital utility so participation earns something they can use.");
+            say("The best next step is a short discovery call with <strong>Taylor</strong> from our team. Twenty minutes, and you will leave knowing what it would take to build — or that you do not need us.");
             offer([
-              { label: "Build my agent", href: "ai-agents.html#build" },
-              { label: "See app options", href: "ai-app-development.html" },
-              { label: "Book a discovery call", href: "book.html" }
+              { label: "Book a discovery call", href: "book.html", go: true },
+              { label: "Tell me more first", value: "more" }
             ]);
-            if (form) form.hidden = true;
-          }, 900);
-        }, 900);
+          }, 950);
+        }, 950);
       });
     }
 
-    /* Free text is accepted, matched loosely, and never pretended to be more
-       than it is. */
-    function respond(text) {
+    function more() {
+      typing(function () {
+        if (state.track === "app") {
+          say("There are three levels. A <strong>website app</strong> at $3,000 for a front door that actually does things. A <strong>community app</strong> at $6,000 for members, training and events. A <strong>custom AI app</strong> at $12,000 when the workflow is the product.");
+        } else {
+          say("An agent can live on your website, inside your app, and in your community — sharing the same knowledge. It answers from documents you control, says when it does not know, and drafts work rather than deciding anything with money or safety attached.");
+        }
+        typing(function () {
+          say("Where people come back regularly, we can also add digital utility, so taking part earns something they can use.");
+          typing(function () {
+            say("Taylor can walk you through the whole thing properly. Shall I point you at the calendar?");
+            offer([
+              { label: "Book a discovery call", href: "book.html", go: true },
+              { label: state.track === "app" ? "See app options" : "More about AI Agents",
+                href: state.track === "app" ? "ai-app-development.html" : "ai-agents.html" },
+              { label: "Start over", value: "restart" }
+            ]);
+          }, 900);
+        }, 950);
+      });
+    }
+
+    function reply(text) {
       var t = text.toLowerCase();
-      if (state.step === 0) {
+
+      if (state.step === "intro") { advance("yes"); return; }
+
+      if (state.step === "sector") {
         var guess = Object.keys(SECTORS).filter(function (k) {
           return t.indexOf(k) > -1 || t.indexOf(SECTORS[k].label.toLowerCase().split(" ")[0]) > -1;
         })[0];
         if (guess) { advance(guess); return; }
         typing(function () {
-          say("Got it. Which of these is closest?");
+          say("Thanks. Which of these is closest?");
           offer(Object.keys(SECTORS).map(function (k) { return { label: SECTORS[k].label, value: k }; }));
         });
         return;
       }
+
+      if (state.step === "goal") {
+        if (t.indexOf("time") > -1) { advance("time"); return; }
+        if (t.indexOf("revenue") > -1 || t.indexOf("money") > -1 || t.indexOf("sales") > -1) { advance("revenue"); return; }
+        advance("both");
+        return;
+      }
+
       typing(function () {
-        say("Noted. Pick whichever is closest and I will keep going.");
+        say("Taylor is the right person for that one. A short call will get you a proper answer.");
+        offer([
+          { label: "Book a discovery call", href: "book.html", go: true },
+          { label: "Start over", value: "restart" }
+        ]);
       });
     }
 
@@ -178,19 +246,59 @@
         say(esc(text), "user");
         input.value = "";
         replies.hidden = true;
-        respond(text);
+        reply(text);
       });
     }
 
-    /* Opening line */
-    typing(function () {
-      say("Hi. What would you like AI to help you do?");
+    function start(track) {
+      state.track = track || state.track;
+      state.step = "intro";
+      state.sector = null;
+      state.goal = null;
+      log.innerHTML = "";
       typing(function () {
-        say("Tell me what kind of business or community you run.");
-        offer(Object.keys(SECTORS).map(function (k) { return { label: SECTORS[k].label, value: k }; }));
-      }, 700);
-    }, 500);
+        say("Good day! My name is <strong>Alice</strong> and I am an AI Agent.");
+        typing(function () {
+          say("Would you like to learn more about what " +
+              (state.track === "app" ? "an AI App" : "an AI Agent") +
+              " can do for your business?");
+          offer([
+            { label: "Yes, tell me", value: "yes" },
+            { label: "What is " + (state.track === "app" ? "an AI App" : "an AI Agent") + "?", value: "yes" }
+          ]);
+        }, 850);
+      }, 550);
+    }
+
+    panel.nolmtStart = start;
+    start(state.track);
   }
 
+  var panels = Array.prototype.slice.call(document.querySelectorAll("[data-agent]"));
   panels.forEach(init);
+
+  /* The two big boxes hand the conversation its track, then scroll to it. */
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest("[data-start-agent]");
+    if (!trigger) return;
+    e.preventDefault();
+    var track = trigger.getAttribute("data-start-agent");
+    var panel = document.querySelector("[data-agent]");
+    if (!panel) return;
+    panel.setAttribute("data-track", track);
+    var title = panel.querySelector("[data-agent-title]");
+    if (title) {
+      title.innerHTML = "Alice<small>NOLMT AI Agent &middot; " +
+        (track === "app" ? "AI Apps" : "AI Agents") + "</small>";
+    }
+    if (panel.nolmtStart) panel.nolmtStart(track);
+
+    /* Land on the conversation, clear of the sticky header. */
+    var header = document.querySelector(".masthead");
+    var offset = (header ? header.offsetHeight : 0) + 16;
+    var top = panel.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    var field = panel.querySelector("[data-agent-form] input");
+    if (field) window.setTimeout(function () { field.focus({ preventScroll: true }); }, 700);
+  });
 })();

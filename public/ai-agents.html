@@ -58,23 +58,24 @@
       <p class="eyebrow">AI Agents</p>
       <h1>An agent that actually <span class="grad">does the job.</span></h1>
       <p class="lede">AI that can communicate, answer questions, help customers, qualify opportunities, educate users and support business activity — trained on your material, working the way you work.</p>
+      <p class="lede">Alice is one. Talk to her and see.</p>
       <div class="btn-row mt-2">
-        <a class="btn" href="#build">Build my agent</a>
-        <a class="btn btn--ghost" href="book.html">Book a discovery call</a>
+        <a class="btn" href="book.html">Book a call with Taylor</a>
+        <a class="btn btn--ghost" href="ai-app-development.html">See app options</a>
       </div>
     </div>
 
-    <div class="agent" data-agent>
+    <div class="agent" data-agent data-track="agent">
       <div class="agent__bar">
-        <img src="assets/brand/nolmt-symbol.svg" alt="" width="26" height="26">
-        <b>NOLMT AI Guide</b>
+        <img src="assets/brand/nolmt-symbol.svg" alt="" width="34" height="34">
+        <b data-agent-title>Alice<small>NOLMT AI Agent</small></b>
         <span>Online</span>
       </div>
-      <div class="agent__log" data-agent-log role="log" aria-live="polite" aria-label="Conversation with the NOLMT AI Guide"></div>
+      <div class="agent__log" data-agent-log role="log" aria-live="polite" aria-label="Conversation with Alice"></div>
       <div class="agent__replies" data-agent-replies hidden></div>
       <form class="agent__form" data-agent-form>
         <label class="visually-hidden" for="agent-input">Your message</label>
-        <input id="agent-input" type="text" autocomplete="off" placeholder="Or type your answer…">
+        <input id="agent-input" type="text" autocomplete="off" placeholder="Type your answer…">
         <button class="btn btn--sm" type="submit">Send</button>
       </form>
     </div>
