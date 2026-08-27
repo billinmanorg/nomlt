@@ -28,9 +28,10 @@ NAV = [
 
 META_RE = re.compile(r"^<!--meta(.*?)-->", re.S)
 
-# Local css/ and js/ references get a content hash appended, so a browser can
-# never serve a stale stylesheet or script alongside fresh HTML.
-ASSET_RE = re.compile(r'(href|src)="((?:css|js)/[^"?]+)"')
+# Local css/, js/ and assets/ references get a content hash appended, so a
+# browser can never serve a stale stylesheet, script or image alongside fresh
+# HTML. Swap a logo file and the URL changes with it.
+ASSET_RE = re.compile(r'(href|src)="((?:css|js|assets)/[^"?]+)"')
 _hashes = {}
 
 
@@ -73,6 +74,21 @@ def nav_html(active):
     return "\n        ".join(items)
 
 
+def build_stamp():
+    """A short fingerprint of every non-HTML asset, so you can confirm at a
+    glance which build a deployed page is actually running."""
+    import datetime
+    digest = hashlib.sha1()
+    for root, dirs, files in os.walk(OUT):
+        dirs[:] = [d for d in dirs if not d.startswith(".")]
+        for name in sorted(files):
+            if name.endswith(".html"):
+                continue
+            with open(os.path.join(root, name), "rb") as fh:
+                digest.update(fh.read())
+    return "%s-%s" % (datetime.date.today().isoformat(), digest.hexdigest()[:8])
+
+
 def build():
     with open(os.path.join(SRC, "layout.html"), encoding="utf-8") as fh:
         layout = fh.read()
@@ -80,6 +96,7 @@ def build():
     if not os.path.isdir(PAGES):
         sys.exit("No src/pages directory found.")
 
+    stamp = build_stamp()
     built = []
     for name in sorted(os.listdir(PAGES)):
         if not name.endswith(".html"):
@@ -109,6 +126,7 @@ def build():
                 .replace("{{PAGE_SCRIPT}}", script)
                 .replace("{{STICKY_HREF}}", meta.get("cta_href", "ai-agents.html"))
                 .replace("{{STICKY_LABEL}}", meta.get("cta_label", "Try an AI Agent"))
+                .replace("{{BUILD}}", stamp)
                 .replace("{{BODY}}", body))
 
         html = version_assets(html)
@@ -117,6 +135,7 @@ def build():
             fh.write(html)
         built.append(name)
 
+    print("Build stamp: %s" % stamp)
     print("Built %d pages into public/:" % len(built))
     for name in built:
         print("  " + name)

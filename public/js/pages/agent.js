@@ -5,7 +5,7 @@
 
      "Build an AI Agent"  →  agent track
      "Build a Web App"    →  app track
-                          →  a discovery call with Taylor
+                          →  a discovery call with our team
 
    Alice introduces herself, asks what the business is, asks whether the goal
    is saving time or generating revenue, explains what NOLMT can do for that
@@ -173,7 +173,7 @@
                 ". It answers from your own material, and hands over to a person the moment something needs judgement.");
           }
           typing(function () {
-            say("The best next step is a short discovery call with <strong>Taylor</strong> from our team. Twenty minutes, and you will leave knowing what it would take to build — or that you do not need us.");
+            say("The best next step is a short discovery call with <strong>our team</strong>. Twenty minutes, and you will leave knowing what it would take to build — or that you do not need us.");
             offer([
               { label: "Book a discovery call", href: "book.html", go: true },
               { label: "Tell me more first", value: "more" }
@@ -186,14 +186,14 @@
     function more() {
       typing(function () {
         if (state.track === "app") {
-          say("There are three levels. A <strong>website app</strong> at $3,000 for a front door that actually does things. A <strong>community app</strong> at $6,000 for members, training and events. A <strong>custom AI app</strong> at $12,000 when the workflow is the product.");
+          say("There are three levels. A <strong>website app</strong> for a front door that actually does things. A <strong>community app</strong> for members, training and events. And a <strong>custom AI app</strong> when the workflow itself is the product.");
         } else {
           say("An agent can live on your website, inside your app, and in your community — sharing the same knowledge. It answers from documents you control, says when it does not know, and drafts work rather than deciding anything with money or safety attached.");
         }
         typing(function () {
           say("Where people come back regularly, we can also add digital utility, so taking part earns something they can use.");
           typing(function () {
-            say("Taylor can walk you through the whole thing properly. Shall I point you at the calendar?");
+            say("Our team can walk you through the whole thing properly. Shall I point you at the calendar?");
             offer([
               { label: "Book a discovery call", href: "book.html", go: true },
               { label: state.track === "app" ? "See app options" : "More about AI Agents",
@@ -230,7 +230,7 @@
       }
 
       typing(function () {
-        say("Taylor is the right person for that one. A short call will get you a proper answer.");
+        say("Our team is the right place for that one. A short call will get you a proper answer.");
         offer([
           { label: "Book a discovery call", href: "book.html", go: true },
           { label: "Start over", value: "restart" }

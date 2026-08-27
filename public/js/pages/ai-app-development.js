@@ -31,9 +31,9 @@
   back.addEventListener("click", function () { show(Math.max(current - 1, 1)); });
 
   var TIERS = {
-    website: { name: "AI Website App", price: "$3,000", href: "#website" },
-    community: { name: "Community App", price: "$6,000", href: "#community" },
-    custom: { name: "Custom AI App", price: "$12,000", href: "#custom" }
+    website: { name: "AI Website App", href: "#website" },
+    community: { name: "Community App", href: "#community" },
+    custom: { name: "Custom AI App", href: "#custom" }
   };
 
   var LABELS = {
@@ -99,7 +99,7 @@
     result.innerHTML =
       '<div class="formcard mt-3">' +
         '<p class="eyebrow">Your plan</p>' +
-        "<h2>" + tier.name + " — " + tier.price + "</h2>" +
+        "<h2>" + tier.name + "</h2>" +
         '<p class="lede">Based on what you described: ' + data.what.replace(/</g, "&lt;") + ".</p>" +
         "<h3 class='mt-2'>Why this level</h3><ul>" +
           out.reasons.map(function (r) { return "<li>" + r + "</li>"; }).join("") + "</ul>" +
@@ -107,7 +107,7 @@
           needs.map(function (n) { return '<span class="tag">' + LABELS[n] + "</span>"; }).join("") + "</div>" : "") +
         "<h3 class='mt-2'>Digital utility</h3><p>" + tokenNote(data) + "</p>" +
         "<h3 class='mt-2'>What happens next</h3>" +
-        "<p>A recommendation from six answers is a starting point, not a quote. Integrations, data migration and compliance are the three things that most often move a build up a level.</p>" +
+        "<p>A recommendation from six answers is a starting point. Integrations, data migration and compliance are the three things that most often move a build up a level — which is why we quote on the call rather than on a web page.</p>" +
         '<div class="btn-row mt-2">' +
           '<button class="btn" type="button" data-earn="app_plan_completed" data-earn-done="Reward recorded">Save my plan · earn ' + amount + " NOLMT</button>" +
           '<a class="btn btn--ghost" href="book.html">Book a discovery call</a>' +

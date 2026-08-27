@@ -167,6 +167,28 @@ reviewed before any treasury is funded.
 
 ---
 
+## Partner logos
+
+Both partner marks are in place in `public/assets/partners/`:
+
+```
+angeltwin.png     AngelTwin.com
+angltoken.webp    ANGLToken.io
+```
+
+Each renders as a circular badge beside its name, set in NOLMT typography.
+
+The AngelTwin artwork arrived as a JPEG on a white ground. Its emblem was
+cropped and placed on a masked white circular chip so it reads on navy without
+altering the partner's own colours — the style guide forbids recolouring a
+partner mark, and these figures are drawn for a light background. If AngelTwin
+can supply a vector or a transparent version made for dark backgrounds, save it
+over `angeltwin.png` (or drop in an SVG and update the two `<img src>`
+attributes in `src/pages/index.html` and `src/pages/about.html`).
+
+Partner marks keep equal optical prominence, are never merged with the NOLMT
+symbol, and NOLMT is never recoloured to match a partner.
+
 ## Repository layout
 
 ```
@@ -183,6 +205,7 @@ public/              ← the deployed site. Committed.
   js/nolmt.js        Nav, balance pill, journey rail, toasts, earn/use wiring.
   js/pages/*.js      Per-page logic (agent, planner, lessons, dashboard…).
   assets/brand/      Radial logo system, favicon, app icon, OG image.
+  assets/partners/   Partner logos — placeholders, see above.
   assets/fonts/      Manrope, Inter, IBM Plex Mono (SIL OFL).
 
 docs/                Internal implementation notes — see the warning below.

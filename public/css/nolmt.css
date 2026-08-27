@@ -666,3 +666,28 @@ strong { font-weight: 650; color: var(--fg-strong); }
 .hero__intro { max-width: 880px; margin: 0 auto clamp(1.75rem, 3.5vw, 2.75rem); text-align: center; }
 .hero__intro .eyebrow { justify-content: center; }
 .hero__intro .lede { max-width: 46ch; margin: 0 auto; }
+
+/* --------------------------------------------------------------------------
+   Partner cards — equal optical prominence, never merged with the NOLMT mark
+   -------------------------------------------------------------------------- */
+.partner { gap: .8rem; }
+.partner__logo {
+  display: flex; align-items: center;
+  height: 46px; margin-bottom: .35rem;
+}
+.partner__logo img {
+  max-height: 46px; width: auto; max-width: 210px;
+  object-fit: contain; object-position: left center;
+  opacity: .92; transition: opacity .2s var(--ease);
+}
+.partner:hover .partner__logo img { opacity: 1; }
+.band--light .partner__logo img { filter: none; }
+
+/* Symbol-plus-name partner lockup, for marks that are not wordmarks */
+.partner__logo--mark { gap: .7rem; height: 48px; }
+.partner__logo--mark img { max-height: 48px; width: 48px; height: 48px; flex: none; }
+.partner__name {
+  font-family: var(--display); font-weight: 700; font-size: 1.25rem;
+  letter-spacing: -.01em; color: var(--fg-strong); line-height: 1;
+}
+.partner__name span { font-weight: 400; color: var(--fg-muted); }
