@@ -22,6 +22,7 @@ NAV = [
     ("ai-agents", "AI Agents"),
     ("ai-app-development", "AI Apps"),
     ("tokenization", "Tokenization"),
+    ("pricing", "Pricing"),
     ("apps", "Examples"),
     ("about", "About"),
 ]
