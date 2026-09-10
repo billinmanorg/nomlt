@@ -140,7 +140,7 @@ window.NOLMT_CONFIG = {
    Alice also stays on her built-in script while accessKey is not filled in.
    ========================================================================== */
 window.NOLMT_CHAT = {
-  mode: "test",
+  mode: "on",
   endpoint: "https://nolmtchat.srv1456914.hstgr.cloud/api/plugins/custom-webhook/webhook",
   accessKey: "189a4c684e8450c5675c8afd2ade7711aa23d69e5abb4939",
   timeoutMs: 60000
