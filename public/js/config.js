@@ -126,3 +126,21 @@ window.NOLMT_CONFIG = {
     { id: "use", label: "Use NOLMT" }
   ]
 };
+
+/* ==========================================================================
+   Alice — live chat connection
+   --------------------------------------------------------------------------
+   mode: "off"   Alice runs her built-in script (the site as it was).
+         "test"  The live agent answers only when the site is opened with
+                 ?chat=live on the end of the address. Everyone else still
+                 gets the built-in script. Use this while testing.
+         "on"    The live agent answers every visitor.
+
+   Alice also stays on her built-in script while accessKey is not filled in.
+   ========================================================================== */
+window.NOLMT_CHAT = {
+  mode: "test",
+  endpoint: "https://nolmtchat.srv1456914.hstgr.cloud/api/plugins/custom-webhook/webhook",
+  accessKey: "PASTE_ACCESS_KEY_HERE",
+  timeoutMs: 60000
+};

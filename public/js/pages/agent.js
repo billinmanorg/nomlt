@@ -11,12 +11,95 @@
    is saving time or generating revenue, explains what NOLMT can do for that
    combination, and then asks for the call.
 
-   This runs entirely from the script below. It does not call a language model.
-   To connect a real one, replace `reply()` with a request to your own endpoint
-   and keep the model, provider and prompts server-side.
+   Two modes, chosen by window.NOLMT_CHAT in js/config.js:
+
+     Scripted  the built-in conversation below. No language model.
+     Live      each visitor message goes to the live agent endpoint and the
+               agent's reply is shown. The model, provider and prompts stay
+               server-side.
    ========================================================================== */
 (function () {
   "use strict";
+
+  /* ---------- Live connection ------------------------------------------ */
+
+  var CHAT = window.NOLMT_CHAT || {};
+  var MSG_BUSY = "Please wait a moment and try again.";
+  var MSG_ERROR = "Something went wrong sending that. Please try again in a moment.";
+
+  function store(get, key, value) {
+    try {
+      if (get) return window.sessionStorage.getItem(key);
+      if (value === null) window.sessionStorage.removeItem(key);
+      else window.sessionStorage.setItem(key, value);
+    } catch (e) { /* storage blocked: fall back to this page only */ }
+    return null;
+  }
+
+  var LIVE = (function () {
+    var key = String(CHAT.accessKey || "").trim();
+    if (!CHAT.endpoint || !key || key === "PASTE_ACCESS_KEY_HERE") return false;
+    if (/[?&]chat=live\b/.test(window.location.search)) store(false, "nolmt_chat_live", "1");
+    if (/[?&]chat=off\b/.test(window.location.search)) store(false, "nolmt_chat_live", null);
+    if (CHAT.mode === "on") return true;
+    if (CHAT.mode === "test") return store(true, "nolmt_chat_live") === "1";
+    return false;
+  })();
+
+  /* One ID per visitor session, reused for every message, so the agent
+     remembers the conversation. Resets on a new visit. */
+  var memoryId = null;
+  function senderId() {
+    var id = store(true, "nolmt_sender_id") || memoryId;
+    if (!id) {
+      id = "v-" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+      store(false, "nolmt_sender_id", id);
+    }
+    memoryId = id;
+    return id;
+  }
+
+  function sendToAgent(text) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = window.setTimeout(function () { if (ctrl) ctrl.abort(); }, CHAT.timeoutMs || 60000);
+    return fetch(CHAT.endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + String(CHAT.accessKey).trim()
+      },
+      body: JSON.stringify({
+        senderId: senderId(),
+        text: text,
+        page: window.location.pathname,
+        device: window.innerWidth < 481 ? "mobile" : "desktop"
+      }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      if (res.status === 429) return { ok: false, message: MSG_BUSY };
+      if (res.status === 401) console.error("NOLMT chat: access key wrong or missing (401).");
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json().then(function (data) {
+        if (data && data.ok && data.reply) return { ok: true, reply: String(data.reply) };
+        throw new Error("Unexpected response");
+      });
+    }).catch(function (err) {
+      console.error("NOLMT chat:", err);
+      return { ok: false, message: MSG_ERROR };
+    }).then(function (result) {
+      window.clearTimeout(timer);
+      return result;
+    });
+  }
+
+  /* The demonstration notice only applies to the scripted mode. */
+  if (!LIVE) {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-agent-demo-note]"), function (el) {
+      el.hidden = false;
+    });
+  }
+
+  /* ---------- Scripted conversation ------------------------------------ */
 
   var SECTORS = {
     trades: {
@@ -69,11 +152,23 @@
     });
   }
 
+  /* Agent replies are plain text: escape them, keep line breaks, allow
+     **bold**, and make web addresses clickable. */
+  function format(text) {
+    var h = esc(text);
+    h = h.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+    h = h.replace(/(https?:\/\/[^\s<"']+[^\s<"'.,;:!?)\]])/g,
+      '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    return h.replace(/\n/g, "<br>");
+  }
+
   function init(panel) {
     var log = panel.querySelector("[data-agent-log]");
     var replies = panel.querySelector("[data-agent-replies]");
     var form = panel.querySelector("[data-agent-form]");
     var input = form ? form.querySelector("input") : null;
+    var sendBtn = form ? form.querySelector("button") : null;
+    var busy = false;
 
     var state = { track: panel.getAttribute("data-track") || "agent", step: "intro", sector: null, goal: null };
 
@@ -87,14 +182,37 @@
       scroll();
     }
 
-    function typing(then, delay) {
+    function typingDots() {
       var el = document.createElement("div");
       el.className = "msg msg--agent msg--typing";
       el.innerHTML = "<i></i><i></i><i></i>";
       el.setAttribute("aria-hidden", "true");
       log.appendChild(el);
       scroll();
+      return el;
+    }
+
+    function typing(then, delay) {
+      var el = typingDots();
       window.setTimeout(function () { el.remove(); then(); }, delay || 700);
+    }
+
+    var BOOK = { label: "Book a discovery call", href: "book.html", go: true };
+
+    /* Live: one request per visitor message, dots until the reply lands. */
+    function sendLive(text) {
+      busy = true;
+      if (sendBtn) sendBtn.disabled = true;
+      replies.hidden = true;
+      replies.innerHTML = "";
+      var dots = typingDots();
+      sendToAgent(text).then(function (result) {
+        dots.remove();
+        say(result.ok ? format(result.reply) : esc(result.message));
+        offer([BOOK]);
+        busy = false;
+        if (sendBtn) sendBtn.disabled = false;
+      });
     }
 
     function offer(options) {
@@ -109,7 +227,7 @@
           say(esc(o.label), "user");
           replies.hidden = true;
           replies.innerHTML = "";
-          advance(o.value);
+          if (LIVE) sendLive(o.send || o.label); else advance(o.value);
         });
         replies.appendChild(b);
       });
@@ -242,11 +360,11 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var text = (input.value || "").trim();
-        if (!text) return;
+        if (!text || busy) return;
         say(esc(text), "user");
         input.value = "";
         replies.hidden = true;
-        reply(text);
+        if (LIVE) sendLive(text); else reply(text);
       });
     }
 
@@ -270,8 +388,34 @@
       }, 550);
     }
 
-    panel.nolmtStart = start;
-    start(state.track);
+    function startLive(track) {
+      state.track = track || state.track;
+      log.innerHTML = "";
+      replies.hidden = true;
+      replies.innerHTML = "";
+      if (input) input.placeholder = "Type your message\u2026";
+      var app = state.track === "app";
+      typing(function () {
+        say("Good day! My name is <strong>Alice</strong> and I am an AI Agent.");
+        typing(function () {
+          say(app
+            ? "Tell me a little about your business and the app you have in mind, and I will help you work out what is possible."
+            : "Tell me a little about your business and what takes up your time, and I will show you what an AI Agent could do for you.");
+          offer(app ? [
+            { label: "What kind of AI App could I build?" },
+            { label: "How does an agent work inside an app?" },
+            BOOK
+          ] : [
+            { label: "What can an AI Agent do for my business?" },
+            { label: "How long does it take to build one?" },
+            BOOK
+          ]);
+        }, 850);
+      }, 550);
+    }
+
+    panel.nolmtStart = LIVE ? startLive : start;
+    panel.nolmtStart(state.track);
   }
 
   var panels = Array.prototype.slice.call(document.querySelectorAll("[data-agent]"));
