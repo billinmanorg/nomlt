@@ -1,3 +1,4 @@
+
 /* ==========================================================================
    NOLMT — public configuration
    --------------------------------------------------------------------------
@@ -141,6 +142,6 @@ window.NOLMT_CONFIG = {
 window.NOLMT_CHAT = {
   mode: "test",
   endpoint: "https://nolmtchat.srv1456914.hstgr.cloud/api/plugins/custom-webhook/webhook",
-  accessKey: "PASTE_ACCESS_KEY_HERE",
+  accessKey: "189a4c684e8450c5675c8afd2ade7711aa23d69e5abb4939",
   timeoutMs: 60000
 };
