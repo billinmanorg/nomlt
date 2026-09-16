@@ -118,12 +118,23 @@ def build():
                 scripts.append(extra)
         script = "\n".join('<script src="js/pages/%s.js"></script>' % n for n in scripts)
 
+        # Per-page <head> additions. `robots: noindex` keeps a page out of
+        # search results (use it for unlisted review pages); `styles: name`
+        # pulls in css/name.css for pages with their own layout.
+        head = []
+        if "noindex" in meta.get("robots", ""):
+            head.append('<meta name="robots" content="noindex, nofollow">')
+        for sheet in [x.strip() for x in meta.get("styles", "").split(",") if x.strip()]:
+            head.append('<link rel="stylesheet" href="css/%s.css">' % sheet)
+        head = "\n".join(head)
+
         html = (layout
                 .replace("{{TITLE}}", title)
                 .replace("{{DESCRIPTION}}", meta.get("description", ""))
                 .replace("{{CANONICAL}}", "" if slug == "index" else slug + ".html")
                 .replace("{{SLUG}}", slug)
                 .replace("{{NAV}}", nav_html(meta.get("nav", slug)))
+                .replace("{{HEAD}}", head)
                 .replace("{{PAGE_SCRIPT}}", script)
                 .replace("{{STICKY_HREF}}", meta.get("cta_href", "ai-agents.html"))
                 .replace("{{STICKY_LABEL}}", meta.get("cta_label", "Try an AI Agent"))

@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Apps we've built — showcase page
+   --------------------------------------------------------------------------
+   Every rule is scoped under .built so nothing here can affect another page.
+   Colours, fonts and buttons come from the design system in nolmt.css.
+   ========================================================================== */
+
+.built { max-width: var(--max); margin: 0 auto; padding: clamp(3rem, 7vw, 6rem) var(--gutter) clamp(4rem, 8vw, 7rem); }
+
+.built__head { max-width: 700px; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+.built__lede { color: var(--fg-muted); font-size: var(--fs-lead); margin: 0; max-width: 60ch; }
+
+/* Showcase rows — copy and screenshot, alternating sides. */
+.show { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center; padding-block: clamp(2.25rem, 4vw, 3.5rem); border-top: 1px solid var(--rule); }
+.show:nth-of-type(even) .show__media { order: -1; }
+@media (max-width: 900px) {
+  .show { grid-template-columns: 1fr; gap: 2rem; }
+  .show:nth-of-type(even) .show__media { order: 0; }
+}
+
+.show__status { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--mono);
+  font-size: var(--fs-micro); font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--aqua); margin: 0 0 1rem; }
+.show__status::before { content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--aqua); box-shadow: 0 0 0 4px var(--tint-aqua); }
+
+.show__name { font-size: var(--fs-h2); margin: 0 0 .65rem; }
+.show__pitch { color: var(--fg-muted); font-size: var(--fs-body); margin: 0 0 1.25rem; max-width: 52ch; }
+.show__for { font-size: var(--fs-small); color: var(--fg-muted); margin: 0 0 1.15rem; }
+.show__for strong { color: var(--fg-strong); font-weight: 600; }
+
+.show ul { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.show li { position: relative; padding-left: 1.4rem; margin-bottom: .6rem; color: var(--fg); }
+.show li::before { content: ""; position: absolute; left: 0; top: .72em; width: 10px; height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan) 55%, var(--aqua)); }
+
+.show__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.75rem; padding: 0; list-style: none; }
+.show__tags li { padding: .25rem .75rem; margin: 0; font-size: var(--fs-small); color: var(--fg-muted);
+  border: 1px solid var(--rule); border-radius: 999px; }
+.show__tags li::before { display: none; }
+
+.show__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+
+/* Screenshot in a browser window frame. */
+.window { background: var(--surface); border: 1px solid var(--rule); border-radius: 16px;
+  overflow: hidden; box-shadow: var(--shadow); }
+.window__bar { display: flex; align-items: center; gap: .75rem; padding: .7rem 1rem;
+  border-bottom: 1px solid var(--rule); background: rgba(255,255,255,.03); }
+.window__dots { display: flex; gap: 6px; }
+.window__dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--rule-strong); }
+.window__url { flex: 1; min-width: 0; font-family: var(--mono); font-size: var(--fs-micro);
+  font-weight: 500; color: var(--fg-muted); background: var(--midnight); border-radius: var(--r-sm);
+  padding: .5rem .75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.window__shot { display: block; width: 100%; height: auto; background: var(--midnight); }
+
+.show__media a { display: block; border-radius: 16px; text-decoration: none; transition: transform .25s var(--ease); }
+.show__media a:hover { transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) { .show__media a { transition: none; } .show__media a:hover { transform: none; } }
+
+/* Closing call to action. */
+.built__cta { margin-top: 2.5rem; padding: clamp(1.75rem, 4vw, 3rem); border: 1px solid var(--rule);
+  border-radius: 18px; background: var(--surface); display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; }
+.built__cta::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan) 55%, var(--aqua)); }
+.built__cta h2 { font-size: var(--fs-h3); margin: 0 0 .35rem; }
+.built__cta p { margin: 0; color: var(--fg-muted); }
