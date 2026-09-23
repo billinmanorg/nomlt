@@ -54,6 +54,11 @@
   padding: .5rem .75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .window__shot { display: block; width: 100%; height: auto; background: var(--midnight); }
 
+/* Frame for an app whose screenshot has not been supplied yet. */
+.window__placeholder { aspect-ratio: 16 / 10; display: grid; place-items: center; font-family: var(--mono);
+  font-size: var(--fs-micro); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-muted);
+  background: var(--midnight); }
+
 .show__media a { display: block; border-radius: 16px; text-decoration: none; transition: transform .25s var(--ease); }
 .show__media a:hover { transform: translateY(-3px); }
 @media (prefers-reduced-motion: reduce) { .show__media a { transition: none; } .show__media a:hover { transform: none; } }
