@@ -1,0 +1,65 @@
+/* ==========================================================================
+   NOLMT — legal pages (privacy.html, terms.html).
+   Scoped to .legal-* so nothing here touches other pages or the chat UI.
+   ========================================================================== */
+
+.legal-hero h1 { font-size: var(--fs-h1); }
+.legal-hero .lede { max-width: 60ch; }
+
+.legal-meta {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem 2rem; margin: 2rem 0 0; padding: 1.25rem 1.5rem;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r);
+}
+.legal-meta > div { margin: 0; }
+.legal-meta dt { font-family: var(--mono); font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: .25rem; }
+.legal-meta dd { margin: 0; color: var(--fg-strong); font-size: var(--fs-small); line-height: 1.5; }
+.legal-meta dd a { color: var(--cyan); }
+
+.legal-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+
+.legal-toc { position: sticky; top: 5.5rem; max-height: calc(100vh - 6.5rem); overflow-y: auto; padding-right: .5rem; }
+.legal-toc__title { font-family: var(--mono); font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 .75rem; }
+.legal-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--rule); }
+.legal-toc li a {
+  display: block; padding: .4rem 0 .4rem .9rem; margin-left: -1px; border-left: 1px solid transparent;
+  color: var(--fg-muted); font-size: var(--fs-small); line-height: 1.35; text-decoration: none;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.legal-toc li a:hover { color: var(--fg-strong); border-left-color: var(--cyan); }
+.legal-toc li a .mono { color: var(--cyan); margin-right: .35rem; font-size: .75rem; }
+
+.legal-body { max-width: 74ch; }
+.legal-body h2 { font-size: var(--fs-h3); margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); scroll-margin-top: 5.5rem; letter-spacing: -.01em; }
+.legal-body h2:first-of-type { border-top: 0; padding-top: 0; }
+.legal-body h3 { font-size: 1.0625rem; margin-top: 1.75rem; }
+.legal-body p { margin: 0 0 1rem; }
+.legal-body p strong { color: var(--fg-strong); font-weight: 600; }
+.legal-body a { color: var(--cyan); }
+
+.legal-important {
+  padding: 1rem 1.25rem; margin: 1.5rem 0 !important;
+  background: var(--tint-blue); border: 1px solid rgba(30, 144, 255, .4); border-radius: var(--r);
+  color: var(--fg-strong);
+}
+.legal-note { font-size: var(--fs-small); color: var(--fg-muted); padding-left: 1rem; border-left: 2px solid var(--rule-strong); }
+
+.legal-table { overflow-x: auto; margin: 1.25rem 0 1.5rem; border: 1px solid var(--rule); border-radius: var(--r); }
+.legal-table table { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
+.legal-table th, .legal-table td { text-align: left; vertical-align: top; padding: .75rem 1rem; border-bottom: 1px solid var(--rule); }
+.legal-table th { font-family: var(--mono); font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); background: var(--surface); font-weight: 500; }
+.legal-table tbody tr:last-child td { border-bottom: 0; }
+.legal-table td:first-child { color: var(--fg-strong); font-weight: 600; white-space: nowrap; }
+
+.legal-contact { padding: 1.25rem 1.5rem; margin: 1rem 0 1.25rem; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); }
+.legal-contact__email { font-family: var(--display); font-size: var(--fs-h3); font-weight: 800; margin: 0 0 .5rem !important; }
+.legal-contact__email a { color: var(--aqua); text-decoration: none; }
+.legal-contact p:last-child { margin: 0; color: var(--fg-muted); font-size: var(--fs-small); }
+
+@media (max-width: 900px) {
+  .legal-grid { grid-template-columns: 1fr; }
+  .legal-toc { position: static; max-height: none; }
+  .legal-toc ol { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); border-left: 0; gap: 0 1rem; }
+  .legal-toc li a { border-left: 0; padding-left: 0; }
+  .legal-table td:first-child { white-space: normal; }
+}
