@@ -1,0 +1,103 @@
+<!--meta
+title: AI agent for real estate teams
+description: Stop losing Zillow leads after 9 p.m. An AI agent that answers portal, text and website leads in seconds and books the showing.
+nav: none
+robots: noindex
+styles: rd
+scripts: agent, rd
+cta_href: #build
+cta_label: Build my real-estate agent
+-->
+
+<div class="rd">
+  <section class="r-hero" id="build">
+    <div class="wrap r-grid">
+      <div>
+        <div class="r-eyebrow">For real estate teams &amp; solo agents</div>
+        <h1>Stop losing Zillow leads <em>after 9&nbsp;p.m.</em></h1>
+        <p class="r-sub">Your AI agent replies to every portal, text and website lead in seconds, asks your qualifying questions and books the showing on your calendar — while you’re asleep or with a client.</p>
+        <ul class="r-bul">
+          <li>Answers Zillow, Realtor.com and website leads in under 10 seconds</li>
+          <li>Asks budget, timeline and pre-approval — in your voice</li>
+          <li>Books showings and texts you the hot ones</li>
+        </ul>
+        <form class="r-urlform" data-build autocomplete="off">
+          <label for="url3">Your website or listing page</label>
+          <input id="url3" placeholder="yourteam.com" inputmode="url">
+          <button class="r-btn" type="submit">Build my real-estate agent →</button>
+        </form>
+        <div class="r-micro"><span>Free preview in 60 sec</span><span>No card</span><span>Live in 14 days</span></div>
+      </div>
+      <div class="r-console" data-console aria-live="polite">
+        <div class="r-top"><span class="r-avatar"></span><div><div class="r-name" data-c-name>Suncoast Homes Assistant</div><span data-c-sub>Example · 11:42 p.m.</span></div><span class="r-live">LIVE</span></div>
+        <ol class="r-steps" data-c-steps hidden></ol>
+        <div class="r-chat" data-c-chat style="height:auto">
+          <div class="r-msg r-u">Hi, is 214 Bayshore still available? Can I see it this weekend?</div>
+          <div class="r-msg r-a">It is! 3 bed / 2 bath, listed at $489,000. Are you pre-approved, or would you like an intro to a lender?</div>
+          <div class="r-msg r-u">Pre-approved up to 520k</div>
+          <div class="r-msg r-a">Great. I have Saturday 10:30 or Sunday 2:00 open with Maria. Which works?</div>
+          <div class="r-msg r-u">Saturday 10:30</div>
+          <div class="r-msg r-card">✓ Showing booked · Sat 10:30 a.m. · 214 Bayshore<br>Lead scored <b>HOT</b> — texted to Maria</div>
+        </div>
+        <div class="r-chips" data-c-chips hidden>
+          <button type="button" data-q="Is 214 Bayshore still available?">Is it still available?</button>
+          <button type="button" data-q="Can I book a showing Saturday?">Book a showing Saturday</button>
+          <button type="button" data-q="What if you don't know the answer?">What if you don’t know?</button>
+        </div>
+        <form class="r-send" data-c-send autocomplete="off" hidden>
+          <label for="msgIn" class="r-sr">Message</label>
+          <input id="msgIn" placeholder="Ask your agent anything…">
+          <button class="r-btn r-sm" type="submit">Send</button>
+        </form>
+        <div class="r-save" data-c-save>
+          <h4>Like your agent? Make it real.</h4>
+          <p>Alice will set up your Growth plan and book your 30-minute kickoff call.</p>
+          <a class="r-btn r-sm r-green" href="#agent" data-start-agent="agent">Put my agent to work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="r-strip"><div class="wrap"><div class="r-logos"><span>BROKERAGE LOGO</span><span>BROKERAGE LOGO</span><span>BROKERAGE LOGO</span></div><div class="r-stats"><div><b>9s</b>median reply <span class="r-ph">placeholder</span></div><div><b>3×</b>after-hours showings <span class="r-ph">placeholder</span></div></div></div></div>
+
+  <section class="r-band r-light">
+    <div class="wrap" style="display:grid;gap:40px">
+      <div class="r-quote"><div class="r-face"></div><div><q>It answered a lead at 11:40 p.m. and had a showing booked before I woke up. That one closing paid for two years.</q><cite>Team lead, Tampa brokerage <span class="r-ph">placeholder — use a real, named client</span></cite></div></div>
+      <div class="r-head2" style="margin-bottom:0"><div class="r-eyebrow">One plan built for agents</div><h2>$333/mo on annual. Setup free.</h2><p>Growth plan: web + text + phone, CRM sync (Follow Up Boss, kvCORE, Lofty), showing booking. Live in 14 days or your first month is free.</p></div>
+      <div><a class="r-btn" href="#build" data-focus="url3">Build my real-estate agent →</a></div>
+    </div>
+  </section>
+</div>
+
+
+<section class="band band--navy alice-band" id="agent">
+  <div class="wrap grid--aside">
+    <div>
+      <p class="eyebrow">Ready when you are</p>
+      <h2>Start your real-estate agent.</h2>
+      <p class="lede">Tell Alice about your team. She’ll set up your Growth plan and book your 30-minute kickoff call.</p>
+      <ul class="flow mt-2">
+        <li>Two minutes<small>No forms</small></li>
+        <li>No sign-up<small>Just a conversation</small></li>
+        <li>A real answer<small>Or an honest no</small></li>
+      </ul>
+      <p class="mono muted mt-2" data-agent-demo-note hidden>Demonstration agent — a live model is connected at launch.</p>
+    </div>
+
+    <div class="agent" data-agent data-track="agent">
+      <div class="agent__bar">
+        <img src="assets/brand/nolmt-symbol.svg" alt="" width="34" height="34">
+        <b data-agent-title>Alice<small>NOLMT AI Agent</small></b>
+        <span>Online</span>
+      </div>
+      <div class="agent__log" data-agent-log role="log" aria-live="polite" aria-label="Conversation with Alice"></div>
+      <div class="agent__replies" data-agent-replies hidden></div>
+      <form class="agent__form" data-agent-form>
+        <label class="visually-hidden" for="agent-input">Your message</label>
+        <input id="agent-input" type="text" autocomplete="off" placeholder="Type your answer…">
+        <button class="btn btn--sm" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="rd"><div class="r-legal"><div class="wrap"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></div>
