@@ -41,7 +41,7 @@
   function setBill(annual) {
     $$("[data-bill]").forEach(function (b) { b.setAttribute("aria-pressed", String((b.getAttribute("data-bill") === "a") === annual)); });
     $$(".r-price[data-m]").forEach(function (p) { p.innerHTML = "$" + (annual ? p.getAttribute("data-a") : p.getAttribute("data-m")) + "<small>/mo</small>"; });
-    $$(".r-plan .r-setup").forEach(function (s) {
+    $$(".r-plan .r-setup[data-setup]").forEach(function (s) {
       var kind = s.getAttribute("data-setup") || "scoped";
       if (kind === "none") s.innerHTML = annual ? "<b>No setup fee</b> · billed yearly" : "<b>No setup fee</b> · billed monthly";
       else s.innerHTML = annual ? "<s>Standard setup</s> <b>Setup waived</b> · billed yearly" : "Setup cost provided before purchase";
@@ -49,6 +49,20 @@
   }
   $$("[data-bill]").forEach(function (b) { b.addEventListener("click", function () { setBill(b.getAttribute("data-bill") === "a"); }); });
   if ($("[data-bill]")) setBill(true);
+
+  /* ---------- pricing tabs (AI Agents / AI Apps) ---------- */
+  var tabBtns = $$("[data-tab]");
+  function setTab(name) {
+    if (!tabBtns.length) return;
+    tabBtns.forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-tab") === name)); });
+    $$(".r-panel").forEach(function (p) { p.hidden = p.id !== "panel-" + name; });
+  }
+  tabBtns.forEach(function (b) { b.addEventListener("click", function () { setTab(b.getAttribute("data-tab")); }); });
+  if (tabBtns.length) {
+    var h = (location.hash || "").replace("#", "");
+    setTab(h === "apps" ? "apps" : "agents");
+    window.addEventListener("hashchange", function () { var x = location.hash.replace("#", ""); if (x === "apps" || x === "agents") { setTab(x); } });
+  }
 
   /* ---------- demo console ---------- */
   var con = $("[data-console]");
