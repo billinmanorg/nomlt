@@ -286,3 +286,24 @@ body[data-page="real-estate"] .footer__base{border-top:0;margin-top:0;padding-to
 .rd .r-plan details.r-incl summary{padding:0}
 .rd .r-legal{padding:18px 0;font-size:13px;color:var(--onDark2);background:var(--deep)}
 .rd .r-legal a{margin-right:16px;text-decoration:underline}
+
+/* ---- v2: Alice in the hero, built-apps showcase ---- */
+.rd .r-herocta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.rd .r-btn.r-ghost-dark{border-color:rgba(255,255,255,.28);color:#fff}
+.rd .r-btn.r-ghost-dark:hover{background:rgba(255,255,255,.08)}
+.rd .r-hero .agent{box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.rd .r-demonote{text-align:center;margin-top:18px;font-size:12px}
+.rd .r-built{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rd .r-app{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;color:var(--onDark);transition:border-color .15s,transform .15s,box-shadow .15s}
+.rd a.r-app:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.rd .r-shot{display:block;aspect-ratio:16/9;background:linear-gradient(135deg,#143b63,#0a1e33);overflow:hidden;border-bottom:1px solid var(--line)}
+.rd .r-shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.rd .r-shot--text{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;letter-spacing:.06em;color:var(--cyan)}
+.rd .r-appbody{display:flex;flex-direction:column;gap:8px;padding:20px;flex:1}
+.rd .r-appbody .r-seg2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.rd .r-appbody b{font-family:var(--display);font-size:20px;color:#fff;line-height:1.2}
+.rd .r-appbody > span:not(.r-seg2):not(.r-go){font-size:15.5px;color:var(--onDark2);line-height:1.5}
+.rd .r-appbody .r-go{margin-top:auto;padding-top:6px;color:var(--cyan);font-weight:700;font-size:15px}
+.rd .r-tile{text-decoration:none}
+@media (max-width:1024px){.rd .r-built{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.rd .r-built{grid-template-columns:1fr}}

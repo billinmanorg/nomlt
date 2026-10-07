@@ -42,7 +42,9 @@
     $$("[data-bill]").forEach(function (b) { b.setAttribute("aria-pressed", String((b.getAttribute("data-bill") === "a") === annual)); });
     $$(".r-price[data-m]").forEach(function (p) { p.innerHTML = "$" + (annual ? p.getAttribute("data-a") : p.getAttribute("data-m")) + "<small>/mo</small>"; });
     $$(".r-plan .r-setup").forEach(function (s) {
-      s.innerHTML = annual ? "<s>$999 setup</s> <b>Setup free</b> · billed yearly" : "+ $999 one-time setup";
+      var kind = s.getAttribute("data-setup") || "scoped";
+      if (kind === "none") s.innerHTML = annual ? "<b>No setup fee</b> · billed yearly" : "<b>No setup fee</b> · billed monthly";
+      else s.innerHTML = annual ? "<s>Standard setup</s> <b>Setup waived</b> · billed yearly" : "Setup cost provided before purchase";
     });
   }
   $$("[data-bill]").forEach(function (b) { b.addEventListener("click", function () { setBill(b.getAttribute("data-bill") === "a"); }); });
