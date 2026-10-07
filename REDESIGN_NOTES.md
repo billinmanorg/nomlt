@@ -25,13 +25,23 @@ Buttons reach Alice through the existing `data-start-agent` hook in agent.js.
   "Your NOLMT" pill removed from the header; Tokenization stays in the footer
   under "NOLMT Rewards · beta".
 
-## Before merging to main
+## Staging revision (Oct 2026)
+- Homepage hero now hosts the real Alice panel (same markup as before, moved up);
+  the scripted "build my preview" console and URL forms are gone from the homepage.
+  rd.js still supports the console for the real-estate lander.
+- Stats strip, client-logo row, star rating and all testimonial/case cards removed.
+  "Results" section replaced by "Apps we've built" (from apps-built.html).
+- Pricing matches nolmt-pricing-preview.onrender.com: Launch $199 (no setup fee),
+  Growth $399, Scale $749; annual = 10× monthly; Growth/Scale setup "provided
+  before purchase", waived on annual. App builds: AI Website App $3,000,
+  Community App $6,000, Custom AI App $12,000 (one-time, Stripe links kept).
+  Every $999 setup reference removed. rd.js reads data-setup="none|scoped".
+
+## Still open before merging to main
 - Stripe: agent plan buttons go to Alice for now. Swap in payment links when ready.
-- Replace every amber PLACEHOLDER: rating (4.8 / 37), client logos, stats
-  (1.2M, 4.6s, 31%, 9s, 3×), case metrics + quotes, the lander testimonial
-  (needs a real, named client).
-- Record the three 30-second result clips (cards say "Clip coming soon").
 - Confirm the 14-day live promise and headline claims (5 seconds, 2 a.m.).
+- San Diego Home Buyers screenshot (assets/apps-built/san-diego-home-buyers.webp).
+- Branded open-house game: confirm public URL.
 - Lander phone number was omitted (the draft used a 555 placeholder).
 
 ## Preview without touching the live site
