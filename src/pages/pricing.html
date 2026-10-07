@@ -5,7 +5,7 @@ nav: pricing
 styles: rd
 scripts: agent, rd
 cta_href: #pricing
-cta_label: See agent plans
+cta_label: See pricing
 -->
 
 <div class="rd">
@@ -13,42 +13,97 @@ cta_label: See agent plans
   <div class="wrap">
     <div class="r-head2">
       <div class="r-eyebrow">Pricing</div>
-      <h2>Add your AI assistant. Simple monthly plans.</h2>
-      <p>Every plan is built and run by our team and includes an upgraded NOLMT Vault while it’s active. Cancel anytime — you keep your data and your conversation history.</p>
+      <h2>What do you need AI to do?</h2>
+      <p>Add an assistant that helps your customers, build a tool for your business, or combine the two. Every price is confirmed before you commit.</p>
     </div>
-    <div><div class="r-billing" role="group" aria-label="Billing period"><button type="button" data-bill="m" aria-pressed="false">Monthly</button><button type="button" data-bill="a" aria-pressed="true">Annual <span class="r-save2">· 2 months free</span></button></div></div>
-    <div class="r-plans">
-      <div class="r-plan">
-        <h3>Launch</h3><p class="r-for">Your website’s AI salesperson and assistant</p>
-        <div class="r-price" data-m="199" data-a="166">$166<small>/mo</small></div>
-        <div class="r-setup" data-setup="none"></div>
-        <details class="r-incl" open><summary>What’s included</summary><ul><li>Website chat using your approved content</li><li>Supported appointment booking</li><li>Up to 1,000 conversations/mo</li><li>Upgraded NOLMT Vault included</li><li>Monthly results report</li></ul></details>
-        <a class="r-btn r-ghost" href="#agent" data-start-agent="agent">Choose Launch</a>
-        <p class="r-tok">Financing available · or <button type="button" data-token-pay>pay with NOLMT</button></p>
-      </div>
-      <div class="r-plan r-pop">
-        <span class="r-badge">Most popular</span>
-        <h3>Growth</h3><p class="r-for">Web, text and phone — one brain</p>
-        <div class="r-price" data-m="399" data-a="333">$333<small>/mo</small></div>
-        <div class="r-setup" data-setup="scoped"></div>
-        <details class="r-incl" open><summary>What’s included</summary><ul><li>Everything in Launch</li><li>Website, SMS and voice support</li><li>Lead qualification and supported CRM connections</li><li>Up to 4,000 conversations/mo</li><li>Monthly tuning call</li></ul></details>
-        <a class="r-btn" href="#agent" data-start-agent="agent">Choose Growth</a>
-        <p class="r-tok">Financing available · or <button type="button" data-token-pay>pay with NOLMT</button></p>
-      </div>
-      <div class="r-plan">
-        <h3>Scale</h3><p class="r-for">Multiple agents and locations</p>
-        <div class="r-price" data-m="749" data-a="624">$624<small>/mo</small></div>
-        <div class="r-setup" data-setup="scoped"></div>
-        <details class="r-incl" open><summary>What’s included</summary><ul><li>Everything in Growth</li><li>Up to three specialized agents</li><li>Multi-location routing</li><li>Scoped custom integrations</li><li>Priority support, same-day changes</li></ul></details>
-        <a class="r-btn r-ghost" href="#agent" data-start-agent="agent">Choose Scale</a>
-        <p class="r-tok">Financing available · or <button type="button" data-token-pay>pay with NOLMT</button></p>
-      </div>
+
+    <div class="r-tabs" role="tablist" aria-label="Product family">
+      <button type="button" role="tab" id="tab-agents" aria-controls="panel-agents" aria-selected="true" data-tab="agents"><b>AI Agents</b><span>Monthly service · from $199/mo</span></button>
+      <button type="button" role="tab" id="tab-apps" aria-controls="panel-apps" aria-selected="false" data-tab="apps"><b>AI Apps</b><span>One-time build · from $3,000</span></button>
     </div>
-    <div class="r-guarantee">
-      <div class="r-seal">14-DAY<br>LIVE<br>PROMISE</div>
-      <p><b>Live in 14 days or your first month is free.</b> If your agent isn’t answering real customers within 14 days of your kickoff call, you don’t pay for month one. No long contracts.</p>
+
+    <!-- ===== AI Agents ===== -->
+    <div class="r-panel" id="panel-agents" role="tabpanel" aria-labelledby="tab-agents">
+      <div class="r-panelhead">
+        <h3>Add your AI assistant.</h3>
+        <p>Built and run by our team. Includes an upgraded NOLMT Vault while active. Cancel anytime — you keep your data and conversation history.</p>
+      </div>
+      <div><div class="r-billing" role="group" aria-label="Billing period"><button type="button" data-bill="m" aria-pressed="false">Monthly</button><button type="button" data-bill="a" aria-pressed="true">Annual <span class="r-save2">· 2 months free</span></button></div></div>
+      <div class="r-plans">
+        <div class="r-plan">
+          <h3>Launch</h3><p class="r-for">Your website’s AI salesperson and assistant</p>
+          <div class="r-price" data-m="199" data-a="166">$166<small>/mo</small></div>
+          <div class="r-setup" data-setup="none"></div>
+          <details class="r-incl" open><summary>What’s included</summary><ul><li>Website chat using your approved content</li><li>Supported appointment booking</li><li>Up to 1,000 conversations/mo</li><li>Upgraded NOLMT Vault included</li><li>Monthly results report</li></ul></details>
+          <a class="r-btn r-ghost" href="#agent" data-start-agent="agent">Choose Launch</a>
+          <p class="r-tok">Financing available · or <button type="button" data-token-pay>pay with NOLMT</button></p>
+        </div>
+        <div class="r-plan r-pop">
+          <span class="r-badge">Most popular</span>
+          <h3>Growth</h3><p class="r-for">Web, text and phone — one brain</p>
+          <div class="r-price" data-m="399" data-a="333">$333<small>/mo</small></div>
+          <div class="r-setup" data-setup="scoped"></div>
+          <details class="r-incl" open><summary>What’s included</summary><ul><li>Everything in Launch</li><li>Website, SMS and voice support</li><li>Lead qualification and supported CRM connections</li><li>Up to 4,000 conversations/mo</li><li>Monthly tuning call</li></ul></details>
+          <a class="r-btn" href="#agent" data-start-agent="agent">Choose Growth</a>
+          <p class="r-tok">Financing available · or <button type="button" data-token-pay>pay with NOLMT</button></p>
+        </div>
+        <div class="r-plan">
+          <h3>Scale</h3><p class="r-for">Multiple agents and locations</p>
+          <div class="r-price" data-m="749" data-a="624">$624<small>/mo</small></div>
+          <div class="r-setup" data-setup="scoped"></div>
+          <details class="r-incl" open><summary>What’s included</summary><ul><li>Everything in Growth</li><li>Up to three specialized agents</li><li>Multi-location routing</li><li>Scoped custom integrations</li><li>Priority support, same-day changes</li></ul></details>
+          <a class="r-btn r-ghost" href="#agent" data-start-agent="agent">Choose Scale</a>
+          <p class="r-tok">Financing available · or <button type="button" data-token-pay>pay with NOLMT</button></p>
+        </div>
+      </div>
+      <div class="r-guarantee">
+        <div class="r-seal">14-DAY<br>LIVE<br>PROMISE</div>
+        <p><b>Live in 14 days or your first month is free.</b> If your agent isn’t answering real customers within 14 days of your kickoff call, you don’t pay for month one. No long contracts.</p>
+      </div>
+      <p class="r-soon">Annual billing is 12 months for the price of 10, paid upfront. Launch has no setup fee; Growth and Scale setup costs are provided before purchase and waived on annual. Voice, SMS and other usage may be additional — rates and spending limits are agreed before any charges. Online checkout is coming soon; for now Alice books your kickoff call and we send your invoice.</p>
     </div>
-    <p class="r-soon">Annual billing is 12 months for the price of 10, paid upfront. Launch has no setup fee; Growth and Scale setup costs are provided before purchase and waived on annual. Voice, SMS and other usage may be additional — rates and spending limits are agreed before any charges. Online checkout is coming soon; for now Alice books your kickoff call and we send your invoice.</p>
+
+    <!-- ===== AI Apps ===== -->
+    <div class="r-panel" id="panel-apps" role="tabpanel" aria-labelledby="tab-apps" hidden>
+      <div class="r-panelhead">
+        <h3>Build your AI App.</h3>
+        <p>One-time development fees with a defined scope. Every build includes a free base NOLMT Vault and 12 months of upgraded vault access. Financing available.</p>
+      </div>
+      <div class="r-plans">
+        <div class="r-plan">
+          <h3>AI Website App</h3><p class="r-for">Your website experience</p>
+          <div class="r-price">$3,000<small> one-time</small></div>
+          <div class="r-setup"><b>One-time build fee</b> · financing available</div>
+          <details class="r-incl" open><summary>What’s included</summary><ul><li>Turn your website idea into a practical AI-enabled experience</li><li>Defined project scope</li><li>Free base NOLMT Vault</li><li>12 months of upgraded vault access</li></ul></details>
+          <a class="r-btn r-ghost" href="https://buy.stripe.com/00w7sN1SG5DEbma9WW9Ve09" rel="noopener" target="_blank">Buy now</a>
+          <p class="r-tok"><a href="#agent" data-start-agent="app">Discuss my app</a> · or <button type="button" data-token-pay>pay with NOLMT</button></p>
+        </div>
+        <div class="r-plan r-pop">
+          <span class="r-badge">Most popular</span>
+          <h3>Community App</h3><p class="r-for">Your community</p>
+          <div class="r-price">$6,000<small> one-time</small></div>
+          <div class="r-setup"><b>One-time build fee</b> · financing available</div>
+          <details class="r-incl" open><summary>What’s included</summary><ul><li>Create a digital experience for your community</li><li>Defined project scope</li><li>Free base NOLMT Vault</li><li>12 months of upgraded vault access</li></ul></details>
+          <a class="r-btn" href="https://buy.stripe.com/9B6fZjcxk9TU89Y9WW9Ve0a" rel="noopener" target="_blank">Buy now</a>
+          <p class="r-tok"><a href="#agent" data-start-agent="app">Discuss my app</a> · or <button type="button" data-token-pay>pay with NOLMT</button></p>
+        </div>
+        <div class="r-plan">
+          <h3>Custom AI App</h3><p class="r-for">Your business workflow</p>
+          <div class="r-price">$12,000<small> one-time</small></div>
+          <div class="r-setup"><b>One-time build fee</b> · financing available</div>
+          <details class="r-incl" open><summary>What’s included</summary><ul><li>Build a tool around the way your business works</li><li>Defined project scope</li><li>Free base NOLMT Vault</li><li>12 months of upgraded vault access</li></ul></details>
+          <a class="r-btn r-ghost" href="https://buy.stripe.com/8x24gB0OC8PQeymfhg9Ve0b" rel="noopener" target="_blank">Buy now</a>
+          <p class="r-tok"><a href="#agent" data-start-agent="app">Discuss my app</a> · or <button type="button" data-token-pay>pay with NOLMT</button></p>
+        </div>
+      </div>
+      <div class="r-guarantee">
+        <div class="r-seal">FULL<br>COST<br>FIRST</div>
+        <p><b>Know the full cost before you buy.</b> Your proposal defines what is included. Hosting, maintenance, usage and additional integrations are scoped separately. An app purchase does not automatically start an agent plan — combine them when it makes sense.</p>
+      </div>
+      <p class="r-soon">Buy now and we schedule your kickoff; or <a href="#agent" data-start-agent="app">discuss it with Alice</a> first. <a href="apps-built.html">See apps we’ve built →</a></p>
+    </div>
+
+    <p class="r-both">Want both? We scope an app and an assistant together — build cost and monthly service are explained separately. <a href="#agent" data-start-agent="app">Ask Alice</a></p>
   </div>
 </section>
 
@@ -148,70 +203,6 @@ cta_label: See agent plans
       </article>
 
     </div>
-  </div>
-</section>
-
-<!-- ============================ AI Apps ============================ -->
-<section class="band" id="apps">
-  <div class="wrap">
-    <div class="band-head">
-      <p class="eyebrow">AI Apps</p>
-      <h2>Build your AI App.</h2>
-      <p class="lede">One-time development fees with a defined scope. Every build includes a free base NOLMT Vault and 12 months of upgraded vault access. Financing available.</p>
-    </div>
-
-    <div class="grid grid--3">
-
-      <article class="card">
-        <span class="card__index">Your website experience</span>
-        <h3>AI Website App</h3>
-        <p class="price"><b>$3,000</b> <span>one-time build fee</span></p>
-        <p>Turn your website idea into a practical AI-enabled experience.</p>
-        <ul>
-          <li>Defined project scope</li>
-          <li>Free base NOLMT Vault</li>
-          <li>12 months of upgraded vault access</li>
-          <li>Financing available</li>
-        </ul>
-        <a class="btn btn--full mt-1" href="https://buy.stripe.com/00w7sN1SG5DEbma9WW9Ve09" rel="noopener" target="_blank">Buy now</a>
-        <button class="btn btn--ghost btn--full mt-1" type="button" data-token-pay>Pay with NOLMT token</button>
-        <p class="mono muted mt-1 mb-0" style="text-align:center"><a href="#agent" data-start-agent="app">or discuss my app with Alice</a></p>
-      </article>
-
-      <article class="card card--feature">
-        <span class="card__index">Your community</span>
-        <h3>Community App</h3>
-        <p class="price"><b>$6,000</b> <span>one-time build fee</span></p>
-        <p>Create a digital experience for your community.</p>
-        <ul>
-          <li>Defined project scope</li>
-          <li>Free base NOLMT Vault</li>
-          <li>12 months of upgraded vault access</li>
-          <li>Financing available</li>
-        </ul>
-        <a class="btn btn--full mt-1" href="https://buy.stripe.com/9B6fZjcxk9TU89Y9WW9Ve0a" rel="noopener" target="_blank">Buy now</a>
-        <button class="btn btn--ghost btn--full mt-1" type="button" data-token-pay>Pay with NOLMT token</button>
-        <p class="mono muted mt-1 mb-0" style="text-align:center"><a href="#agent" data-start-agent="app">or discuss my app with Alice</a></p>
-      </article>
-
-      <article class="card">
-        <span class="card__index">Your business workflow</span>
-        <h3>Custom AI App</h3>
-        <p class="price"><b>$12,000</b> <span>one-time build fee</span></p>
-        <p>Build a tool around the way your business works.</p>
-        <ul>
-          <li>Defined project scope</li>
-          <li>Free base NOLMT Vault</li>
-          <li>12 months of upgraded vault access</li>
-          <li>Financing available</li>
-        </ul>
-        <a class="btn btn--full mt-1" href="https://buy.stripe.com/8x24gB0OC8PQeymfhg9Ve0b" rel="noopener" target="_blank">Buy now</a>
-        <button class="btn btn--ghost btn--full mt-1" type="button" data-token-pay>Pay with NOLMT token</button>
-        <p class="mono muted mt-1 mb-0" style="text-align:center"><a href="#agent" data-start-agent="app">or discuss my app with Alice</a></p>
-      </article>
-
-    </div>
-    <p class="muted mt-2" style="font-size:.95rem">Your proposal defines what is included. Hosting, maintenance, usage and additional integrations are scoped separately, so you know the full cost before you buy. An app purchase does not automatically start an agent plan — combine them when it makes sense. <a href="apps-built.html">See apps we’ve built →</a></p>
   </div>
 </section>
 
