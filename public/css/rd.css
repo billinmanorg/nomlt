@@ -323,3 +323,19 @@ body[data-page="real-estate"] .footer__base{border-top:0;margin-top:0;padding-to
 .rd .r-both{margin-top:28px;font-size:16px;color:var(--ink2)}
 .rd .r-both a,.rd .r-soon a,.rd .r-plan .r-tok a{color:var(--blue);text-decoration:underline}
 @media (max-width:520px){.rd .r-tabs{grid-template-columns:1fr}}
+
+/* ---- v3: section rhythm polish ---- */
+.rd .r-who{background:var(--paper)}
+.rd .r-who .r-tile{background:#fff}
+.rd .r-how{counter-reset:step;border-top:0;gap:18px}
+.rd .r-how > div{counter-increment:step;position:relative;padding:26px 24px 24px;border:1px solid var(--rule);border-radius:16px;background:var(--paper)}
+.rd .r-how > div::before{content:counter(step);position:absolute;top:-16px;left:22px;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--mono);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff}
+.rd .r-how .r-k{margin-top:2px}
+.rd .r-how .r-t{background:#fff;border:1px solid var(--rule)}
+.rd .r-built{grid-template-columns:repeat(6,1fr)}
+.rd .r-built > *{grid-column:span 2}
+.rd .r-built > *:nth-child(4),.rd .r-built > *:nth-child(5){grid-column:span 3}
+.rd .r-tabs button{background:#fff}
+@media (max-width:1024px){.rd .r-built > *,.rd .r-built > *:nth-child(4),.rd .r-built > *:nth-child(5){grid-column:span 3}}
+@media (max-width:640px){.rd .r-built > *,.rd .r-built > *:nth-child(4),.rd .r-built > *:nth-child(5){grid-column:span 6}}
+@media (max-width:900px){.rd .r-how{gap:28px}}
