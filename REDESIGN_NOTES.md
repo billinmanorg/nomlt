@@ -37,12 +37,39 @@ Buttons reach Alice through the existing `data-start-agent` hook in agent.js.
   Community App $6,000, Custom AI App $12,000 (one-time, Stripe links kept).
   Every $999 setup reference removed. rd.js reads data-setup="none|scoped".
 
-## Still open before merging to main
-- Stripe: agent plan buttons go to Alice for now. Swap in payment links when ready.
+## Staging revision 2 (Oct 15, 2026 — from the Oct 13 review call)
+- Homepage "How it works": four steps now, the white tags under each step
+  ("Free · 2 min", "Setup scoped before you buy", "From $199/mo · cancel anytime")
+  are gone. Step 4 = "Create an AI app — your agent helps you create and manage
+  an AI app for your customers, followers and stakeholders."
+- San Diego Home Buyers screenshot captured from sandiegohomebuyers.org and
+  placed on the homepage card and apps-built.html.
+- Pricing (homepage + /pricing): the AI Agents / AI Apps tabs and the
+  Launch / Growth / Scale plans are removed. Three AI Apps only, with a
+  Monthly / One-time toggle:
+    AI Website App  $250/mo  or $2,500 one-time
+    Community App   $500/mo  or $5,000 one-time
+    Custom AI App   $1,000/mo or $10,000 one-time
+  One-time = 12 months for the price of 10 ("2 months free").
+  "Ask Alice" appears once under the cards ("Buy now and we schedule your
+  kickoff, or discuss it with Alice first"); the "Want both?" line is gone.
+- Every leftover $199 / Launch / Growth / Scale mention on the homepage and
+  pricing page (hero, comparison table, FAQ, final CTA, meta descriptions)
+  rewritten around the app prices.
+
+## Open before merging to main
+- Stripe: the three "Buy now" (one-time) buttons still point at the existing
+  payment links, which charge $3,000 / $6,000 / $12,000. Update the amounts in
+  Stripe to $2,500 / $5,000 / $10,000 (or send new links). "Start monthly"
+  buttons go to Alice until monthly Stripe links exist.
+- The real-estate paid-media lander (real-estate.html) still sells the $399
+  Growth plan — not mentioned on the call, left as is.
+- "Where does this go?" — the Book a call form (book.html) posts to
+  `apiBase + /contact` in js/config.js; apiBase is empty, so right now it tells
+  the visitor nothing was sent. The "Client login" link goes to
+  nolmt-twin.netlify.app/login.
 - Confirm the 14-day live promise and headline claims (5 seconds, 2 a.m.).
-- San Diego Home Buyers screenshot (assets/apps-built/san-diego-home-buyers.webp).
 - Branded open-house game: confirm public URL.
-- Lander phone number was omitted (the draft used a 555 placeholder).
 
 ## Preview without touching the live site
 `render.yaml` already has `pullRequestPreviewsEnabled: true`.
