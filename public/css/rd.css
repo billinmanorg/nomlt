@@ -332,6 +332,9 @@ body[data-page="real-estate"] .footer__base{border-top:0;margin-top:0;padding-to
 .rd .r-how > div::before{content:counter(step);position:absolute;top:-16px;left:22px;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--mono);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff}
 .rd .r-how .r-k{margin-top:2px}
 .rd .r-how .r-t{background:#fff;border:1px solid var(--rule)}
+.rd .r-how--4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1100px){.rd .r-how--4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){.rd .r-how--4{grid-template-columns:1fr}}
 .rd .r-built{grid-template-columns:repeat(6,1fr)}
 .rd .r-built > *{grid-column:span 2}
 .rd .r-built > *:nth-child(4),.rd .r-built > *:nth-child(5){grid-column:span 3}

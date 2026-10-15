@@ -37,32 +37,23 @@
   syncIncl();
   if (mq.addEventListener) mq.addEventListener("change", syncIncl); else if (mq.addListener) mq.addListener(syncIncl);
 
-  /* ---------- billing toggle ---------- */
-  function setBill(annual) {
-    $$("[data-bill]").forEach(function (b) { b.setAttribute("aria-pressed", String((b.getAttribute("data-bill") === "a") === annual)); });
-    $$(".r-price[data-m]").forEach(function (p) { p.innerHTML = "$" + (annual ? p.getAttribute("data-a") : p.getAttribute("data-m")) + "<small>/mo</small>"; });
-    $$(".r-plan .r-setup[data-setup]").forEach(function (s) {
-      var kind = s.getAttribute("data-setup") || "scoped";
-      if (kind === "none") s.innerHTML = annual ? "<b>No setup fee</b> · billed yearly" : "<b>No setup fee</b> · billed monthly";
-      else s.innerHTML = annual ? "<s>Standard setup</s> <b>Setup waived</b> · billed yearly" : "Setup cost provided before purchase";
+  /* ---------- payment toggle: monthly ("m") or one-time ("o") ----------
+     Prices live on each .r-price as data-m / data-o. Each plan has one
+     button per option, marked data-when="m|o"; the other is hidden.
+     One-time buttons go to Stripe; monthly buttons go to Alice until
+     monthly Stripe links exist. */
+  function setBill(once) {
+    $$("[data-bill]").forEach(function (b) { b.setAttribute("aria-pressed", String((b.getAttribute("data-bill") === "o") === once)); });
+    $$(".r-price[data-m]").forEach(function (p) {
+      p.innerHTML = once ? "$" + p.getAttribute("data-o") + "<small> one-time</small>" : "$" + p.getAttribute("data-m") + "<small>/mo</small>";
     });
+    $$(".r-plan .r-setup[data-pay]").forEach(function (s) {
+      s.innerHTML = once ? "<b>Pay once</b> · financing available" : "<b>Billed monthly</b> · pay as you go";
+    });
+    $$(".r-plan [data-when]").forEach(function (a) { a.hidden = (a.getAttribute("data-when") === "o") !== once; });
   }
-  $$("[data-bill]").forEach(function (b) { b.addEventListener("click", function () { setBill(b.getAttribute("data-bill") === "a"); }); });
+  $$("[data-bill]").forEach(function (b) { b.addEventListener("click", function () { setBill(b.getAttribute("data-bill") === "o"); }); });
   if ($("[data-bill]")) setBill(true);
-
-  /* ---------- pricing tabs (AI Agents / AI Apps) ---------- */
-  var tabBtns = $$("[data-tab]");
-  function setTab(name) {
-    if (!tabBtns.length) return;
-    tabBtns.forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-tab") === name)); });
-    $$(".r-panel").forEach(function (p) { p.hidden = p.id !== "panel-" + name; });
-  }
-  tabBtns.forEach(function (b) { b.addEventListener("click", function () { setTab(b.getAttribute("data-tab")); }); });
-  if (tabBtns.length) {
-    var h = (location.hash || "").replace("#", "");
-    setTab(h === "apps" ? "apps" : "agents");
-    window.addEventListener("hashchange", function () { var x = location.hash.replace("#", ""); if (x === "apps" || x === "agents") { setTab(x); } });
-  }
 
   /* ---------- demo console ---------- */
   var con = $("[data-console]");
