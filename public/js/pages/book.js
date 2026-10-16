@@ -1,46 +1,40 @@
-/* Discovery call request. Posts to the API when one is configured; otherwise
-   it says plainly that it is not connected rather than pretending to send. */
+/* Independent inquiry endpoint: does not activate rewards or other APIs. */
 (function () {
-  "use strict";
-  var form = document.getElementById("form");
+  'use strict';
+  var form = document.getElementById('form');
   if (!form) return;
-  var msg = document.getElementById("book-msg");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  var msg = document.getElementById('book-msg');
+  var button = form.querySelector('[type="submit"]');
+  var pending = null;
+  var busy = false;
+  function show(text) { msg.hidden = false; msg.className = 'notice'; msg.textContent = text; }
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (busy) return;
     var fd = new FormData(form);
-    var email = (fd.get("email") || "").trim();
-    var name = (fd.get("name") || "").trim();
-
-    msg.hidden = false;
-    if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      msg.className = "notice notice--quiet";
-      msg.innerHTML = "<p class='mb-0'>Add your name and a valid email address so we can reply.</p>";
-      return;
-    }
-
-    var base = window.NOLMT_CONFIG.apiBase;
-    if (!base) {
-      msg.className = "notice";
-      msg.innerHTML = "<p class='mb-0'><b>Not connected yet.</b> This form is not wired to an inbox in the demonstration build, so nothing was sent. Connect the API to enable it.</p>";
-      return;
-    }
-
-    fetch(base + "/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name, email: email, topic: fd.get("topic"), notes: fd.get("notes")
-      })
-    }).then(function (r) {
-      msg.className = r.ok ? "notice notice--aqua" : "notice notice--quiet";
-      msg.innerHTML = r.ok
-        ? "<p class='mb-0'><b>Request sent.</b> We will be in touch shortly.</p>"
-        : "<p class='mb-0'>That did not send. Try again in a moment.</p>";
-      if (r.ok) form.reset();
-    }).catch(function () {
-      msg.className = "notice notice--quiet";
-      msg.innerHTML = "<p class='mb-0'>That did not send. Try again in a moment.</p>";
-    });
+    var payload = {};
+    ['name', 'email', 'topic', 'notes'].forEach(function (field) { payload[field] = String(fd.get(field) || '').trim(); });
+    if (!payload.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) { show('Add your name and a valid email address.'); return; }
+    var base = (window.NOLMT_CONFIG || {}).contactApiBase;
+    if (!base || !/^https:\/\//.test(base) || typeof window.NOLMT_CONTACT_CHALLENGE !== 'function') { show('Requests are not available yet. Nothing was sent.'); return; }
+    var snapshot = JSON.stringify(payload);
+    if (!pending || pending.snapshot !== snapshot) pending = { snapshot: snapshot, id: crypto.randomUUID() };
+    var attempt = pending;
+    busy = true; button.disabled = true;
+    var controller = new AbortController();
+    var timer;
+    try {
+      var token = await window.NOLMT_CONTACT_CHALLENGE();
+      timer = setTimeout(function () { controller.abort(); }, 15000);
+      var response = await fetch(base.replace(/\/$/, '') + '/contact', { method: 'POST', credentials: 'omit', signal: controller.signal, headers: { 'Content-Type': 'application/json', 'Idempotency-Key': attempt.id }, body: JSON.stringify(Object.assign({}, payload, { challengeToken: token })) });
+      var result = await response.json();
+      if (!response.ok || result.ok !== true || result.receipt !== attempt.id) throw new Error('Unconfirmed');
+      show('Request received. Reference: ' + result.receipt + '. This is a call request, not a confirmed appointment.');
+      var latest = new FormData(form);
+      var unchanged = ['name', 'email', 'topic', 'notes'].every(function (field) { return String(latest.get(field) || '').trim() === payload[field]; });
+      if (unchanged) form.reset();
+      if (pending === attempt) pending = null;
+    } catch (_) { show('Receipt could not be confirmed. Your information is still here. Retry unchanged information to avoid a duplicate.'); }
+    finally { clearTimeout(timer); busy = false; button.disabled = false; }
   });
 })();

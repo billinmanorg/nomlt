@@ -1,0 +1,31 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { PGlite } from '@electric-sql/pglite';
+import { readFile } from 'node:fs/promises';
+import { createDecipheriv, randomUUID } from 'node:crypto';
+import { createContactHandler, postgresContactStore } from '../server/contact.mjs';
+const db = new PGlite();
+await db.exec(await readFile(new URL('../server/contact-schema.sql', import.meta.url), 'utf8'));
+const key = Buffer.alloc(32, 8); const origin = 'https://synthetic.example';
+const payload = {name:'Synthetic Person',email:'synthetic@example.invalid',topic:'An AI App',notes:'Synthetic inquiry only',challengeToken:'verified'};
+const settings = { store:postgresContactStore(db.query.bind(db)),key,origin,verifyChallenge:async t=>t==='verified',rateLimit:async()=>true };
+const handler=createContactHandler(settings);
+function request(body=payload,id=randomUUID(),extra={}) { return new Request(origin+'/contact',{method:'POST',headers:{origin,'content-type':'application/json','idempotency-key':id,...extra},body:JSON.stringify(body)}); }
+const invoke=(req,h=handler)=>h(req,{clientAddress:'synthetic-client'});
+test('encrypted durable receipt and same-id replay',async()=>{
+ const id=randomUUID();assert.equal((await invoke(request(payload,id))).status,200);assert.equal((await invoke(request(payload,id))).status,200);
+ const {rows}=await db.query('select * from nolmt_private.inquiries where id=$1',[id]);assert.equal(rows.length,1);assert.ok(!rows[0].envelope.includes('Synthetic'));
+ const e=JSON.parse(rows[0].envelope);const d=createDecipheriv('aes-256-gcm',key,Buffer.from(e.nonce,'base64'));d.setAAD(Buffer.from(id));d.setAuthTag(Buffer.from(e.tag,'base64'));assert.equal(JSON.parse(Buffer.concat([d.update(Buffer.from(e.ciphertext,'base64')),d.final()])).name,payload.name);
+ assert.equal((await invoke(request({...payload,notes:'Different'},id))).status,409);
+});
+test('concurrent repeat persists one row',async()=>{const id=randomUUID();const rs=await Promise.all(Array.from({length:8},()=>invoke(request(payload,id))));assert.ok(rs.every(r=>r.status===200));assert.equal((await db.query('select count(*)::int n from nolmt_private.inquiries where id=$1',[id])).rows[0].n,1);});
+test('lost response retry preserves durable receipt',async()=>{let lost=true;const store=postgresContactStore(db.query.bind(db));const h=createContactHandler({...settings,store:{save:async p=>{const r=await store.save(p);if(lost){lost=false;throw Error('connection lost');}return r;}}});const id=randomUUID();assert.equal((await invoke(request(payload,id),h)).status,503);assert.equal((await invoke(request(payload,id),h)).status,200);});
+for(const [label,body,status] of [['bad email',{...payload,email:'invalid'},400],['bad topic',{...payload,topic:'forged'},400],['oversize field',{...payload,notes:'x'.repeat(4001)},400],['bad challenge',{...payload,challengeToken:'no'},403],['oversize body',{...payload,notes:'x'.repeat(13000)},413],['array',[],400]])test(label,async()=>assert.equal((await invoke(request(body))).status,status));
+test('origin and request id required',async()=>{assert.equal((await invoke(request(payload,randomUUID(),{origin:'https://evil.example'}))).status,403);assert.equal((await invoke(request(payload,'bad'))).status,400);});
+test('dependencies fail closed',async()=>{assert.equal((await invoke(request(),createContactHandler())).status,503);assert.equal((await invoke(request(),createContactHandler({...settings,rateLimit:async()=>false}))).status,429);assert.equal((await handler(request(),{})).status,429);});
+test('database unavailable is never accepted',async()=>assert.equal((await invoke(request(),createContactHandler({...settings,store:{save:async()=>{throw Error('private database address');}}}))).status,503));
+test('public role cannot read inquiries',async()=>{await db.exec('create role anon; set role anon');await assert.rejects(db.query('select * from nolmt_private.inquiries'));await db.exec('reset role');});
+test('content-type and method guarded',async()=>{assert.equal((await invoke(request(payload,randomUUID(),{'content-type':'text/plain'}))).status,415);assert.equal((await invoke(new Request(origin+'/contact',{headers:{origin}}))).status,405);});
+test('preflight restricted',async()=>{const r=await invoke(new Request(origin+'/contact',{method:'OPTIONS',headers:{origin}}));assert.equal(r.status,204);assert.equal(r.headers.get('access-control-allow-origin'),origin);assert.equal(r.headers.get('access-control-allow-credentials'),null);});
+test.after(()=>db.close());
+test('HTTP request to encrypted Postgres row returns receipt',async()=>{const {createInquiryServer}=await import('../server/http.mjs');const server=createInquiryServer(handler,()=> 'synthetic-client');await new Promise(r=>server.listen(0,'127.0.0.1',r));const id=randomUUID();try{const response=await fetch('http://127.0.0.1:'+server.address().port+'/contact',{method:'POST',headers:{origin,'content-type':'application/json','idempotency-key':id},body:JSON.stringify(payload)});assert.equal(response.status,200);assert.equal((await response.json()).receipt,id);assert.equal((await db.query('select count(*)::int n from nolmt_private.inquiries where id=$1',[id])).rows[0].n,1);}finally{await new Promise(r=>server.close(r));}});
