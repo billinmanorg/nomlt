@@ -18,13 +18,14 @@ PAGES = os.path.join(SRC, "pages")
 OUT = os.path.join(ROOT, "public")
 
 # slug -> label. Order is the order in the header.
+# A slug containing "#" is a link to a section of the homepage.
+# Redesign: 4 links + 1 button. Tokenization lives in the footer until it
+# launches as a product.
 NAV = [
-    ("ai-agents", "AI Agents"),
-    ("ai-app-development", "AI Apps"),
-    ("tokenization", "Tokenization"),
+    ("index.html#who", "Who it’s for"),
+    ("index.html#how", "How it works"),
     ("pricing", "Pricing"),
-    ("apps", "Examples"),
-    ("about", "About"),
+    ("ai-app-development", "AI Apps"),
 ]
 
 META_RE = re.compile(r"^<!--meta(.*?)-->", re.S)
@@ -71,7 +72,8 @@ def nav_html(active):
     items = []
     for slug, label in NAV:
         current = ' aria-current="page"' if slug == active else ""
-        items.append('<li><a href="%s.html"%s>%s</a></li>' % (slug, current, label))
+        href = slug if "#" in slug else slug + ".html"
+        items.append('<li><a href="%s"%s>%s</a></li>' % (href, current, label))
     return "\n        ".join(items)
 
 
@@ -136,8 +138,8 @@ def build():
                 .replace("{{NAV}}", nav_html(meta.get("nav", slug)))
                 .replace("{{HEAD}}", head)
                 .replace("{{PAGE_SCRIPT}}", script)
-                .replace("{{STICKY_HREF}}", meta.get("cta_href", "ai-agents.html"))
-                .replace("{{STICKY_LABEL}}", meta.get("cta_label", "Try an AI Agent"))
+                .replace("{{STICKY_HREF}}", meta.get("cta_href", "index.html#build"))
+                .replace("{{STICKY_LABEL}}", meta.get("cta_label", "Build my free preview"))
                 .replace("{{BUILD}}", stamp)
                 .replace("{{BODY}}", body))
 
