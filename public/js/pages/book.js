@@ -45,6 +45,7 @@
     }
 
     if (btn) btn.disabled = true;
+    show("notice notice--quiet", "<p class='mb-0'>Sending…</p>");
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
