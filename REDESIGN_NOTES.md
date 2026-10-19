@@ -58,16 +58,20 @@ Buttons reach Alice through the existing `data-start-agent` hook in agent.js.
   rewritten around the app prices.
 
 ## Open before merging to main
-- Stripe: the three "Buy now" (one-time) buttons still point at the existing
-  payment links, which charge $3,000 / $6,000 / $12,000. Update the amounts in
-  Stripe to $2,500 / $5,000 / $10,000 (or send new links). "Start monthly"
-  buttons go to Alice until monthly Stripe links exist.
+- Stripe links wired (Oct 20): one-time/annual and monthly links per app,
+  on the homepage and /pricing. Old $3k/$6k/$12k links removed.
+- Token page: public/token.html — standalone (own styles, not built from
+  src/), noindex, not in the sitemap, not linked from any nav. Images in
+  assets/token/. The interest form is disabled by design ("Requests opening
+  soon") until a destination is chosen.
 - The real-estate paid-media lander (real-estate.html) still sells the $399
   Growth plan — not mentioned on the call, left as is.
-- "Where does this go?" — the Book a call form (book.html) posts to
-  `apiBase + /contact` in js/config.js; apiBase is empty, so right now it tells
-  the visitor nothing was sent. The "Client login" link goes to
-  nolmt-twin.netlify.app/login.
+- Book a call form (book.html) now emails bill@billinman.org (CC
+  claflair@clearmortgagecapital.com) via FormSubmit (js/pages/book.js).
+  FIRST SUBMISSION: FormSubmit emails bill@billinman.org an "Activate form"
+  link — click it once, after that every request is delivered. If apiBase is
+  ever set in config.js, the site's own /contact endpoint takes over.
+  The "Client login" link goes to nolmt-twin.netlify.app/login.
 - Confirm the 14-day live promise and headline claims (5 seconds, 2 a.m.).
 - Branded open-house game: confirm public URL.
 
