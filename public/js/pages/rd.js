@@ -40,8 +40,7 @@
   /* ---------- payment toggle: monthly ("m") or one-time ("o") ----------
      Prices live on each .r-price as data-m / data-o. Each plan has one
      button per option, marked data-when="m|o"; the other is hidden.
-     One-time buttons go to Stripe; monthly buttons go to Alice until
-     monthly Stripe links exist. */
+     Both buttons go to their own Stripe payment link. */
   function setBill(once) {
     $$("[data-bill]").forEach(function (b) { b.setAttribute("aria-pressed", String((b.getAttribute("data-bill") === "o") === once)); });
     $$(".r-price[data-m]").forEach(function (p) {
