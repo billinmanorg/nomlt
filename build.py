@@ -124,6 +124,11 @@ def build():
         # search results (use it for unlisted review pages); `styles: name`
         # pulls in css/name.css for pages with their own layout.
         head = []
+        # Route custom-domain homepage visitors to the token page.
+        # This goes in <head> only for index.html, before the page renders.
+        # Other domains, including the Render preview, retain the homepage.
+        if slug == "index":
+            head.append('<script>\n// Redirect only the custom domain\'s homepage; keep the Render-hosted homepage unchanged.\n(function () {\n  var hostname = window.location.hostname.toLowerCase();\n  var pathname = window.location.pathname;\n  if ((hostname === "nolmt.io" || hostname === "www.nolmt.io") &&\n      (pathname === "/" || pathname === "/index.html")) {\n    window.location.replace("https://nolmt.io/token" +\n      window.location.search + window.location.hash);\n  }\n}());\n</script>')
         if "noindex" in meta.get("robots", ""):
             head.append('<meta name="robots" content="noindex, nofollow">')
         for sheet in [x.strip() for x in meta.get("styles", "").split(",") if x.strip()]:

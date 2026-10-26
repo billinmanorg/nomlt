@@ -32,6 +32,10 @@ services:
         name: Cache-Control
         value: public, max-age=0, must-revalidate
     routes:
+      # Show the existing token.html page at a clean /token URL.
+      - type: rewrite
+        source: /token
+        destination: /token.html
       - type: rewrite
         source: /my-nolmt
         destination: /my-nolmt.html
