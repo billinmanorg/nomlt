@@ -92,44 +92,6 @@ def build_stamp():
     return "%s-%s" % (datetime.date.today().isoformat(), digest.hexdigest()[:8])
 
 
-
-ROOT_REDIRECT_SCRIPT = "<script>\n/* Send only the new custom domain to the NOLMT token landing page. */\n(function () {\n  var host = window.location.hostname.toLowerCase();\n  if (host === 'nolmt.io' || host === 'www.nolmt.io') {\n    window.location.replace('https://nolmt.io/token');\n  }\n})();\n</script>"
-
-
-def write_token_alias():
-    """Publish /token/index.html, allowing /token without dashboard rewrites.
-
-    Keep /token.html as the source of truth. The alias is a standalone copy
-    with root-relative resource links so /token/ serves its images correctly.
-    """
-    import base64
-    source = os.path.join(OUT, "token.html")
-    destination_dir = os.path.join(OUT, "token")
-    os.makedirs(destination_dir, exist_ok=True)
-    with open(source, encoding="utf-8") as fh:
-        token_html = fh.read()
-
-    def absolute_url(match):
-        before, url, after = match.groups()
-        if url.startswith(("#", "/", "//", "http://", "https://", "mailto:", "tel:", "data:")):
-            return match.group(0)
-        return before + "/" + url + after
-
-    token_html = re.sub(r'(\b(?:href|src)=")([^"]+)(")', absolute_url, token_html)
-    token_html = token_html.replace('href="https://nolmt.ai/token.html"',
-                                    'href="https://nolmt.io/token"', 1)
-
-    # Allow only this particular extra inline script, using its CSP SHA-256.
-    route_script = "if (location.pathname === '/token/') { history.replaceState(null, '', '/token' + location.search + location.hash); }"
-    digest = base64.b64encode(hashlib.sha256(route_script.encode("utf-8")).digest()).decode("ascii")
-    marker = "script-src 'sha256-e8R6lS2kc5gpQMd4U8WfqVSHZi7fVRvg1NxkysAVhqM='"
-    if marker not in token_html:
-        raise ValueError("Unexpected token.html CSP; verify original inline script hash")
-    token_html = token_html.replace(marker, marker + " 'sha256-" + digest + "'", 1)
-    token_html = token_html.replace('</body>', '<script>' + route_script + '</script></body>', 1)
-    with open(os.path.join(destination_dir, "index.html"), "w", encoding="utf-8") as fh:
-        fh.write(token_html)
-
 def build():
     with open(os.path.join(SRC, "layout.html"), encoding="utf-8") as fh:
         layout = fh.read()
@@ -162,8 +124,6 @@ def build():
         # search results (use it for unlisted review pages); `styles: name`
         # pulls in css/name.css for pages with their own layout.
         head = []
-        if slug == "index":
-            head.append(ROOT_REDIRECT_SCRIPT)
         if "noindex" in meta.get("robots", ""):
             head.append('<meta name="robots" content="noindex, nofollow">')
         for sheet in [x.strip() for x in meta.get("styles", "").split(",") if x.strip()]:
@@ -188,8 +148,6 @@ def build():
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as fh:
             fh.write(html)
         built.append(name)
-
-    write_token_alias()
 
     print("Build stamp: %s" % stamp)
     print("Built %d pages into public/:" % len(built))
