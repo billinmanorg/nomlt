@@ -19,6 +19,18 @@
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2?v=f11d729b" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/nolmt.css?v=4ce022c0">
 <link rel="stylesheet" href="css/rd.css?v=0896612b">
+<script>
+// Redirect only the custom domain's homepage; keep the Render-hosted homepage unchanged.
+(function () {
+  var hostname = window.location.hostname.toLowerCase();
+  var pathname = window.location.pathname;
+  if ((hostname === "nolmt.io" || hostname === "www.nolmt.io") &&
+      (pathname === "/" || pathname === "/index.html")) {
+    window.location.replace("https://nolmt.io/token" +
+      window.location.search + window.location.hash);
+  }
+}());
+</script>
 <script>document.documentElement.className += " has-js";</script>
 </head>
 <body data-page="index" data-build="2026-10-20-55284be5">
